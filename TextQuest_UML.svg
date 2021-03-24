@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1765.5px" preserveAspectRatio="none" style="width:3132px;height:1765px;" version="1.1" viewBox="0 0 3132 1765" width="3132px" zoomAndPan="magnify"><defs><filter height="300%" id="f11uobk721ji38" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="3.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="6.0" dy="6.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[d5b1ed220e36a9b6b1af384f72e2be5b]
+cluster story--><polygon fill="#FFFFFF" filter="url(#f11uobk721ji38)" points="24,316.5,85.5,316.5,96,351.9141,1999.5,351.9141,1999.5,1755,24,1755,24,316.5" style="stroke:#000000;stroke-width:2.25;"/><line style="stroke:#000000;stroke-width:2.25;" x1="24" x2="96" y1="351.9141" y2="351.9141"/><text fill="#000000" font-family="sans-serif" font-size="21" font-weight="bold" lengthAdjust="spacing" textLength="52.5" x="30" y="341.2998">story</text><!--MD5=[dbcec57f23c0b4e0af29ccd09b41b3c2]
+cluster tqmanager--><polygon fill="#FFFFFF" filter="url(#f11uobk721ji38)" points="2035.5,462.75,2157,462.75,2167.5,498.1641,3106.5,498.1641,3106.5,1033.5,2035.5,1033.5,2035.5,462.75" style="stroke:#000000;stroke-width:2.25;"/><line style="stroke:#000000;stroke-width:2.25;" x1="2035.5" x2="2167.5" y1="498.1641" y2="498.1641"/><text fill="#000000" font-family="sans-serif" font-size="21" font-weight="bold" lengthAdjust="spacing" textLength="112.5" x="2041.5" y="487.5498">tqmanager</text><!--MD5=[c52f45833d539af9e29a9d34b8b7302b]
+cluster utils--><polygon fill="#FFFFFF" filter="url(#f11uobk721ji38)" points="426,9,480,9,490.5,44.4141,1026,44.4141,1026,241.5,426,241.5,426,9" style="stroke:#000000;stroke-width:2.25;"/><line style="stroke:#000000;stroke-width:2.25;" x1="426" x2="490.5" y1="44.4141" y2="44.4141"/><text fill="#000000" font-family="sans-serif" font-size="21" font-weight="bold" lengthAdjust="spacing" textLength="45" x="432" y="33.7998">utils</text><!--MD5=[a65b64adc23078244faca9a369f7e410]
+class TQStory--><rect codeLine="3" fill="#FEFECE" filter="url(#f11uobk721ji38)" height="410.5547" id="TQStory" style="stroke:#A80036;stroke-width:2.25;" width="409.5" x="518.25" y="376.5"/><ellipse cx="684.375" cy="400.5" fill="#ADD1B2" rx="16.5" ry="16.5" style="stroke:#A80036;stroke-width:1.5;"/><path d="M687.375,395.25 Q687.6797,394.5 688.0313,394.125 Q688.3828,393.75 688.7813,393.75 Q689.4844,393.75 689.9297,394.1719 Q690.375,394.5938 690.375,395.5781 L690.375,397.9219 Q690.375,398.9063 689.9531,399.3281 Q689.5313,399.75 688.875,399.75 Q688.2891,399.75 687.9141,399.4922 Q687.5391,399.2344 687.375,398.5547 Q687.3047,398.0859 687.0469,397.8281 Q686.5781,397.3359 685.7344,397.0547 Q684.8906,396.75 684.0469,396.75 Q682.9922,396.75 682.1016,397.1719 Q681.2344,397.5938 680.5547,398.5313 Q679.875,399.4688 679.875,400.7578 L679.875,402.1406 Q679.875,403.6875 681.1406,404.7188 Q682.4063,405.75 684.6563,405.75 Q685.9922,405.75 686.9297,405.4453 Q687.4688,405.2813 688.0781,404.7422 Q688.4766,404.4375 688.6875,404.3438 Q688.8984,404.25 689.1563,404.25 Q689.6484,404.25 690,404.6484 Q690.375,405.0234 690.375,405.5625 Q690.375,406.0781 689.8594,406.6875 Q689.1094,407.5781 687.9141,408.0703 Q686.3438,408.75 684.4219,408.75 Q682.1719,408.75 680.3672,407.8594 Q678.9141,407.1563 677.8828,405.6328 Q676.875,404.1094 676.875,402.3047 L676.875,400.6641 Q676.875,398.7891 677.7656,397.1484 Q678.6797,395.5078 680.25,394.6406 Q681.8438,393.75 683.625,393.75 Q684.7031,393.75 685.6406,394.125 Q686.5781,394.5 687.375,395.25 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="64.5" x="715.125" y="407.8652">TQStory</text><line style="stroke:#A80036;stroke-width:2.25;" x1="519.75" x2="926.25" y1="424.5" y2="424.5"/><rect fill="none" height="9" style="stroke:#C82930;stroke-width:1.5;" width="9" x="530.25" y="436.5"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="123" x="548.25" y="447.6284">TQQuest tqquest</text><rect fill="none" height="9" style="stroke:#C82930;stroke-width:1.5;" width="9" x="530.25" y="457.2539"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="207" x="548.25" y="468.3823">TwPassage currentPassage</text><rect fill="none" height="9" style="stroke:#C82930;stroke-width:1.5;" width="9" x="530.25" y="478.0078"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="234" x="548.25" y="489.1362">String currentPassageCleanText</text><rect fill="none" height="9" style="stroke:#C82930;stroke-width:1.5;" width="9" x="530.25" y="498.7617"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="370.5" x="548.25" y="509.8901">MathExpressionEvaluator mathExpressionEvaluator</text><line style="stroke:#A80036;stroke-width:2.25;" x1="519.75" x2="926.25" y1="519.5156" y2="519.5156"/><ellipse cx="534.75" cy="536.0156" fill="#84BE84" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="174" x="548.25" y="542.644">Story(TQQuest tqquest)</text><line style="stroke:#A80036;stroke-width:1.5;stroke-dasharray:1.0,2.0;" x1="519.75" x2="926.25" y1="552.2695" y2="552.2695"/><ellipse cx="534.75" cy="568.7695" fill="#84BE84" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="271.5" x="548.25" y="575.3979">TwPassage getPassageByPid(int pid)</text><ellipse cx="534.75" cy="589.5234" fill="#84BE84" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="334.5" x="548.25" y="596.1519">TwPassage getPassageByName(String name)</text><line style="stroke:#A80036;stroke-width:1.5;stroke-dasharray:1.0,2.0;" x1="519.75" x2="926.25" y1="605.7773" y2="605.7773"/><ellipse cx="534.75" cy="622.2773" fill="#84BE84" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="193.5" x="548.25" y="628.9058">int getCurrentPassagePid()</text><ellipse cx="534.75" cy="643.0313" fill="#84BE84" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="238.5" x="548.25" y="649.6597">String getCurrentPassageName()</text><line style="stroke:#A80036;stroke-width:1.5;stroke-dasharray:1.0,2.0;" x1="519.75" x2="926.25" y1="659.2852" y2="659.2852"/><ellipse cx="534.75" cy="675.7852" fill="#84BE84" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="235.5" x="548.25" y="682.4136">String processCurrentPassage()</text><ellipse cx="534.75" cy="696.5391" fill="#84BE84" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="255" x="548.25" y="703.1675">TwLink[] getCurrentPassageLinks()</text><ellipse cx="534.75" cy="717.293" fill="#84BE84" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="270" x="548.25" y="723.9214">String getCurrentPassageCleanText()</text><ellipse cx="534.75" cy="738.0469" fill="#84BE84" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="232.5" x="548.25" y="744.6753">goByLinkNumber(int linkNumber)</text><line style="stroke:#A80036;stroke-width:1.5;stroke-dasharray:1.0,2.0;" x1="519.75" x2="926.25" y1="754.3008" y2="754.3008"/><ellipse cx="534.75" cy="770.8008" fill="#84BE84" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="112.5" x="548.25" y="777.4292">boolean isEnd()</text><!--MD5=[94a077c37636dc349e828f87cb4f5477]
+class TQQuest--><rect codeLine="28" fill="#FEFECE" filter="url(#f11uobk721ji38)" height="217.2773" id="TQQuest" style="stroke:#A80036;stroke-width:2.25;" width="292.5" x="578.25" y="883.5"/><ellipse cx="681.375" cy="907.5" fill="#ADD1B2" rx="16.5" ry="16.5" style="stroke:#A80036;stroke-width:1.5;"/><path d="M684.375,902.25 Q684.6797,901.5 685.0313,901.125 Q685.3828,900.75 685.7813,900.75 Q686.4844,900.75 686.9297,901.1719 Q687.375,901.5938 687.375,902.5781 L687.375,904.9219 Q687.375,905.9063 686.9531,906.3281 Q686.5313,906.75 685.875,906.75 Q685.2891,906.75 684.9141,906.4922 Q684.5391,906.2344 684.375,905.5547 Q684.3047,905.0859 684.0469,904.8281 Q683.5781,904.3359 682.7344,904.0547 Q681.8906,903.75 681.0469,903.75 Q679.9922,903.75 679.1016,904.1719 Q678.2344,904.5938 677.5547,905.5313 Q676.875,906.4688 676.875,907.7578 L676.875,909.1406 Q676.875,910.6875 678.1406,911.7188 Q679.4063,912.75 681.6563,912.75 Q682.9922,912.75 683.9297,912.4453 Q684.4688,912.2813 685.0781,911.7422 Q685.4766,911.4375 685.6875,911.3438 Q685.8984,911.25 686.1563,911.25 Q686.6484,911.25 687,911.6484 Q687.375,912.0234 687.375,912.5625 Q687.375,913.0781 686.8594,913.6875 Q686.1094,914.5781 684.9141,915.0703 Q683.3438,915.75 681.4219,915.75 Q679.1719,915.75 677.3672,914.8594 Q675.9141,914.1563 674.8828,912.6328 Q673.875,911.1094 673.875,909.3047 L673.875,907.6641 Q673.875,905.7891 674.7656,904.1484 Q675.6797,902.5078 677.25,901.6406 Q678.8438,900.75 680.625,900.75 Q681.7031,900.75 682.6406,901.125 Q683.5781,901.5 684.375,902.25 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="73.5" x="712.125" y="914.8652">TQQuest</text><line style="stroke:#A80036;stroke-width:2.25;" x1="579.75" x2="869.25" y1="931.5" y2="931.5"/><ellipse cx="594.75" cy="948" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="70.5" x="608.25" y="954.6284">String title</text><ellipse cx="594.75" cy="968.7539" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="93" x="608.25" y="975.3823">String author</text><ellipse cx="594.75" cy="989.5078" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="168" x="608.25" y="996.1362">TQCharacter character</text><ellipse cx="594.75" cy="1010.2617" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="207" x="608.25" y="1016.8901">List&lt;TwPassage&gt; passages</text><ellipse cx="594.75" cy="1031.0156" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="85.5" x="608.25" y="1037.644">String name</text><ellipse cx="594.75" cy="1051.7695" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="90" x="608.25" y="1058.3979">int startnode</text><ellipse cx="594.75" cy="1072.5234" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="253.5" x="608.25" y="1079.1519">String creator, creator_version, ifid</text><line style="stroke:#A80036;stroke-width:2.25;" x1="579.75" x2="869.25" y1="1088.7773" y2="1088.7773"/><!--MD5=[6dab1e00aa7953c4af806a73a2ba0a17]
+class TwPassage--><rect codeLine="75" fill="#FEFECE" filter="url(#f11uobk721ji38)" height="175.7695" id="TwPassage" style="stroke:#A80036;stroke-width:2.25;" width="178.5" x="212.25" y="1200"/><ellipse cx="248.925" cy="1224" fill="#ADD1B2" rx="16.5" ry="16.5" style="stroke:#A80036;stroke-width:1.5;"/><path d="M251.925,1218.75 Q252.2297,1218 252.5812,1217.625 Q252.9328,1217.25 253.3312,1217.25 Q254.0344,1217.25 254.4797,1217.6719 Q254.925,1218.0938 254.925,1219.0781 L254.925,1221.4219 Q254.925,1222.4063 254.5031,1222.8281 Q254.0812,1223.25 253.425,1223.25 Q252.8391,1223.25 252.4641,1222.9922 Q252.0891,1222.7344 251.925,1222.0547 Q251.8547,1221.5859 251.5969,1221.3281 Q251.1281,1220.8359 250.2844,1220.5547 Q249.4406,1220.25 248.5969,1220.25 Q247.5422,1220.25 246.6516,1220.6719 Q245.7844,1221.0938 245.1047,1222.0313 Q244.425,1222.9688 244.425,1224.2578 L244.425,1225.6406 Q244.425,1227.1875 245.6906,1228.2188 Q246.9562,1229.25 249.2062,1229.25 Q250.5422,1229.25 251.4797,1228.9453 Q252.0187,1228.7813 252.6281,1228.2422 Q253.0266,1227.9375 253.2375,1227.8438 Q253.4484,1227.75 253.7062,1227.75 Q254.1984,1227.75 254.55,1228.1484 Q254.925,1228.5234 254.925,1229.0625 Q254.925,1229.5781 254.4094,1230.1875 Q253.6594,1231.0781 252.4641,1231.5703 Q250.8937,1232.25 248.9719,1232.25 Q246.7219,1232.25 244.9172,1231.3594 Q243.4641,1230.6563 242.4328,1229.1328 Q241.425,1227.6094 241.425,1225.8047 L241.425,1224.1641 Q241.425,1222.2891 242.3156,1220.6484 Q243.2297,1219.0078 244.8,1218.1406 Q246.3937,1217.25 248.175,1217.25 Q249.2531,1217.25 250.1906,1217.625 Q251.1281,1218 251.925,1218.75 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="99" x="273.075" y="1231.3652">TwPassage</text><line style="stroke:#A80036;stroke-width:2.25;" x1="213.75" x2="389.25" y1="1248" y2="1248"/><ellipse cx="228.75" cy="1264.5" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="73.5" x="242.25" y="1271.1284">String text</text><ellipse cx="228.75" cy="1285.2539" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="132" x="242.25" y="1291.8823">List&lt;TwLink&gt; links</text><ellipse cx="228.75" cy="1306.0078" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="85.5" x="242.25" y="1312.6362">String name</text><ellipse cx="228.75" cy="1326.7617" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="42" x="242.25" y="1333.3901">int pid</text><ellipse cx="228.75" cy="1347.5156" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="139.5" x="242.25" y="1354.144">TwPosition position</text><line style="stroke:#A80036;stroke-width:2.25;" x1="213.75" x2="389.25" y1="1363.7695" y2="1363.7695"/><!--MD5=[886e4d387024dd8b2c4536c0cc7e7e37]
+class TQCharacter--><rect codeLine="41" fill="#FEFECE" filter="url(#f11uobk721ji38)" height="134.2617" id="TQCharacter" style="stroke:#A80036;stroke-width:2.25;" width="657" x="468" y="1220.25"/><ellipse cx="737.625" cy="1244.25" fill="#ADD1B2" rx="16.5" ry="16.5" style="stroke:#A80036;stroke-width:1.5;"/><path d="M740.625,1239 Q740.9297,1238.25 741.2813,1237.875 Q741.6328,1237.5 742.0313,1237.5 Q742.7344,1237.5 743.1797,1237.9219 Q743.625,1238.3438 743.625,1239.3281 L743.625,1241.6719 Q743.625,1242.6563 743.2031,1243.0781 Q742.7813,1243.5 742.125,1243.5 Q741.5391,1243.5 741.1641,1243.2422 Q740.7891,1242.9844 740.625,1242.3047 Q740.5547,1241.8359 740.2969,1241.5781 Q739.8281,1241.0859 738.9844,1240.8047 Q738.1406,1240.5 737.2969,1240.5 Q736.2422,1240.5 735.3516,1240.9219 Q734.4844,1241.3438 733.8047,1242.2813 Q733.125,1243.2188 733.125,1244.5078 L733.125,1245.8906 Q733.125,1247.4375 734.3906,1248.4688 Q735.6563,1249.5 737.9063,1249.5 Q739.2422,1249.5 740.1797,1249.1953 Q740.7188,1249.0313 741.3281,1248.4922 Q741.7266,1248.1875 741.9375,1248.0938 Q742.1484,1248 742.4063,1248 Q742.8984,1248 743.25,1248.3984 Q743.625,1248.7734 743.625,1249.3125 Q743.625,1249.8281 743.1094,1250.4375 Q742.3594,1251.3281 741.1641,1251.8203 Q739.5938,1252.5 737.6719,1252.5 Q735.4219,1252.5 733.6172,1251.6094 Q732.1641,1250.9063 731.1328,1249.3828 Q730.125,1247.8594 730.125,1246.0547 L730.125,1244.4141 Q730.125,1242.5391 731.0156,1240.8984 Q731.9297,1239.2578 733.5,1238.3906 Q735.0938,1237.5 736.875,1237.5 Q737.9531,1237.5 738.8906,1237.875 Q739.8281,1238.25 740.625,1239 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="105" x="768.375" y="1251.6152">TQCharacter</text><line style="stroke:#A80036;stroke-width:2.25;" x1="469.5" x2="1123.5" y1="1268.25" y2="1268.25"/><ellipse cx="484.5" cy="1284.75" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="241.5" x="498" y="1291.3784">TQCharacterProperty[] properties</text><ellipse cx="484.5" cy="1305.5039" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="262.5" x="498" y="1312.1323">TQCharacterParameter[] parameters</text><line style="stroke:#A80036;stroke-width:2.25;" x1="469.5" x2="1123.5" y1="1321.7578" y2="1321.7578"/><ellipse cx="484.5" cy="1338.2578" fill="#84BE84" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="618" x="498" y="1344.8862">TQCharacter(TQCharacterProperty[] properties, TQCharacterParameter[] parameters)</text><!--MD5=[2fd640dc82e375cd627fb262b2d3691a]
+class TQCharacterProperty--><rect codeLine="50" fill="#FEFECE" filter="url(#f11uobk721ji38)" height="155.0156" id="TQCharacterProperty" style="stroke:#A80036;stroke-width:2.25;" width="427.5" x="417.75" y="1522.5"/><ellipse cx="538.875" cy="1546.5" fill="#ADD1B2" rx="16.5" ry="16.5" style="stroke:#A80036;stroke-width:1.5;"/><path d="M541.875,1541.25 Q542.1797,1540.5 542.5313,1540.125 Q542.8828,1539.75 543.2813,1539.75 Q543.9844,1539.75 544.4297,1540.1719 Q544.875,1540.5938 544.875,1541.5781 L544.875,1543.9219 Q544.875,1544.9063 544.4531,1545.3281 Q544.0313,1545.75 543.375,1545.75 Q542.7891,1545.75 542.4141,1545.4922 Q542.0391,1545.2344 541.875,1544.5547 Q541.8047,1544.0859 541.5469,1543.8281 Q541.0781,1543.3359 540.2344,1543.0547 Q539.3906,1542.75 538.5469,1542.75 Q537.4922,1542.75 536.6016,1543.1719 Q535.7344,1543.5938 535.0547,1544.5313 Q534.375,1545.4688 534.375,1546.7578 L534.375,1548.1406 Q534.375,1549.6875 535.6406,1550.7188 Q536.9063,1551.75 539.1563,1551.75 Q540.4922,1551.75 541.4297,1551.4453 Q541.9688,1551.2813 542.5781,1550.7422 Q542.9766,1550.4375 543.1875,1550.3438 Q543.3984,1550.25 543.6563,1550.25 Q544.1484,1550.25 544.5,1550.6484 Q544.875,1551.0234 544.875,1551.5625 Q544.875,1552.0781 544.3594,1552.6875 Q543.6094,1553.5781 542.4141,1554.0703 Q540.8438,1554.75 538.9219,1554.75 Q536.6719,1554.75 534.8672,1553.8594 Q533.4141,1553.1563 532.3828,1551.6328 Q531.375,1550.1094 531.375,1548.3047 L531.375,1546.6641 Q531.375,1544.7891 532.2656,1543.1484 Q533.1797,1541.5078 534.75,1540.6406 Q536.3438,1539.75 538.125,1539.75 Q539.2031,1539.75 540.1406,1540.125 Q541.0781,1540.5 541.875,1541.25 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="172.5" x="569.625" y="1553.8652">TQCharacterProperty</text><line style="stroke:#A80036;stroke-width:2.25;" x1="419.25" x2="843.75" y1="1570.5" y2="1570.5"/><ellipse cx="434.25" cy="1587" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="127.5" x="447.75" y="1593.6284">String tqKeyword</text><ellipse cx="434.25" cy="1607.7539" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="85.5" x="447.75" y="1614.3823">String value</text><line style="stroke:#A80036;stroke-width:2.25;" x1="419.25" x2="843.75" y1="1624.0078" y2="1624.0078"/><ellipse cx="434.25" cy="1640.5078" fill="#84BE84" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="166.5" x="447.75" y="1647.1362">TQCharacterProperty()</text><ellipse cx="434.25" cy="1661.2617" fill="#84BE84" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="388.5" x="447.75" y="1667.8901">TQCharacterProperty(String tqKeyword, String value)</text><!--MD5=[c55939318167f167309c174db0d4610d]
+class TQCharacterParameter--><rect codeLine="58" fill="#FEFECE" filter="url(#f11uobk721ji38)" height="262.0313" id="TQCharacterParameter" style="stroke:#A80036;stroke-width:2.25;" width="1077" x="898.5" y="1468.5"/><ellipse cx="1334.625" cy="1492.5" fill="#ADD1B2" rx="16.5" ry="16.5" style="stroke:#A80036;stroke-width:1.5;"/><path d="M1337.625,1487.25 Q1337.9297,1486.5 1338.2813,1486.125 Q1338.6328,1485.75 1339.0313,1485.75 Q1339.7344,1485.75 1340.1797,1486.1719 Q1340.625,1486.5938 1340.625,1487.5781 L1340.625,1489.9219 Q1340.625,1490.9063 1340.2031,1491.3281 Q1339.7813,1491.75 1339.125,1491.75 Q1338.5391,1491.75 1338.1641,1491.4922 Q1337.7891,1491.2344 1337.625,1490.5547 Q1337.5547,1490.0859 1337.2969,1489.8281 Q1336.8281,1489.3359 1335.9844,1489.0547 Q1335.1406,1488.75 1334.2969,1488.75 Q1333.2422,1488.75 1332.3516,1489.1719 Q1331.4844,1489.5938 1330.8047,1490.5313 Q1330.125,1491.4688 1330.125,1492.7578 L1330.125,1494.1406 Q1330.125,1495.6875 1331.3906,1496.7188 Q1332.6563,1497.75 1334.9063,1497.75 Q1336.2422,1497.75 1337.1797,1497.4453 Q1337.7188,1497.2813 1338.3281,1496.7422 Q1338.7266,1496.4375 1338.9375,1496.3438 Q1339.1484,1496.25 1339.4063,1496.25 Q1339.8984,1496.25 1340.25,1496.6484 Q1340.625,1497.0234 1340.625,1497.5625 Q1340.625,1498.0781 1340.1094,1498.6875 Q1339.3594,1499.5781 1338.1641,1500.0703 Q1336.5938,1500.75 1334.6719,1500.75 Q1332.4219,1500.75 1330.6172,1499.8594 Q1329.1641,1499.1563 1328.1328,1497.6328 Q1327.125,1496.1094 1327.125,1494.3047 L1327.125,1492.6641 Q1327.125,1490.7891 1328.0156,1489.1484 Q1328.9297,1487.5078 1330.5,1486.6406 Q1332.0938,1485.75 1333.875,1485.75 Q1334.9531,1485.75 1335.8906,1486.125 Q1336.8281,1486.5 1337.625,1487.25 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="192" x="1365.375" y="1499.8652">TQCharacterParameter</text><line style="stroke:#A80036;stroke-width:2.25;" x1="900" x2="1974" y1="1516.5" y2="1516.5"/><ellipse cx="915" cy="1533" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="85.5" x="928.5" y="1539.6284">String name</text><ellipse cx="915" cy="1553.7539" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="60" x="928.5" y="1560.3823">int value</text><line style="stroke:#A80036;stroke-width:2.25;" x1="900" x2="1974" y1="1570.0078" y2="1570.0078"/><ellipse cx="915" cy="1586.5078" fill="#84BE84" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="178.5" x="928.5" y="1593.1362">TQCharacterParameter()</text><ellipse cx="915" cy="1607.2617" fill="#84BE84" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="1038" x="928.5" y="1613.8901">TQCharacterParameter(String name, int startValue, String minValue, String minValPassageName, String maxValue, String maxValPassageName)</text><line style="stroke:#A80036;stroke-width:1.5;stroke-dasharray:1.0,2.0;" x1="900" x2="1974" y1="1623.5156" y2="1623.5156"/><ellipse cx="915" cy="1640.0156" fill="#84BE84" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="75" x="928.5" y="1646.644">getName()</text><ellipse cx="915" cy="1660.7695" fill="#84BE84" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="75" x="928.5" y="1667.3979">setName()</text><line style="stroke:#A80036;stroke-width:1.5;stroke-dasharray:1.0,2.0;" x1="900" x2="1974" y1="1677.0234" y2="1677.0234"/><ellipse cx="915" cy="1693.5234" fill="#84BE84" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="76.5" x="928.5" y="1700.1519">getValue()</text><ellipse cx="915" cy="1714.2773" fill="#84BE84" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="76.5" x="928.5" y="1720.9058">setValue()</text><!--MD5=[b0082cdfa4dcce96baa042831b0a3d46]
+class TwLink--><rect codeLine="86" fill="#FEFECE" filter="url(#f11uobk721ji38)" height="134.2617" id="TwLink" style="stroke:#A80036;stroke-width:2.25;" width="124.5" x="240.75" y="1532.25"/><ellipse cx="271.35" cy="1556.25" fill="#ADD1B2" rx="16.5" ry="16.5" style="stroke:#A80036;stroke-width:1.5;"/><path d="M274.35,1551 Q274.6547,1550.25 275.0063,1549.875 Q275.3578,1549.5 275.7563,1549.5 Q276.4594,1549.5 276.9047,1549.9219 Q277.35,1550.3438 277.35,1551.3281 L277.35,1553.6719 Q277.35,1554.6563 276.9281,1555.0781 Q276.5063,1555.5 275.85,1555.5 Q275.2641,1555.5 274.8891,1555.2422 Q274.5141,1554.9844 274.35,1554.3047 Q274.2797,1553.8359 274.0219,1553.5781 Q273.5531,1553.0859 272.7094,1552.8047 Q271.8656,1552.5 271.0219,1552.5 Q269.9672,1552.5 269.0766,1552.9219 Q268.2094,1553.3438 267.5297,1554.2813 Q266.85,1555.2188 266.85,1556.5078 L266.85,1557.8906 Q266.85,1559.4375 268.1156,1560.4688 Q269.3813,1561.5 271.6313,1561.5 Q272.9672,1561.5 273.9047,1561.1953 Q274.4438,1561.0313 275.0531,1560.4922 Q275.4516,1560.1875 275.6625,1560.0938 Q275.8734,1560 276.1313,1560 Q276.6234,1560 276.975,1560.3984 Q277.35,1560.7734 277.35,1561.3125 Q277.35,1561.8281 276.8344,1562.4375 Q276.0844,1563.3281 274.8891,1563.8203 Q273.3188,1564.5 271.3969,1564.5 Q269.1469,1564.5 267.3422,1563.6094 Q265.8891,1562.9063 264.8578,1561.3828 Q263.85,1559.8594 263.85,1558.0547 L263.85,1556.4141 Q263.85,1554.5391 264.7406,1552.8984 Q265.6547,1551.2578 267.225,1550.3906 Q268.8188,1549.5 270.6,1549.5 Q271.6781,1549.5 272.6156,1549.875 Q273.5531,1550.25 274.35,1551 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="58.5" x="294.15" y="1563.6152">TwLink</text><line style="stroke:#A80036;stroke-width:2.25;" x1="242.25" x2="363.75" y1="1580.25" y2="1580.25"/><ellipse cx="257.25" cy="1596.75" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="85.5" x="270.75" y="1603.3784">String name</text><ellipse cx="257.25" cy="1617.5039" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="69" x="270.75" y="1624.1323">String link</text><ellipse cx="257.25" cy="1638.2578" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="42" x="270.75" y="1644.8862">int pid</text><line style="stroke:#A80036;stroke-width:2.25;" x1="242.25" x2="363.75" y1="1654.5117" y2="1654.5117"/><!--MD5=[fe85196431279e9b6e8bfad9ac70314f]
+class TwPosition--><rect codeLine="94" fill="#FEFECE" filter="url(#f11uobk721ji38)" height="92.7539" id="TwPosition" style="stroke:#A80036;stroke-width:2.25;" width="139.5" x="48.75" y="1553.25"/><ellipse cx="71.25" cy="1577.25" fill="#ADD1B2" rx="16.5" ry="16.5" style="stroke:#A80036;stroke-width:1.5;"/><path d="M74.25,1572 Q74.5547,1571.25 74.9063,1570.875 Q75.2578,1570.5 75.6563,1570.5 Q76.3594,1570.5 76.8047,1570.9219 Q77.25,1571.3438 77.25,1572.3281 L77.25,1574.6719 Q77.25,1575.6563 76.8281,1576.0781 Q76.4063,1576.5 75.75,1576.5 Q75.1641,1576.5 74.7891,1576.2422 Q74.4141,1575.9844 74.25,1575.3047 Q74.1797,1574.8359 73.9219,1574.5781 Q73.4531,1574.0859 72.6094,1573.8047 Q71.7656,1573.5 70.9219,1573.5 Q69.8672,1573.5 68.9766,1573.9219 Q68.1094,1574.3438 67.4297,1575.2813 Q66.75,1576.2188 66.75,1577.5078 L66.75,1578.8906 Q66.75,1580.4375 68.0156,1581.4688 Q69.2813,1582.5 71.5313,1582.5 Q72.8672,1582.5 73.8047,1582.1953 Q74.3438,1582.0313 74.9531,1581.4922 Q75.3516,1581.1875 75.5625,1581.0938 Q75.7734,1581 76.0313,1581 Q76.5234,1581 76.875,1581.3984 Q77.25,1581.7734 77.25,1582.3125 Q77.25,1582.8281 76.7344,1583.4375 Q75.9844,1584.3281 74.7891,1584.8203 Q73.2188,1585.5 71.2969,1585.5 Q69.0469,1585.5 67.2422,1584.6094 Q65.7891,1583.9063 64.7578,1582.3828 Q63.75,1580.8594 63.75,1579.0547 L63.75,1577.4141 Q63.75,1575.5391 64.6406,1573.8984 Q65.5547,1572.2578 67.125,1571.3906 Q68.7188,1570.5 70.5,1570.5 Q71.5781,1570.5 72.5156,1570.875 Q73.4531,1571.25 74.25,1572 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="91.5" x="92.25" y="1584.6152">TwPosition</text><line style="stroke:#A80036;stroke-width:2.25;" x1="50.25" x2="186.75" y1="1601.25" y2="1601.25"/><ellipse cx="65.25" cy="1617.75" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="63" x="78.75" y="1624.3784">float x, y</text><line style="stroke:#A80036;stroke-width:2.25;" x1="50.25" x2="186.75" y1="1634.0039" y2="1634.0039"/><!--MD5=[b51a5a65ccb90c6d6d2650764e5090ad]
+class TQManager--><rect codeLine="107" fill="#FEFECE" filter="url(#f11uobk721ji38)" height="113.5078" id="TQManager" style="stroke:#A80036;stroke-width:2.25;" width="358.5" x="2231.25" y="522.75"/><ellipse cx="2356.125" cy="546.75" fill="#ADD1B2" rx="16.5" ry="16.5" style="stroke:#A80036;stroke-width:1.5;"/><path d="M2359.125,541.5 Q2359.4297,540.75 2359.7813,540.375 Q2360.1328,540 2360.5313,540 Q2361.2344,540 2361.6797,540.4219 Q2362.125,540.8438 2362.125,541.8281 L2362.125,544.1719 Q2362.125,545.1563 2361.7031,545.5781 Q2361.2813,546 2360.625,546 Q2360.0391,546 2359.6641,545.7422 Q2359.2891,545.4844 2359.125,544.8047 Q2359.0547,544.3359 2358.7969,544.0781 Q2358.3281,543.5859 2357.4844,543.3047 Q2356.6406,543 2355.7969,543 Q2354.7422,543 2353.8516,543.4219 Q2352.9844,543.8438 2352.3047,544.7813 Q2351.625,545.7188 2351.625,547.0078 L2351.625,548.3906 Q2351.625,549.9375 2352.8906,550.9688 Q2354.1563,552 2356.4063,552 Q2357.7422,552 2358.6797,551.6953 Q2359.2188,551.5313 2359.8281,550.9922 Q2360.2266,550.6875 2360.4375,550.5938 Q2360.6484,550.5 2360.9063,550.5 Q2361.3984,550.5 2361.75,550.8984 Q2362.125,551.2734 2362.125,551.8125 Q2362.125,552.3281 2361.6094,552.9375 Q2360.8594,553.8281 2359.6641,554.3203 Q2358.0938,555 2356.1719,555 Q2353.9219,555 2352.1172,554.1094 Q2350.6641,553.4063 2349.6328,551.8828 Q2348.625,550.3594 2348.625,548.5547 L2348.625,546.9141 Q2348.625,545.0391 2349.5156,543.3984 Q2350.4297,541.7578 2352,540.8906 Q2353.5938,540 2355.375,540 Q2356.4531,540 2357.3906,540.375 Q2358.3281,540.75 2359.125,541.5 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="96" x="2386.875" y="554.1152">TQManager</text><line style="stroke:#A80036;stroke-width:2.25;" x1="2232.75" x2="2588.25" y1="570.75" y2="570.75"/><line style="stroke:#A80036;stroke-width:2.25;" x1="2232.75" x2="2588.25" y1="582.75" y2="582.75"/><ellipse cx="2247.75" cy="599.25" fill="#84BE84" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" text-decoration="underline" textLength="319.5" x="2261.25" y="605.8784">void addQuest(String title, String author, file)</text><ellipse cx="2247.75" cy="620.0039" fill="#84BE84" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" text-decoration="underline" textLength="261" x="2261.25" y="626.6323">TQQuest getQuest([some identifier])</text><path d="M2059.5,970.5 L2059.5,1010.0273 A0,0 0 0 0 2059.5,1010.0273 L3082.5,1010.0273 A0,0 0 0 0 3082.5,1010.0273 L3082.5,985.5 L3067.5,970.5 L2569.86,970.5 L2434.185,640.065 L2557.86,970.5 L2059.5,970.5 A0,0 0 0 0 2059.5,970.5 " fill="#FBFB77" filter="url(#f11uobk721ji38)" style="stroke:#A80036;stroke-width:1.5;"/><path d="M3067.5,970.5 L3067.5,985.5 L3082.5,985.5 L3067.5,970.5 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="19.5" lengthAdjust="spacing" textLength="991.5" x="2068.5" y="998.2427">Умеет управлять хранящимися квестами (json, знает где их искать), добавляет новые квесты в "библиотеку".</text><!--MD5=[a14c15983673cdc294675f282256a1fb]
+class MathExpressionEvaluator--><rect codeLine="115" fill="#FEFECE" filter="url(#f11uobk721ji38)" height="155.0156" id="MathExpressionEvaluator" style="stroke:#A80036;stroke-width:2.25;" width="550.5" x="450.75" y="63"/><ellipse cx="615.375" cy="87" fill="#ADD1B2" rx="16.5" ry="16.5" style="stroke:#A80036;stroke-width:1.5;"/><path d="M618.375,81.75 Q618.6797,81 619.0313,80.625 Q619.3828,80.25 619.7813,80.25 Q620.4844,80.25 620.9297,80.6719 Q621.375,81.0938 621.375,82.0781 L621.375,84.4219 Q621.375,85.4063 620.9531,85.8281 Q620.5313,86.25 619.875,86.25 Q619.2891,86.25 618.9141,85.9922 Q618.5391,85.7344 618.375,85.0547 Q618.3047,84.5859 618.0469,84.3281 Q617.5781,83.8359 616.7344,83.5547 Q615.8906,83.25 615.0469,83.25 Q613.9922,83.25 613.1016,83.6719 Q612.2344,84.0938 611.5547,85.0313 Q610.875,85.9688 610.875,87.2578 L610.875,88.6406 Q610.875,90.1875 612.1406,91.2188 Q613.4063,92.25 615.6563,92.25 Q616.9922,92.25 617.9297,91.9453 Q618.4688,91.7813 619.0781,91.2422 Q619.4766,90.9375 619.6875,90.8438 Q619.8984,90.75 620.1563,90.75 Q620.6484,90.75 621,91.1484 Q621.375,91.5234 621.375,92.0625 Q621.375,92.5781 620.8594,93.1875 Q620.1094,94.0781 618.9141,94.5703 Q617.3438,95.25 615.4219,95.25 Q613.1719,95.25 611.3672,94.3594 Q609.9141,93.6563 608.8828,92.1328 Q607.875,90.6094 607.875,88.8047 L607.875,87.1641 Q607.875,85.2891 608.7656,83.6484 Q609.6797,82.0078 611.25,81.1406 Q612.8438,80.25 614.625,80.25 Q615.7031,80.25 616.6406,80.625 Q617.5781,81 618.375,81.75 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="208.5" x="646.125" y="94.3652">MathExpressionEvaluator</text><line style="stroke:#A80036;stroke-width:2.25;" x1="452.25" x2="999.75" y1="111" y2="111"/><rect fill="none" height="9" style="stroke:#C82930;stroke-width:1.5;" width="9" x="462.75" y="123"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="471" x="480.75" y="134.1284">final com.fathzer.soft.javaluator.DoubleEvaluator doubleEvaluator</text><rect fill="none" height="9" style="stroke:#C82930;stroke-width:1.5;" width="9" x="462.75" y="143.7539"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="511.5" x="480.75" y="154.8823">final com.fathzer.soft.javaluator.StaticVariableSet&lt;Double&gt; variableSet</text><line style="stroke:#A80036;stroke-width:2.25;" x1="452.25" x2="999.75" y1="164.5078" y2="164.5078"/><ellipse cx="467.25" cy="181.0078" fill="#84BE84" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="186" x="480.75" y="187.6362">double evaluate(Strint ex)</text><ellipse cx="467.25" cy="201.7617" fill="#84BE84" rx="4.5" ry="4.5" style="stroke:#038048;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16.5" lengthAdjust="spacing" textLength="315" x="480.75" y="208.3901">void setVariable(String name, double value)</text><!--MD5=[bb5ceb834fa242de0c41830e5ec59898]
+class PlayActivity--><rect fill="#FEFECE" filter="url(#f11uobk721ji38)" height="72" id="PlayActivity" style="stroke:#A80036;stroke-width:2.25;" width="135" x="2344.5" y="104.25"/><ellipse cx="2367" cy="128.25" fill="#ADD1B2" rx="16.5" ry="16.5" style="stroke:#A80036;stroke-width:1.5;"/><path d="M2370,123 Q2370.3047,122.25 2370.6563,121.875 Q2371.0078,121.5 2371.4063,121.5 Q2372.1094,121.5 2372.5547,121.9219 Q2373,122.3438 2373,123.3281 L2373,125.6719 Q2373,126.6563 2372.5781,127.0781 Q2372.1563,127.5 2371.5,127.5 Q2370.9141,127.5 2370.5391,127.2422 Q2370.1641,126.9844 2370,126.3047 Q2369.9297,125.8359 2369.6719,125.5781 Q2369.2031,125.0859 2368.3594,124.8047 Q2367.5156,124.5 2366.6719,124.5 Q2365.6172,124.5 2364.7266,124.9219 Q2363.8594,125.3438 2363.1797,126.2813 Q2362.5,127.2188 2362.5,128.5078 L2362.5,129.8906 Q2362.5,131.4375 2363.7656,132.4688 Q2365.0313,133.5 2367.2813,133.5 Q2368.6172,133.5 2369.5547,133.1953 Q2370.0938,133.0313 2370.7031,132.4922 Q2371.1016,132.1875 2371.3125,132.0938 Q2371.5234,132 2371.7813,132 Q2372.2734,132 2372.625,132.3984 Q2373,132.7734 2373,133.3125 Q2373,133.8281 2372.4844,134.4375 Q2371.7344,135.3281 2370.5391,135.8203 Q2368.9688,136.5 2367.0469,136.5 Q2364.7969,136.5 2362.9922,135.6094 Q2361.5391,134.9063 2360.5078,133.3828 Q2359.5,131.8594 2359.5,130.0547 L2359.5,128.4141 Q2359.5,126.5391 2360.3906,124.8984 Q2361.3047,123.2578 2362.875,122.3906 Q2364.4688,121.5 2366.25,121.5 Q2367.3281,121.5 2368.2656,121.875 Q2369.2031,122.25 2370,123 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="87" x="2388" y="135.6152">PlayActivity</text><line style="stroke:#A80036;stroke-width:2.25;" x1="2346" x2="2478" y1="152.25" y2="152.25"/><line style="stroke:#A80036;stroke-width:2.25;" x1="2346" x2="2478" y1="164.25" y2="164.25"/><!--MD5=[c8880382dd188e1b7b114db0f175fc31]
+class AddQuestActivity--><rect fill="#FEFECE" filter="url(#f11uobk721ji38)" height="72" id="AddQuestActivity" style="stroke:#A80036;stroke-width:2.25;" width="181.5" x="2532.75" y="104.25"/><ellipse cx="2555.25" cy="128.25" fill="#ADD1B2" rx="16.5" ry="16.5" style="stroke:#A80036;stroke-width:1.5;"/><path d="M2558.25,123 Q2558.5547,122.25 2558.9063,121.875 Q2559.2578,121.5 2559.6563,121.5 Q2560.3594,121.5 2560.8047,121.9219 Q2561.25,122.3438 2561.25,123.3281 L2561.25,125.6719 Q2561.25,126.6563 2560.8281,127.0781 Q2560.4063,127.5 2559.75,127.5 Q2559.1641,127.5 2558.7891,127.2422 Q2558.4141,126.9844 2558.25,126.3047 Q2558.1797,125.8359 2557.9219,125.5781 Q2557.4531,125.0859 2556.6094,124.8047 Q2555.7656,124.5 2554.9219,124.5 Q2553.8672,124.5 2552.9766,124.9219 Q2552.1094,125.3438 2551.4297,126.2813 Q2550.75,127.2188 2550.75,128.5078 L2550.75,129.8906 Q2550.75,131.4375 2552.0156,132.4688 Q2553.2813,133.5 2555.5313,133.5 Q2556.8672,133.5 2557.8047,133.1953 Q2558.3438,133.0313 2558.9531,132.4922 Q2559.3516,132.1875 2559.5625,132.0938 Q2559.7734,132 2560.0313,132 Q2560.5234,132 2560.875,132.3984 Q2561.25,132.7734 2561.25,133.3125 Q2561.25,133.8281 2560.7344,134.4375 Q2559.9844,135.3281 2558.7891,135.8203 Q2557.2188,136.5 2555.2969,136.5 Q2553.0469,136.5 2551.2422,135.6094 Q2549.7891,134.9063 2548.7578,133.3828 Q2547.75,131.8594 2547.75,130.0547 L2547.75,128.4141 Q2547.75,126.5391 2548.6406,124.8984 Q2549.5547,123.2578 2551.125,122.3906 Q2552.7188,121.5 2554.5,121.5 Q2555.5781,121.5 2556.5156,121.875 Q2557.4531,122.25 2558.25,123 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="133.5" x="2576.25" y="135.6152">AddQuestActivity</text><line style="stroke:#A80036;stroke-width:2.25;" x1="2534.25" x2="2712.75" y1="152.25" y2="152.25"/><line style="stroke:#A80036;stroke-width:2.25;" x1="2534.25" x2="2712.75" y1="164.25" y2="164.25"/><!--MD5=[e75d07559cd3dff3c4212cea09e9cd9a]
+class LibraryActivity--><rect fill="#FEFECE" filter="url(#f11uobk721ji38)" height="72" id="LibraryActivity" style="stroke:#A80036;stroke-width:2.25;" width="156" x="2136" y="104.25"/><ellipse cx="2158.5" cy="128.25" fill="#ADD1B2" rx="16.5" ry="16.5" style="stroke:#A80036;stroke-width:1.5;"/><path d="M2161.5,123 Q2161.8047,122.25 2162.1563,121.875 Q2162.5078,121.5 2162.9063,121.5 Q2163.6094,121.5 2164.0547,121.9219 Q2164.5,122.3438 2164.5,123.3281 L2164.5,125.6719 Q2164.5,126.6563 2164.0781,127.0781 Q2163.6563,127.5 2163,127.5 Q2162.4141,127.5 2162.0391,127.2422 Q2161.6641,126.9844 2161.5,126.3047 Q2161.4297,125.8359 2161.1719,125.5781 Q2160.7031,125.0859 2159.8594,124.8047 Q2159.0156,124.5 2158.1719,124.5 Q2157.1172,124.5 2156.2266,124.9219 Q2155.3594,125.3438 2154.6797,126.2813 Q2154,127.2188 2154,128.5078 L2154,129.8906 Q2154,131.4375 2155.2656,132.4688 Q2156.5313,133.5 2158.7813,133.5 Q2160.1172,133.5 2161.0547,133.1953 Q2161.5938,133.0313 2162.2031,132.4922 Q2162.6016,132.1875 2162.8125,132.0938 Q2163.0234,132 2163.2813,132 Q2163.7734,132 2164.125,132.3984 Q2164.5,132.7734 2164.5,133.3125 Q2164.5,133.8281 2163.9844,134.4375 Q2163.2344,135.3281 2162.0391,135.8203 Q2160.4688,136.5 2158.5469,136.5 Q2156.2969,136.5 2154.4922,135.6094 Q2153.0391,134.9063 2152.0078,133.3828 Q2151,131.8594 2151,130.0547 L2151,128.4141 Q2151,126.5391 2151.8906,124.8984 Q2152.8047,123.2578 2154.375,122.3906 Q2155.9688,121.5 2157.75,121.5 Q2158.8281,121.5 2159.7656,121.875 Q2160.7031,122.25 2161.5,123 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="108" x="2179.5" y="135.6152">LibraryActivity</text><line style="stroke:#A80036;stroke-width:2.25;" x1="2137.5" x2="2290.5" y1="152.25" y2="152.25"/><line style="stroke:#A80036;stroke-width:2.25;" x1="2137.5" x2="2290.5" y1="164.25" y2="164.25"/><!--MD5=[09a1c4250b0891a3ea876bbf4174533e]
+class ShareActivity--><rect fill="#FEFECE" filter="url(#f11uobk721ji38)" height="72" id="ShareActivity" style="stroke:#A80036;stroke-width:2.25;" width="150" x="1933.5" y="104.25"/><ellipse cx="1956" cy="128.25" fill="#ADD1B2" rx="16.5" ry="16.5" style="stroke:#A80036;stroke-width:1.5;"/><path d="M1959,123 Q1959.3047,122.25 1959.6563,121.875 Q1960.0078,121.5 1960.4063,121.5 Q1961.1094,121.5 1961.5547,121.9219 Q1962,122.3438 1962,123.3281 L1962,125.6719 Q1962,126.6563 1961.5781,127.0781 Q1961.1563,127.5 1960.5,127.5 Q1959.9141,127.5 1959.5391,127.2422 Q1959.1641,126.9844 1959,126.3047 Q1958.9297,125.8359 1958.6719,125.5781 Q1958.2031,125.0859 1957.3594,124.8047 Q1956.5156,124.5 1955.6719,124.5 Q1954.6172,124.5 1953.7266,124.9219 Q1952.8594,125.3438 1952.1797,126.2813 Q1951.5,127.2188 1951.5,128.5078 L1951.5,129.8906 Q1951.5,131.4375 1952.7656,132.4688 Q1954.0313,133.5 1956.2813,133.5 Q1957.6172,133.5 1958.5547,133.1953 Q1959.0938,133.0313 1959.7031,132.4922 Q1960.1016,132.1875 1960.3125,132.0938 Q1960.5234,132 1960.7813,132 Q1961.2734,132 1961.625,132.3984 Q1962,132.7734 1962,133.3125 Q1962,133.8281 1961.4844,134.4375 Q1960.7344,135.3281 1959.5391,135.8203 Q1957.9688,136.5 1956.0469,136.5 Q1953.7969,136.5 1951.9922,135.6094 Q1950.5391,134.9063 1949.5078,133.3828 Q1948.5,131.8594 1948.5,130.0547 L1948.5,128.4141 Q1948.5,126.5391 1949.3906,124.8984 Q1950.3047,123.2578 1951.875,122.3906 Q1953.4688,121.5 1955.25,121.5 Q1956.3281,121.5 1957.2656,121.875 Q1958.2031,122.25 1959,123 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="102" x="1977" y="135.6152">ShareActivity</text><line style="stroke:#A80036;stroke-width:2.25;" x1="1935" x2="2082" y1="152.25" y2="152.25"/><line style="stroke:#A80036;stroke-width:2.25;" x1="1935" x2="2082" y1="164.25" y2="164.25"/><!--MD5=[6c20ce9809655cad7865c6e66051ce1f]
+reverse link TQStory to TQQuest--><path codeLine="24" d="M949.605,441.51 C1074.945,458.85 985.155,650.775 928.5,786 C914.52,819.375 892.095,850.08 867.135,876.96 " fill="none" id="TQStory-backto-TQQuest" style="stroke:#A80036;stroke-width:1.5;"/><polygon fill="#FFFFFF" points="930,440.25,938.592,446.8209,947.9621,441.4171,939.3701,434.8462,930,440.25" style="stroke:#A80036;stroke-width:1.5;"/><!--MD5=[bad8de41d83fed82b091e69bb17dcbf1]
+reverse link TQStory to TwPassage--><path codeLine="25" d="M497.745,460.53 C218.475,482.97 258.15,984.765 286.995,1193.835 " fill="none" id="TQStory-backto-TwPassage" style="stroke:#A80036;stroke-width:1.5;stroke-dasharray:7.0,7.0;"/><polygon fill="#FFFFFF" points="517.5,459.75,508.2696,454.1109,499.5141,460.4623,508.7445,466.1015,517.5,459.75" style="stroke:#A80036;stroke-width:1.5;"/><!--MD5=[2ddf84ec1af096f7139501a709656b09]
+reverse link TQQuest to TQCharacter--><path codeLine="37" d="M892.365,989.58 C955.155,1008.96 891.72,1133.22 842.385,1213.995 " fill="none" id="TQQuest-backto-TQCharacter" style="stroke:#A80036;stroke-width:1.5;"/><polygon fill="#FFFFFF" points="873,987,881.1301,994.1345,890.8428,989.3738,882.7127,982.2393,873,987" style="stroke:#A80036;stroke-width:1.5;"/><!--MD5=[f8fecb4fb81a3f628e3ad9afdbdc6275]
+reverse link TQQuest to TwPassage--><path codeLine="38" d="M557.91,1011.855 C503.37,1031.505 424.245,1122.255 368.34,1193.625 " fill="none" id="TQQuest-backto-TwPassage" style="stroke:#A80036;stroke-width:1.5;"/><polygon fill="#FFFFFF" points="577.5,1008,567.5141,1003.8428,559.836,1011.4616,569.8219,1015.6188,577.5,1008" style="stroke:#A80036;stroke-width:1.5;"/><!--MD5=[2228a28a69403f033973eedbd1bf2e05]
+reverse link TQCharacter to TQCharacterProperty--><path codeLine="47" d="M450.45,1295.16 C448.095,1309.725 461.34,1335.795 468,1356.75 C487.41,1417.785 527.565,1477.47 563.22,1522.23 " fill="none" id="TQCharacter-backto-TQCharacterProperty" style="stroke:#A80036;stroke-width:1.5;"/><polygon fill="#FFFFFF" points="466.5,1284,455.6855,1284.2175,451.7269,1294.2838,462.5414,1294.0663,466.5,1284" style="stroke:#A80036;stroke-width:1.5;"/><!--MD5=[bfc3706618e28b240995db7b885d46bd]
+reverse link TQCharacter to TQCharacterParameter--><path codeLine="48" d="M1146,1306.035 C1239.105,1315.92 1314.24,1394.955 1364.835,1468.35 " fill="none" id="TQCharacter-backto-TQCharacterParameter" style="stroke:#A80036;stroke-width:1.5;"/><polygon fill="#FFFFFF" points="1126.5,1305,1135.1711,1311.4662,1144.475,1305.9492,1135.8039,1299.4829,1126.5,1305" style="stroke:#A80036;stroke-width:1.5;"/><!--MD5=[bf96f5c28184c4ba9ba8fafc20bc98fd]
+reverse link TwPassage to TwLink--><path codeLine="82" d="M409.26,1293.675 C423.93,1331.13 371.67,1454.295 335.295,1532.055 " fill="none" id="TwPassage-backto-TwLink" style="stroke:#A80036;stroke-width:1.5;"/><polygon fill="#FFFFFF" points="393,1282.5,397.0229,1292.5407,407.8385,1292.6891,403.8156,1282.6484,393,1282.5" style="stroke:#A80036;stroke-width:1.5;"/><!--MD5=[f9a186672d74db6dfde672b916f8b68d]
+reverse link TwPassage to TwPosition--><path codeLine="83" d="M191.865,1346.505 C122.22,1365.33 114.615,1485.525 115.965,1552.8 " fill="none" id="TwPassage-backto-TwPosition" style="stroke:#A80036;stroke-width:1.5;"/><polygon fill="#FFFFFF" points="211.5,1344,201.8141,1339.1851,193.6442,1346.274,203.3301,1351.0889,211.5,1344" style="stroke:#A80036;stroke-width:1.5;"/><!--MD5=[67da77d2dbca7824eb838dfc1ded96c4]
+reverse link MathExpressionEvaluator to TQStory--><path codeLine="122" d="M824.01,222.795 C864.495,262.575 906.945,314.07 928.5,370.5 C976.185,495.375 1063.665,671.25 930,671.25 " fill="none" id="MathExpressionEvaluator-backto-TQStory" style="stroke:#A80036;stroke-width:1.5;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="818.565,217.515,824.0627,231.2272,823.9428,222.7428,832.4272,222.6228,818.565,217.515" style="stroke:#A80036;stroke-width:1.5;"/><!--MD5=[6d5544fde2baddb46808497b299398c6]
+link MathExpressionEvaluator to TQStory--><path codeLine="123" d="M647.19,217.905 C549.51,316.605 406.47,478.365 497.685,496.98 " fill="none" id="MathExpressionEvaluator-to-TQStory" style="stroke:#A80036;stroke-width:1.5;"/><polygon fill="#FFFFFF" points="517.5,498.75,509.0626,491.9816,499.5698,497.1668,508.0071,503.9351,517.5,498.75" style="stroke:#A80036;stroke-width:1.5;"/><!--MD5=[1a3d06505aeb295d2f2a0a733279a230]
+link PlayActivity to TQStory--><path codeLine="127" d="M2392.215,176.7 C2375.91,202.14 2350.41,235.215 2319,253.5 C2208.375,317.925 2161.185,280.17 2035.5,304.5 C1652.595,378.645 1208.505,472.395 947.46,528.3 " fill="none" id="PlayActivity-to-TQStory" style="stroke:#A80036;stroke-width:1.5;"/><polygon fill="#A80036" points="939.795,529.95,954.2501,532.9997,947.1298,528.3844,951.7451,521.2641,939.795,529.95" style="stroke:#A80036;stroke-width:1.5;"/><!--MD5=[8fc30395bb18e3e477eb3b167406f40c]
+link PlayActivity to TQManager--><path codeLine="128" d="M2430.9,176.475 C2473.38,255.255 2574.015,446.19 2590.5,516.75 C2600.175,558.135 2632.875,611.565 2599.575,618.09 " fill="none" id="PlayActivity-to-TQManager" style="stroke:#A80036;stroke-width:1.5;"/><polygon fill="#A80036" points="2592,618.75,2605.9643,623.5718,2599.4724,618.1077,2604.9365,611.6159,2592,618.75" style="stroke:#A80036;stroke-width:1.5;"/><!--MD5=[50e4b5aacdc1f53155e18d603a574983]
+link AddQuestActivity to TQManager--><path codeLine="130" d="M2635.605,176.505 C2670.435,281.61 2758.575,589.425 2599.755,599.025 " fill="none" id="AddQuestActivity-to-TQManager" style="stroke:#A80036;stroke-width:1.5;"/><polygon fill="#A80036" points="2592,599.25,2605.6659,604.862,2599.4969,599.0358,2605.3231,592.8669,2592,599.25" style="stroke:#A80036;stroke-width:1.5;"/><polygon fill="#000000" points="2675.3659,286.7368,2680.9056,273.5905,2672.1204,272.8451,2675.3659,286.7368" style="stroke:#000000;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="19.5" lengthAdjust="spacing" textLength="150" x="2689.5" y="287.2427">name, author, file</text><!--MD5=[674228d15416e679da44c1ff5de87e31]
+link LibraryActivity to TQManager--><path codeLine="132" d="M2229.75,176.61 C2262.33,248.73 2337.6,415.365 2380.02,509.265 " fill="none" id="LibraryActivity-to-TQManager" style="stroke:#A80036;stroke-width:1.5;"/><polygon fill="#A80036" points="2383.26,516.45,2383.1359,501.6772,2380.1565,509.6223,2372.2115,506.6429,2383.26,516.45" style="stroke:#A80036;stroke-width:1.5;"/><!--MD5=[51c12c2c8f4d30e31f597816a917aa6e]
+link ShareActivity to TQManager--><path codeLine="134" d="M2040.135,176.55 C2060.235,198.63 2086.845,227.79 2110.5,253.5 C2192.79,342.915 2288.355,445.695 2349.105,510.915 " fill="none" id="ShareActivity-to-TQManager" style="stroke:#A80036;stroke-width:1.5;"/><polygon fill="#A80036" points="2354.505,516.72,2349.7073,502.7475,2349.3983,511.2271,2340.9187,510.9181,2354.505,516.72" style="stroke:#A80036;stroke-width:1.5;"/><!--MD5=[5a046358bfec629ec7420cf8d3ad13a3]
+@startuml
+
+package story {
+    class TQStory {
+        - TQQuest tqquest
+        - TwPassage currentPassage
+        - String currentPassageCleanText
+        - MathExpressionEvaluator mathExpressionEvaluator
+        __
+        + Story(TQQuest tqquest)
+        ..
+        + TwPassage getPassageByPid(int pid)
+        + TwPassage getPassageByName(String name)
+        ..
+        + int getCurrentPassagePid()
+        + String getCurrentPassageName()
+        ..
+        + String processCurrentPassage()
+        + TwLink[] getCurrentPassageLinks()
+        + String getCurrentPassageCleanText()
+        + goByLinkNumber(int linkNumber)
+        ..
+        + boolean isEnd()
+    }
+    TQStory::tqquest o- - TQQuest
+    TQStory::currentPassage o.. TwPassage
+
+    'TQQuest \===============
+    class TQQuest {
+        + String title
+        + String author
+        + TQCharacter character
+        + List<TwPassage> passages
+        + String name
+        + int startnode
+        + String creator, creator_version, ifid
+    }
+    TQQuest::character o- - TQCharacter
+    TQQuest::passages o- - TwPassage
+
+    'Character \===============
+    class TQCharacter {
+        + TQCharacterProperty[] properties
+        + TQCharacterParameter[] parameters
+
+        + TQCharacter(TQCharacterProperty[] properties, TQCharacterParameter[] parameters)
+    }
+    TQCharacter::properties o- - TQCharacterProperty
+    TQCharacter::parameters o- - TQCharacterParameter
+
+    class TQCharacterProperty {
+        + String tqKeyword
+        + String value
+
+        + TQCharacterProperty()
+        + TQCharacterProperty(String tqKeyword, String value)
+    }
+
+    class TQCharacterParameter {
+        + String name
+        + int value
+        __
+        + TQCharacterParameter()
+        + TQCharacterParameter(String name, int startValue, String minValue, String minValPassageName, String maxValue, String maxValPassageName)
+        ..
+        + getName()
+        + setName()
+        ..
+        + getValue()
+        + setValue()
+    }
+
+    'Character /===============
+
+    'TwPassage \===============
+    class TwPassage {
+        + String text
+        + List<TwLink> links
+        + String name
+        + int pid
+        + TwPosition position
+    }
+    TwPassage::links o- - TwLink
+    TwPassage::position o- - TwPosition
+
+    'Link \===============
+    class TwLink {
+        + String name
+        + String link
+        + int pid
+    }
+    'Link /===============
+
+    'TwPosition \===============
+    class TwPosition {
+        + float x, y
+    }
+    'TwPosition /===============
+
+    'TwPassage /===============
+
+    'TQQuest /===============
+}
+
+package tqmanager {
+    'TQManager \===============
+    note bottom of TQManager : Умеет управлять хранящимися квестами (json, знает где их искать), добавляет новые квесты в "библиотеку".
+    class TQManager {
+        + {static} void addQuest(String title, String author, file)
+        + {static} TQQuest getQuest([some identifier])
+    }
+    'TQManager /===============
+}
+
+package utils {
+    class MathExpressionEvaluator {
+        - final com.fathzer.soft.javaluator.DoubleEvaluator doubleEvaluator
+        - final com.fathzer.soft.javaluator.StaticVariableSet<Double> variableSet
+
+        + double evaluate(Strint ex)
+        + void setVariable(String name, double value)
+    }
+    MathExpressionEvaluator <.. TQStory::processCurrentPassage
+        MathExpressionEvaluator - -o TQStory::mathExpressionEvaluator
+}
+
+together {
+    PlayActivity - -> TQStory
+    PlayActivity - -> TQManager::getQuest
+
+    AddQuestActivity - -> TQManager::addQuest : name, author, file >
+
+    LibraryActivity - -> TQManager
+
+    ShareActivity - -> TQManager
+}
+
+@enduml
+
+@startuml
+
+package story {
+    class TQStory {
+        - TQQuest tqquest
+        - TwPassage currentPassage
+        - String currentPassageCleanText
+        - MathExpressionEvaluator mathExpressionEvaluator
+        __
+        + Story(TQQuest tqquest)
+        ..
+        + TwPassage getPassageByPid(int pid)
+        + TwPassage getPassageByName(String name)
+        ..
+        + int getCurrentPassagePid()
+        + String getCurrentPassageName()
+        ..
+        + String processCurrentPassage()
+        + TwLink[] getCurrentPassageLinks()
+        + String getCurrentPassageCleanText()
+        + goByLinkNumber(int linkNumber)
+        ..
+        + boolean isEnd()
+    }
+    TQStory::tqquest o- - TQQuest
+    TQStory::currentPassage o.. TwPassage
+
+    class TQQuest {
+        + String title
+        + String author
+        + TQCharacter character
+        + List<TwPassage> passages
+        + String name
+        + int startnode
+        + String creator, creator_version, ifid
+    }
+    TQQuest::character o- - TQCharacter
+    TQQuest::passages o- - TwPassage
+
+    class TQCharacter {
+        + TQCharacterProperty[] properties
+        + TQCharacterParameter[] parameters
+
+        + TQCharacter(TQCharacterProperty[] properties, TQCharacterParameter[] parameters)
+    }
+    TQCharacter::properties o- - TQCharacterProperty
+    TQCharacter::parameters o- - TQCharacterParameter
+
+    class TQCharacterProperty {
+        + String tqKeyword
+        + String value
+
+        + TQCharacterProperty()
+        + TQCharacterProperty(String tqKeyword, String value)
+    }
+
+    class TQCharacterParameter {
+        + String name
+        + int value
+        __
+        + TQCharacterParameter()
+        + TQCharacterParameter(String name, int startValue, String minValue, String minValPassageName, String maxValue, String maxValPassageName)
+        ..
+        + getName()
+        + setName()
+        ..
+        + getValue()
+        + setValue()
+    }
+
+
+    class TwPassage {
+        + String text
+        + List<TwLink> links
+        + String name
+        + int pid
+        + TwPosition position
+    }
+    TwPassage::links o- - TwLink
+    TwPassage::position o- - TwPosition
+
+    class TwLink {
+        + String name
+        + String link
+        + int pid
+    }
+
+    class TwPosition {
+        + float x, y
+    }
+
+
+}
+
+package tqmanager {
+    note bottom of TQManager : Умеет управлять хранящимися квестами (json, знает где их искать), добавляет новые квесты в "библиотеку".
+    class TQManager {
+        + {static} void addQuest(String title, String author, file)
+        + {static} TQQuest getQuest([some identifier])
+    }
+}
+
+package utils {
+    class MathExpressionEvaluator {
+        - final com.fathzer.soft.javaluator.DoubleEvaluator doubleEvaluator
+        - final com.fathzer.soft.javaluator.StaticVariableSet<Double> variableSet
+
+        + double evaluate(Strint ex)
+        + void setVariable(String name, double value)
+    }
+    MathExpressionEvaluator <.. TQStory::processCurrentPassage
+        MathExpressionEvaluator - -o TQStory::mathExpressionEvaluator
+}
+
+together {
+    PlayActivity - -> TQStory
+    PlayActivity - -> TQManager::getQuest
+
+    AddQuestActivity - -> TQManager::addQuest : name, author, file >
+
+    LibraryActivity - -> TQManager
+
+    ShareActivity - -> TQManager
+}
+
+@enduml
+
+PlantUML version 1.2021.2(Sun Mar 07 14:10:27 MSK 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1251
+Language: ru
+Country: RU
+--></g></svg>
