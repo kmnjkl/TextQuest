@@ -125,12 +125,18 @@ package utils {
 }
 
 together {
+    GamesActivity --> TQManager
+    GamesActivity --> ManagerActivity
+    GamesActivity --> PlayActivity
+
+    ManagerActivity --> TQManager
+    ManagerActivity --> ManageQuestActivity
+    ManagerActivity --> PlayActivity
+
     PlayActivity --> TQStory
-    PlayActivity --> TQManager::getQuest
+    PlayActivity --> TQManager
 
-    AddQuestActivity --> TQManager::addQuest : name, author, file >
-
-    LibraryActivity --> TQManager
+    ManageQuestActivity --> TQManager
 
     ShareActivity --> TQManager
 }
