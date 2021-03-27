@@ -2,8 +2,8 @@ package com.lkjuhkmnop.textquest.tqmanager;
 
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import story.TQCharacter;
-import story.TQQuest;
+import com.lkjuhkmnop.textquest.story.TQCharacter;
+import com.lkjuhkmnop.textquest.story.TQQuest;
 
 import java.io.File;
 import java.io.IOException;
