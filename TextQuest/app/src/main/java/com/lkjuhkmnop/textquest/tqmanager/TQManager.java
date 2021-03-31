@@ -8,6 +8,7 @@ import com.lkjuhkmnop.textquest.story.TQQuest;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -49,6 +50,10 @@ public class TQManager {
         return questJsonFile.getPath();
     }
 
+    /**
+     * Read a TQ json file
+     * (it has attributes "title", "author" and "character")
+     * */
     public static TQQuest getQuest(String tqFilePath) throws IOException {
 //        Read a TQ json file
 //        (it has attributes "title", "author" and "character")
@@ -57,6 +62,16 @@ public class TQManager {
         mapper.configure(MapperFeature.AUTO_DETECT_GETTERS, false);
         mapper.configure(MapperFeature.AUTO_DETECT_SETTERS, false);
         return mapper.readValue(new File(tqFilePath), TQQuest.class);
+    }
+
+    /**
+     * Returns array of TQGames with information about started games
+     * */
+    public static TQGame[] getGames() {
+        TQGame g1 = new TQGame();
+        g1.setGameTitle("Game 1 title");
+        g1.setGameTime(Calendar.getInstance());
+        return new TQGame[]{g1};
     }
 
 }

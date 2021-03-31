@@ -7,6 +7,14 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TextAppearance.TextQuest.Headline2"
+        parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="fontFamily">@font/comfortaa_bold</item>
+        <item name="android:textSize">45sp</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="TextAppearance.TextQuest.Caption"
         parent="TextAppearance.MaterialComponents.Caption">
         <item name="fontFamily">@font/comfortaa_bold</item>

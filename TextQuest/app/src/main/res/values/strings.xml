@@ -3,4 +3,5 @@
     <string name="play_btn_description">Играть</string>
     <string name="add_btn_description">Добавить квест</string>
     <string name="lib_btn_description">Библиотека</string>
+    <string name="games_title">Игры</string>
 </resources>

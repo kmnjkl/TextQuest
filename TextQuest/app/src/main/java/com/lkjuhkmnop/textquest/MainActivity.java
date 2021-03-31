@@ -23,22 +23,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         playBtn.setOnClickListener(this);
         addBtn.setOnClickListener(this);
+        libBtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == playBtn.getId()) {
 //            Build an options Bundle
-            Bundle options = ActivityOptions.makeClipRevealAnimation(playBtn, playBtn.getWidth()/2, playBtn.getHeight()/2, playBtn.getWidth()/4, playBtn.getHeight()/4).toBundle();
+            Bundle options = ActivityOptions.makeClipRevealAnimation(v, v.getWidth()/2, v.getHeight()/2, v.getWidth()/4, v.getHeight()/4).toBundle();
 //            Create intent
             Intent intent = new Intent(this, GamesActivity.class);
 //            Start the activity specified in the intent (GamesActivity) with options
             startActivity(intent, options);
         } else if (v.getId() == addBtn.getId()) {
 //            Build an options Bundle
-            Bundle options = ActivityOptions.makeClipRevealAnimation(addBtn, addBtn.getWidth()/2, addBtn.getHeight()/2, addBtn.getWidth()/4, addBtn.getHeight()/4).toBundle();
+            Bundle options = ActivityOptions.makeClipRevealAnimation(v, v.getWidth()/2, v.getHeight()/2, v.getWidth()/4, v.getHeight()/4).toBundle();
 //            Create intent
             Intent intent = new Intent(this, AddQuestActivity.class);
+//            Start the activity specified in the intent (GamesActivity) with options
+            startActivity(intent, options);
+        } else if (v.getId() == libBtn.getId()) {
+//            Build an options Bundle
+            Bundle options = ActivityOptions.makeClipRevealAnimation(v, v.getWidth()/2, v.getHeight()/2, v.getWidth()/4, v.getHeight()/4).toBundle();
+//            Create intent
+            Intent intent = new Intent(this, LibraryActivity.class);
 //            Start the activity specified in the intent (GamesActivity) with options
             startActivity(intent, options);
         }
