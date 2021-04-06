@@ -10,14 +10,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.lkjuhkmnop.textquest.tqmanager.TQGame;
-
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
+import com.lkjuhkmnop.textquest.tqmanager.DBGame;
 
 public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.ViewHolder> {
-    private final TQGame[] games;
+    private final DBGame[] games;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         View itemView;
@@ -47,7 +43,7 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.ViewHolder> 
         }
     }
 
-    public GamesAdapter(TQGame[] games) {
+    public GamesAdapter(DBGame[] games) {
         this.games = games;
     }
 
@@ -68,6 +64,6 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return games.length;
+        return games == null ? 0 : games.length;
     }
 }

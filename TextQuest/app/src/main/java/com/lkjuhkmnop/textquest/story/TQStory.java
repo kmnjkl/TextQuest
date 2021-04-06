@@ -8,13 +8,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TQStory {
-    private TQQuest tqquest;
+    private String title;
+    private String author;
+    private final TQQuest tqquest;
 //    current passage which should be processed in current stage of the story
     private TwPassage currentPassage;
     private String currentPassageCleanText;
     private final MathExpressionEvaluator mathExpressionEvaluator = new MathExpressionEvaluator();
 
-    public TQStory(TQQuest tqquest) {
+    public TQStory(String title, String author, TQQuest tqquest) {
+        this.title = title;
+        this.author = author;
         this.tqquest = tqquest;
 //        Set the start passage as current passage
 //        we can find the start passage by it's pid specified in json attribute in the TQ json file

@@ -1,8 +1,6 @@
 package com.lkjuhkmnop.textquest.story;
 
 public class TQQuest {
-    public String title;
-    public String author;
     public TQCharacter character;
     //    json attributes (json file received from Twine using Twison)
     public TwPassage[] passages;

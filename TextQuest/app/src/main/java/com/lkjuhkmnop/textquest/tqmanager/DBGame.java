@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey;
 
 
 @Entity
-public class TQGame {
+public class DBGame {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "game_id")
     private int gameId;
