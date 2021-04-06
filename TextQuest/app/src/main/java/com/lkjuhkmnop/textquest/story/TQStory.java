@@ -1,6 +1,6 @@
 package com.lkjuhkmnop.textquest.story;
 
-import com.lkjuhkmnop.textquest.utils.MathExpressionEvaluator;
+import com.lkjuhkmnop.textquest.tools.MathExpressionEvaluator;
 
 import java.util.HashMap;
 import java.util.Map;

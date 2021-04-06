@@ -1,7 +1,5 @@
 package com.lkjuhkmnop.textquest.story;
 
-import java.util.List;
-
 public class TQQuest {
     public String title;
     public String author;

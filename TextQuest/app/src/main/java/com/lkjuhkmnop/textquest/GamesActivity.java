@@ -6,10 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import com.lkjuhkmnop.textquest.tools.Tools;
 import com.lkjuhkmnop.textquest.tqmanager.TQGame;
-import com.lkjuhkmnop.textquest.tqmanager.TQManager;
-
-import static com.lkjuhkmnop.textquest.tqmanager.TQManager.getGames;
 
 public class GamesActivity extends AppCompatActivity {
     private RecyclerView gamesRV;
@@ -21,7 +19,7 @@ public class GamesActivity extends AppCompatActivity {
 
         gamesRV = findViewById(R.id.games_recycler_view);
 
-        TQGame[] games = TQManager.getGames();
+        TQGame[] games = Tools.getTqManager().getGames(getApplicationContext());
         GamesAdapter gamesAdapter = new GamesAdapter(games);
         gamesRV.setLayoutManager(new LinearLayoutManager(this));
         gamesRV.setAdapter(gamesAdapter);

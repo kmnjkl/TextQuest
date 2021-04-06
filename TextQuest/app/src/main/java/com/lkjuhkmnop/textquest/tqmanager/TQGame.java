@@ -1,11 +1,40 @@
 package com.lkjuhkmnop.textquest.tqmanager;
 
-import java.util.Calendar;
-import java.util.Locale;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+
+@Entity
 public class TQGame {
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "game_id")
+    private int gameId;
+
+    @ColumnInfo(name = "quest_id")
+    private int questId;
+
+    @ColumnInfo(name = "game_title")
     private String gameTitle;
-    private Calendar gameTime;
+
+    @ColumnInfo(name = "game_time")
+    private long gameTimestamp;
+
+    public int getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(int gameId) {
+        this.gameId = gameId;
+    }
+
+    public int getQuestId() {
+        return questId;
+    }
+
+    public void setQuestId(int questId) {
+        this.questId = questId;
+    }
 
     public String getGameTitle() {
         return gameTitle;
@@ -15,11 +44,11 @@ public class TQGame {
         this.gameTitle = gameTitle;
     }
 
-    public Calendar getGameTime() {
-        return gameTime;
+    public long getGameTimestamp() {
+        return gameTimestamp;
     }
 
-    public void setGameTime(Calendar gameTime) {
-        this.gameTime = gameTime;
+    public void setGameTimestamp(long gameTimestamp) {
+        this.gameTimestamp = gameTimestamp;
     }
 }

@@ -1,4 +1,4 @@
-package com.lkjuhkmnop.textquest.utils;
+package com.lkjuhkmnop.textquest.tools;
 
 import com.fathzer.soft.javaluator.DoubleEvaluator;
 import com.fathzer.soft.javaluator.StaticVariableSet;

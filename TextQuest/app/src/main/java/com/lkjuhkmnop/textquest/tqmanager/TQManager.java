@@ -1,5 +1,9 @@
 package com.lkjuhkmnop.textquest.tqmanager;
 
+import android.content.Context;
+
+import androidx.room.Room;
+
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lkjuhkmnop.textquest.story.TQCharacter;
@@ -8,16 +12,38 @@ import com.lkjuhkmnop.textquest.story.TQQuest;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
-// Manage local quests library
-public class TQManager {
+/**
+ * Manage local quests library
+ */
+public class TQManager extends Thread {
+    private static final String DATABASE_NAME = "textquest";
+    private static volatile AppDatabase APP_DATABASE_INSTANCE;
 
-//    Method adds new quest to library
-//    the method gets title, author and JSON file from Twine (twison) and write all information into new TQ JSON file
-    public static String addQuest(String title, String author, HashMap<String, String> characterProperties, HashMap<String, String> characterParameters, File twineJsonFile) throws IOException {
+    private static AppDatabase getAppDatabaseInstance(Context context) {
+        if (APP_DATABASE_INSTANCE == null) {
+            synchronized (AppDatabase.class) {
+                if (APP_DATABASE_INSTANCE == null) {
+                    APP_DATABASE_INSTANCE = Room.databaseBuilder(context, AppDatabase.class, DATABASE_NAME).build();
+                }
+            }
+        }
+        return APP_DATABASE_INSTANCE;
+    }
+
+    @Override
+    public void run() {
+        super.run();
+    }
+
+    /**
+     * Method adds new quest to the local library.
+     * Method gets title, author and JSON file from Twine (twison) and write all information to the database.
+     */
+    public String addQuest(String title, String author, HashMap<String, String> characterProperties, HashMap<String, String> characterParameters, File twineJsonFile) throws IOException {
 //            Read JSON file from Twine (twison)
         Scanner fileScanner = new Scanner(twineJsonFile);
         StringBuilder fileContent = new StringBuilder();
@@ -51,10 +77,10 @@ public class TQManager {
     }
 
     /**
-     * Read a TQ json file
+     * Reads a TQ json file
      * (it has attributes "title", "author" and "character")
      * */
-    public static TQQuest getQuest(String tqFilePath) throws IOException {
+    public TQQuest getQuest(String tqFilePath) throws IOException {
 //        Read a TQ json file
 //        (it has attributes "title", "author" and "character")
         ObjectMapper mapper = new ObjectMapper();
@@ -65,13 +91,15 @@ public class TQManager {
     }
 
     /**
-     * Returns array of TQGames with information about started games
+     * getGames() returns an array of TQGame instances with information about started games
      * */
-    public static TQGame[] getGames() {
-        TQGame g1 = new TQGame();
-        g1.setGameTitle("Game 1 title");
-        g1.setGameTime(Calendar.getInstance());
-        return new TQGame[]{g1};
+    public TQGame[] getGames(Context context) {
+//        Get 'tqgame' table's DAO
+        TQGameDao gameDao = getAppDatabaseInstance(context).gameDao();
+//        Get all games from database table
+        List<TQGame> gamesList = gameDao.getAllGames();
+//        Cast gamesList to TQGame[] and return
+        return (TQGame[]) gamesList.toArray();
     }
 
 }

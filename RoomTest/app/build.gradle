@@ -7,8 +7,8 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.lkjuhkmnop.textquest"
-        minSdkVersion 26
+        applicationId "com.lkjuhkmnop.roomtest"
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -33,13 +33,9 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'com.fathzer:javaluator:3.0.3'
-    implementation 'androidx.room:room-runtime:2.2.6'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.12.2'
-    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.12.2'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.2'
-    annotationProcessor 'androidx.room:room-compiler:2.2.6'
+    implementation "androidx.room:room-runtime:2.2.6"
+    annotationProcessor "androidx.room:room-compiler:2.2.6"
 }

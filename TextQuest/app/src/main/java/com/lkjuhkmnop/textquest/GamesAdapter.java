@@ -13,10 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.lkjuhkmnop.textquest.tqmanager.TQGame;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.ViewHolder> {
-    private TQGame[] games;
+    private final TQGame[] games;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         View itemView;
@@ -60,7 +61,7 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.setTitle(games[position].getGameTitle());
-        holder.setTime(String.valueOf(games[position].getGameTime().get(Calendar.HOUR_OF_DAY)));
+        holder.setTime(String.valueOf(games[position].getGameTimestamp()));
         holder.getItemView().findViewById(R.id.game_description).setOnClickListener(v -> Toast.makeText(v.getContext(), games[position].getGameTitle(), Toast.LENGTH_SHORT).show());
         holder.getItemView().findViewById(R.id.game_new_game).setOnClickListener(v -> Toast.makeText(v.getContext(), games[position].getGameTitle() + "\nNEW GAME", Toast.LENGTH_SHORT).show());
     }
