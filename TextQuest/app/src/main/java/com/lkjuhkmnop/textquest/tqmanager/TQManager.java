@@ -48,7 +48,7 @@ public class TQManager {
      * Class to add a new quest to the local library in new thread.
      * @see TQManager#
      * */
-    private class AddQuest extends Thread {
+    private static class AddQuest extends Thread {
 //        Title of new quest
         private String title;
 //        Quest's author
@@ -128,7 +128,7 @@ public class TQManager {
      * Class to get story (quest) by id from app's database.
      * @see TQManager#getQuestStory(Context, int) 
      * */
-    private class GetQuestStory extends Thread {
+    private static class GetQuestStory extends Thread {
         private Context context;
         private int questId;
         private String questTitle;
@@ -175,10 +175,11 @@ public class TQManager {
      * Class to get all started games form app's database in new thread (using Room).
      * @see TQManager#getGames(Context) 
      * */
-    private class GetGames extends Thread {
+    private static class GetGames extends Thread {
         /**
          * Context is needed to use Room.
          * @see GetGames#GetGames(Context)
+         * @see TQManager#getAppDatabaseInstance(Context)
          * */
         private Context context;
         /**
@@ -219,6 +220,40 @@ public class TQManager {
         GetGames gg = new GetGames(context);
         gg.start();
         return gg.gamesList == null ? null : (DBGame[]) gg.gamesList.toArray();
+    }
+
+    /**
+     * Class to get an array of all quests (without json) from app's database in new thread.
+     * @see TQManager#getQuestsArray(Context)
+     * */
+    private static class GetQuestsArray extends Thread {
+        /**
+         * Context is needed to use Room.
+         * @see GetQuestsArray#GetQuestsArray(Context)
+         * @see TQManager#getAppDatabaseInstance(Context)
+         * */
+        private final Context context;
+        private DBQuest[] resQuestsArray;
+
+        public GetQuestsArray(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        public void run() {
+            super.run();
+            DBQuestDao questDao = getAppDatabaseInstance(context).questDao();
+            resQuestsArray = questDao.getAllQuestsArray();
+        }
+    }
+    /**
+     * Returns an array of all quests from app's database (without json). Method uses {@link GetQuestsArray} to access the database in new thread.
+     * @see GetQuestsArray
+     * */
+    public DBQuest[] getQuestsArray(Context context) {
+        GetQuestsArray gqa = new GetQuestsArray(context);
+        gqa.start();
+        return gqa.resQuestsArray;
     }
 
 }

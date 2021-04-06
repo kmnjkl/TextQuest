@@ -9,10 +9,13 @@ import java.util.List;
 
 @Dao
 public interface DBQuestDao {
-    @Query("SELECT * FROM dbquest")
+    @Query("SELECT * FROM DBQuest")
     List<DBQuest> getAllQuests();
 
-    @Query("SELECT * FROM dbquest WHERE quest_id = (:questId)")
+    @Query("SELECT quest_id, quest_title, quest_author FROM DBQuest")
+    DBQuest[] getAllQuestsArray();
+
+    @Query("SELECT * FROM DBQuest WHERE quest_id = (:questId)")
     DBQuest getQuestById(int questId);
 
     @Query("SELECT * FROM DBQuest WHERE quest_title = (:gameTitle)")
