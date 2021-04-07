@@ -5,4 +5,12 @@
     <string name="lib_btn_description">Библиотека</string>
     <string name="games_title">Игры</string>
     <string name="lib_title">Библиотека</string>
+
+<!--    QuestManageActivity -->
+    <string name="quest_manage_add_quest_title">Добавить квест</string>
+    <string name="quest_title_label">Название квеста</string>
+    <string name="quest_author_label">Автор</string>
+    <string name="quest_json_file_choose_label">Json файл</string>
+    <string name="quest_character_properties_label">Характеристики персонажа (главного героя)</string>
+    <string name="quest_character_parameters_label">Основные параметры персонажа</string>
 </resources>

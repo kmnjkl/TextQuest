@@ -24,6 +24,14 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
+    <style name="TextAppearance.TextQuest.Label"
+        parent="TextAppearance.MaterialComponents.Caption">
+        <item name="fontFamily">@font/comfortaa_bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="SplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
 <!--        <item name="backgroundColor">@color/secondaryDarkColor</item>-->

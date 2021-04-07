@@ -2,12 +2,13 @@ package com.lkjuhkmnop.textquest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.lkjuhkmnop.textquest.tools.Tools;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private ImageView playBtn, addBtn, libBtn;
@@ -30,26 +31,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v.getId() == playBtn.getId()) {
-//            Build an options Bundle
-            Bundle options = ActivityOptions.makeClipRevealAnimation(v, v.getWidth()/2, v.getHeight()/2, v.getWidth()/4, v.getHeight()/4).toBundle();
-//            Create intent
-            Intent intent = new Intent(this, GamesActivity.class);
-//            Start the activity specified in the intent (GamesActivity) with options
-            startActivity(intent, options);
+            Tools.startGamesActivity(this, v);
         } else if (v.getId() == addBtn.getId()) {
-//            Build an options Bundle
-            Bundle options = ActivityOptions.makeClipRevealAnimation(v, v.getWidth()/2, v.getHeight()/2, v.getWidth()/4, v.getHeight()/4).toBundle();
-//            Create intent
-            Intent intent = new Intent(this, AddQuestActivity.class);
-//            Start the activity specified in the intent (GamesActivity) with options
-            startActivity(intent, options);
+            Tools.startQuestManageActivityToAddQuest(this, v);
         } else if (v.getId() == libBtn.getId()) {
-//            Build an options Bundle
-            Bundle options = ActivityOptions.makeClipRevealAnimation(v, v.getWidth()/2, v.getHeight()/2, v.getWidth()/4, v.getHeight()/4).toBundle();
-//            Create intent
-            Intent intent = new Intent(this, LibraryActivity.class);
-//            Start the activity specified in the intent (GamesActivity) with options
-            startActivity(intent, options);
+            Tools.startLibraryActivity(this, v);
         }
     }
 }
