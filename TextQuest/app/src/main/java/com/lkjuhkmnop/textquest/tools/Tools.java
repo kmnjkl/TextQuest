@@ -6,9 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.lkjuhkmnop.textquest.GamesActivity;
-import com.lkjuhkmnop.textquest.LibraryActivity;
-import com.lkjuhkmnop.textquest.QuestManageActivity;
+import com.lkjuhkmnop.textquest.gamesactivity.GamesActivity;
+import com.lkjuhkmnop.textquest.libraryactivity.LibraryActivity;
+import com.lkjuhkmnop.textquest.questmanageactivity.QuestManageActivity;
 import com.lkjuhkmnop.textquest.tqmanager.TQManager;
 
 public class Tools {

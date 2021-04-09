@@ -1,4 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+<!--    /=== Text ===\ -->
+    <style name="TextAppearance.TextQuest.Standard"
+        parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="fontFamily">@font/comfortaa_bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/standardTextColor</item>
+    </style>
+
     <style name="TextAppearance.TextQuest.Headline1"
         parent="TextAppearance.MaterialComponents.Headline1">
         <item name="fontFamily">@font/comfortaa_bold</item>
@@ -32,6 +40,17 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TextAppearance.TextQuest.Key"
+        parent="TextAppearance.MaterialComponents.Caption">
+        <item name="fontFamily">@font/comfortaa_bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/keyTextColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+<!--    \=== Text ===/ -->
+
+
+<!--    Splash Screen-->
     <style name="SplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
 <!--        <item name="backgroundColor">@color/secondaryDarkColor</item>-->
@@ -40,11 +59,16 @@
         <item name="android:statusBarColor" tools:targetApi="l">@color/primaryLightColor</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="colorAccent">@color/primaryDarkColor</item>
     </style>
 
     <!-- Base application theme. -->
     <style name="Theme.TextQuest" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="windowNoTitle">true</item>
+
+        <item name="android:textAppearance">@style/TextAppearance.TextQuest.Standard</item>
+        <item name="android:textColorHint">@color/hint</item>
+
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
@@ -61,5 +85,11 @@
         <!-- Customize your theme here. -->
         <item name="textAppearanceHeadline1">@style/TextAppearance.TextQuest.Headline1</item>
         <item name="textAppearanceCaption">@style/TextAppearance.TextQuest.Caption</item>
+
+        <item name="android:listDivider">@color/secondaryDarkColor</item>
+
+        <item name="colorControlNormal">@color/primaryColor</item>
+        <item name="colorControlActivated">@color/primaryDarkColor</item>
+        <item name="colorControlHighlight">@color/primaryDarkColor</item>
     </style>
 </resources>

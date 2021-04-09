@@ -1,4 +1,4 @@
-package com.lkjuhkmnop.textquest;
+package com.lkjuhkmnop.textquest.libraryactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import com.lkjuhkmnop.textquest.R;
 import com.lkjuhkmnop.textquest.tools.Tools;
-import com.lkjuhkmnop.textquest.tqmanager.DBGame;
 import com.lkjuhkmnop.textquest.tqmanager.DBQuest;
 
 public class LibraryActivity extends AppCompatActivity {
@@ -15,6 +15,7 @@ public class LibraryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.Theme_TextQuest);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_library);
 

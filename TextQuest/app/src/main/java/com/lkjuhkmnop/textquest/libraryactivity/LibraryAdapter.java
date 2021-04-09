@@ -1,4 +1,4 @@
-package com.lkjuhkmnop.textquest;
+package com.lkjuhkmnop.textquest.libraryactivity;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.lkjuhkmnop.textquest.tqmanager.DBGame;
+import com.lkjuhkmnop.textquest.R;
 import com.lkjuhkmnop.textquest.tqmanager.DBQuest;
 
 public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHolder> {

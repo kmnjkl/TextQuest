@@ -17,10 +17,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LibraryActivity" />
-        <activity android:name=".QuestManageActivity" />
-        <activity android:name=".GamesActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".libraryactivity.LibraryActivity" />
+        <activity android:name=".questmanageactivity.QuestManageActivity" />
+        <activity android:name=".gamesactivity.GamesActivity" />
+        <activity android:name=".mainactivity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

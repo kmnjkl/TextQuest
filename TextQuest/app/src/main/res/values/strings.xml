@@ -11,6 +11,15 @@
     <string name="quest_title_label">Название квеста</string>
     <string name="quest_author_label">Автор</string>
     <string name="quest_json_file_choose_label">Json файл</string>
+    <string name="quest_button_json_file_choose_label">Выбрать файл</string>
     <string name="quest_character_properties_label">Характеристики персонажа (главного героя)</string>
     <string name="quest_character_parameters_label">Основные параметры персонажа</string>
+<!--    Character properties -->
+    <string name="char_prop_name_label">Название</string>
+    <string name="char_prop_name_hint">Название</string>
+    <string name="char_prop_value_label">Значение</string>
+    <string name="char_prop_value_hint">Значение</string>
+    <string name="char_prop_add_dialog_title">Добавить характеристику</string>
+    <string name="char_prop_add_ok">Добавить</string>
+    <string name="char_prop_add_cancel">Отмена</string>
 </resources>
