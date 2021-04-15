@@ -9,13 +9,13 @@
     <color name="secondaryDarkColor">#cb9b8c</color>
 
     <color name="primaryTextColor">#590532</color>
-    <color name="secondaryTextColor">#004d40</color>
+    <color name="secondaryTextColor">#00957B</color>
     <color name="standardTextColor">#FF000000</color>
     <color name="keyTextColor">#381A6C</color>
 
-    <color name="background">#16BD0000</color>
-    <color name="h1">#702B7C</color>
-    <color name="h2">#004C45</color>
+<!--    <color name="background">#16BD0000</color>-->
+<!--    <color name="h1">#702B7C</color>-->
+<!--    <color name="h2">#004C45</color>-->
 
-    <color name="hint">#BFA9E4</color>
+    <color name="hint">#C19CFF</color>
 </resources>

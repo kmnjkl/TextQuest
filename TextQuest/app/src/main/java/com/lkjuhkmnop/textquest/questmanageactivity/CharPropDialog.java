@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -45,18 +46,23 @@ public class CharPropDialog extends DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        builder.setTitle(R.string.char_prop_add_dialog_title);
-
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.char_prop_add_dialog, null);
-        builder.setView(dialogView);
 
+        builder.setTitle(R.string.char_prop_add_dialog_title);
+        builder.setView(dialogView);
         builder.setPositiveButton(R.string.char_prop_add_ok, (dialog, which) -> {
             EditText charPropAddNameET = (EditText) dialogView.findViewById(R.id.char_prop_add_name);
             listener.onCharPropDialogPositiveClick(charPropAddNameET.getText().toString());
         })
                 .setNegativeButton(R.string.char_prop_add_cancel, (dialog, which) -> listener.onCharPropDialogNegativeClick());
 
-        return builder.create();
+        AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+
+        dialogView.findViewById(R.id.char_prop_add_name).requestFocus();
+
+        return dialog;
     }
 }
