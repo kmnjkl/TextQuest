@@ -88,8 +88,8 @@
 
         <item name="android:listDivider">@color/secondaryDarkColor</item>
 
-        <item name="colorControlNormal">@color/primaryColor</item>
-        <item name="colorControlActivated">@color/primaryDarkColor</item>
-        <item name="colorControlHighlight">@color/primaryDarkColor</item>
+        <item name="colorControlNormal">@color/controlNormal</item>
+        <item name="colorControlActivated">@color/controlActivated</item>
+        <item name="colorControlHighlight">@color/controlHighlight</item>
     </style>
 </resources>

@@ -133,7 +133,7 @@
 
                 <Button
                     android:id="@+id/quest_json_file_button"
-                    style="@style/Widget.AppCompat.Button.Colored"
+                    style="@android:style/Widget.Material.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -254,6 +254,13 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/quest_manage_ok_button"
+                style="@android:style/Widget.Material.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/quest_manage_ok_button_text" />
 
             <Space
                 android:layout_width="match_parent"

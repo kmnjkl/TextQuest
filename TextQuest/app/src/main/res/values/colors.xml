@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryColor">#BAC0E6</color>
-    <color name="primaryLightColor">#f8fdff</color>
-    <color name="primaryDarkColor">#9499b7</color>
+    <color name="primaryColor">#C3CBFF</color>
+    <color name="primaryLightColor">#E3F7FF</color>
+    <color name="primaryDarkColor">#91A0FF</color>
 
     <color name="secondaryColor">#ffccbc</color>
     <color name="secondaryLightColor">#ffffee</color>
@@ -12,6 +12,10 @@
     <color name="secondaryTextColor">#00957B</color>
     <color name="standardTextColor">#FF000000</color>
     <color name="keyTextColor">#381A6C</color>
+
+    <color name="controlNormal">#FFB097</color>
+    <color name="controlActivated">#FF5B26</color>
+    <color name="controlHighlight">#FF8B66</color>
 
 <!--    <color name="background">#16BD0000</color>-->
 <!--    <color name="h1">#702B7C</color>-->
