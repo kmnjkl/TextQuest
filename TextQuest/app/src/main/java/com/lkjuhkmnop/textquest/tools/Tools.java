@@ -6,12 +6,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lkjuhkmnop.textquest.gamesactivity.GamesActivity;
 import com.lkjuhkmnop.textquest.libraryactivity.LibraryActivity;
 import com.lkjuhkmnop.textquest.questmanageactivity.QuestManageActivity;
 import com.lkjuhkmnop.textquest.tqmanager.TQManager;
 
 public class Tools {
+    private static volatile ObjectMapper mapper;
+
 //    To use in intents when starting QuestManageActivity (to put extra with action type)
     public static final String QUEST_MANAGE_ACTION_EXTRA_NAME = "action";
 //    Action types for QuestManageActivity (to use as extra's in intents)
@@ -23,6 +27,22 @@ public class Tools {
     public static TQManager getTqManager() {
         return TQM;
     }
+
+
+    public static ObjectMapper getMapper() {
+        if (mapper == null) {
+            synchronized (mapper) {
+                if (mapper == null) {
+                    mapper = new ObjectMapper();
+                    mapper.configure(MapperFeature.AUTO_DETECT_CREATORS, false);
+                    mapper.configure(MapperFeature.AUTO_DETECT_GETTERS, false);
+                    mapper.configure(MapperFeature.AUTO_DETECT_SETTERS, false);
+                }
+            }
+        }
+        return mapper;
+    }
+
 
     public static void startGamesActivity(Context packageContext, View viewToRevealFrom) {
 //            Build an options Bundle
@@ -51,4 +71,6 @@ public class Tools {
 //            Start the activity specified in the intent (QuestManageActivity) with options
         packageContext.startActivity(intent, options);
     }
+
+
 }

@@ -3,25 +3,18 @@ package com.lkjuhkmnop.textquest.tqmanager;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
-import android.net.Uri;
 
 import androidx.room.Room;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lkjuhkmnop.textquest.story.TQCharacter;
 import com.lkjuhkmnop.textquest.story.TQQuest;
 import com.lkjuhkmnop.textquest.story.TQStory;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Class to manage local quests library.
@@ -46,7 +39,7 @@ public class TQManager {
 
     /**
      * Class to add a new quest to the local library in new thread.
-     * @see TQManager#
+     * @see TQManager#addQuest
      * */
     private static class AddQuest extends Thread {
 //        Title of new quest
@@ -56,60 +49,42 @@ public class TQManager {
 //        Character's properties and parameters in the new quest
         private HashMap<String, String> characterProperties;
         private HashMap<String, String> characterParameters;
-//        Uri of json file from Twine (twison) with quest
-        private Uri twineJsonFileUri;
+//        Json from Twine (twison) with quest
+        private String twineJson;
 //        Activity from which TQManager invoked
-        private Activity activity;
+        private Context context;
         private ContentResolver contentResolver;
 
         /**
          * Constructor to set quest's parameters.
-         * @see TQManager#
+         * @see TQManager#addQuest
          * */
-        public AddQuest(String title, String author, HashMap<String, String> characterProperties, HashMap<String, String> characterParameters, Uri twineJsonFileUri, Activity activity, ContentResolver contentResolver) {
+        public AddQuest(String title, String author, HashMap<String, String> characterProperties, HashMap<String, String> characterParameters, String twineJson, Context context, ContentResolver contentResolver) {
             this.title = title;
             this.author = author;
             this.characterProperties = characterProperties;
             this.characterParameters = characterParameters;
-            this.twineJsonFileUri = twineJsonFileUri;
-            this.activity = activity;
+            this.twineJson = twineJson;
+            this.context = context;
             this.contentResolver = contentResolver;
         }
 
         /**
-         * When thread is started, add quest with parameters specified using {@link AddQuest} class's constructor {@link AddQuest#AddQuest(String, String, HashMap, HashMap, Uri, Activity, ContentResolver)}
+         * When thread is started, add quest with parameters specified using {@link AddQuest} class's constructor {@link AddQuest#AddQuest}
          * */
         @Override
         public void run() {
             super.run();
-            StringBuilder fileContent = new StringBuilder();
-            InputStream inputStream = null;
-            try {
-                inputStream = contentResolver.openInputStream(twineJsonFileUri);
-
-                BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream)));
-                String line;
-                while (true) {
-                    try {
-                        if ((line = reader.readLine()) == null) {
-                            break;
-                        }
-                        fileContent.append(line);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                try {
-                    inputStream.close();
-                    reader.close();
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.configure(MapperFeature.AUTO_DETECT_CREATORS, false);
+            mapper.configure(MapperFeature.AUTO_DETECT_GETTERS, false);
+            mapper.configure(MapperFeature.AUTO_DETECT_SETTERS, false);
 //            Replace bad attribute "creator-version" (you can't use '-' in fields names in Java) with "creator_version"
-                String correctedContent = fileContent.toString().replaceAll("\"creator-version\":", "\"creator_version\":");
-                DBQuestDao questDao = getAppDatabaseInstance(activity).questDao();
-                questDao.insertAll(new DBQuest(title, author, correctedContent));
-            } catch (FileNotFoundException e) {
+            String correctedJson = twineJson.replaceAll("\"creator-version\":", "\"creator_version\":");
+            DBQuestDao questDao = getAppDatabaseInstance(context).questDao();
+            try {
+                questDao.insertAll(new DBQuest(title, author, mapper.writeValueAsString(characterProperties), mapper.writeValueAsString(characterParameters), correctedJson));
+            } catch (JsonProcessingException e) {
                 e.printStackTrace();
             }
         }
@@ -118,8 +93,8 @@ public class TQManager {
      * Method to add a new quest to the local library.
      * It uses {@link TQManager}'s inner class {@link AddQuest} to set parameters of the new quest (title, author, etc.) and start a new thread to use app's database (using Room).
      * */
-    public void addQuest(String title, String author, HashMap<String, String> characterProperties, HashMap<String, String> characterParameters, Uri twineJsonFileUri, Activity activity, ContentResolver contentResolver) {
-        AddQuest aq = new AddQuest(title, author, characterProperties, characterParameters, twineJsonFileUri, activity, contentResolver);
+    public void addQuest(String title, String author, HashMap<String, String> characterProperties, HashMap<String, String> characterParameters, String twineJson, Context context, ContentResolver contentResolver) {
+        AddQuest aq = new AddQuest(title, author, characterProperties, characterParameters, twineJson, context, contentResolver);
         aq.start();
     }
 
@@ -131,9 +106,6 @@ public class TQManager {
     private static class GetQuestStory extends Thread {
         private Context context;
         private int questId;
-        private String questTitle;
-        private String questAuthor;
-        private String questJson;
         private TQStory resStory;
 
         public GetQuestStory(Context context, int questId) {
@@ -148,6 +120,8 @@ public class TQManager {
             DBQuest dbQuest = questDao.getQuestById(questId);
             String title = dbQuest.getQuestTitle();
             String author = dbQuest.getQuestAuthor();
+            String characterProperties = dbQuest.getCharacterProperties();
+            String characterParameters = dbQuest.getCharacterParameters();
             String json = dbQuest.getQuestJson();
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(MapperFeature.AUTO_DETECT_CREATORS, false);
@@ -155,7 +129,7 @@ public class TQManager {
             mapper.configure(MapperFeature.AUTO_DETECT_SETTERS, false);
             try {
                 TQQuest tqQuest = mapper.readValue(json, TQQuest.class);
-                resStory = new TQStory(title, author, tqQuest);
+                resStory = new TQStory(title, author, new TQCharacter(characterProperties, characterParameters), tqQuest);
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
             }
@@ -250,9 +224,10 @@ public class TQManager {
      * Returns an array of all quests from app's database (without json). Method uses {@link GetQuestsArray} to access the database in new thread.
      * @see GetQuestsArray
      * */
-    public DBQuest[] getQuestsArray(Context context) {
+    public DBQuest[] getQuestsArray(Context context) throws InterruptedException {
         GetQuestsArray gqa = new GetQuestsArray(context);
         gqa.start();
+        gqa.join();
         return gqa.resQuestsArray;
     }
 

@@ -21,9 +21,13 @@ public class LibraryActivity extends AppCompatActivity {
 
         libRecyclerView = findViewById(R.id.lib_recycler_view);
 
-        DBQuest[] quests = Tools.getTqManager().getQuestsArray(getApplicationContext());
-        LibraryAdapter libraryAdapter = new LibraryAdapter(quests);
-        libRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        libRecyclerView.setAdapter(libraryAdapter);
+        try {
+            DBQuest[] quests = Tools.getTqManager().getQuestsArray(getApplicationContext());
+            LibraryAdapter libraryAdapter = new LibraryAdapter(quests);
+            libRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+            libRecyclerView.setAdapter(libraryAdapter);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

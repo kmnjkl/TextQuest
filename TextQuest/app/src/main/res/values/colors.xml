@@ -12,14 +12,18 @@
     <color name="secondaryTextColor">#00957B</color>
     <color name="standardTextColor">#FF000000</color>
     <color name="keyTextColor">#381A6C</color>
+    <color name="warningText">#DF0000</color>
+    <color name="hint">#C19CFF</color>
 
     <color name="controlNormal">#FFB097</color>
     <color name="controlActivated">#FF5B26</color>
     <color name="controlHighlight">#FF8B66</color>
 
+    <color name="warning">#4DED0037</color>
+
+    <color name="divider">@color/secondaryDarkColor</color>
+
 <!--    <color name="background">#16BD0000</color>-->
 <!--    <color name="h1">#702B7C</color>-->
 <!--    <color name="h2">#004C45</color>-->
-
-    <color name="hint">#C19CFF</color>
 </resources>

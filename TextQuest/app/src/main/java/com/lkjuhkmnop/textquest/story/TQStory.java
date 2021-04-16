@@ -10,22 +10,24 @@ import java.util.regex.Pattern;
 public class TQStory {
     private String title;
     private String author;
+    private TQCharacter character;
     private final TQQuest tqquest;
 //    current passage which should be processed in current stage of the story
     private TwPassage currentPassage;
     private String currentPassageCleanText;
     private final MathExpressionEvaluator mathExpressionEvaluator = new MathExpressionEvaluator();
 
-    public TQStory(String title, String author, TQQuest tqquest) {
+    public TQStory(String title, String author, TQCharacter character, TQQuest tqquest) {
         this.title = title;
         this.author = author;
+        this.character = character;
         this.tqquest = tqquest;
 //        Set the start passage as current passage
 //        we can find the start passage by it's pid specified in json attribute in the TQ json file
         this.currentPassage = this.getPassageByPid(this.tqquest.startnode);
 //        Initialize mathExpressionEvaluator
 //        set start character properties as variables
-        for (Map.Entry<String, String> prop: tqquest.character.properties.entrySet()) {
+        for (Map.Entry<String, String> prop: character.properties.entrySet()) {
             try {
                 mathExpressionEvaluator.setVariable(prop.getKey(), Double.parseDouble(prop.getValue()));
             } catch (NullPointerException | NumberFormatException ignored) {}
@@ -73,7 +75,7 @@ public class TQStory {
         charParamsString = charParamsString.trim();
         String[] charParamsSplit = charParamsString.split(" ");
         int cpi = 0;
-        for (Map.Entry<String, String> param : this.tqquest.character.parameters.entrySet()) {
+        for (Map.Entry<String, String> param : this.character.parameters.entrySet()) {
             param.setValue(charParamsSplit[cpi].trim());
             cpi++;
         }
@@ -102,20 +104,20 @@ public class TQStory {
 //            Save the new value of the character property
             try {
 //                If value must be integer (we can use parseInt without exception)
-                Integer.parseInt(tqquest.character.properties.get(propName));
-                tqquest.character.properties.replace(propName, Integer.toString(propNewVal.intValue()));
+                Integer.parseInt(character.properties.get(propName));
+                character.properties.replace(propName, Integer.toString(propNewVal.intValue()));
             } catch (NumberFormatException e) {
 //                If value must be double
-                tqquest.character.properties.replace(propName, propNewVal.toString());
+                character.properties.replace(propName, propNewVal.toString());
             }
             mathExpressionEvaluator.setVariable(propName, propNewVal);
         }
         text = sbtext.toString();
 //        2. Replace character properties and parameters
-        for (Map.Entry<String, String> property : this.tqquest.character.properties.entrySet()) {
+        for (Map.Entry<String, String> property : this.character.properties.entrySet()) {
             text = text.replaceAll("@" + property.getKey() + "@", property.getValue());
         }
-        for (Map.Entry<String, String> parameter : this.tqquest.character.parameters.entrySet()) {
+        for (Map.Entry<String, String> parameter : this.character.parameters.entrySet()) {
             text = text.replaceAll("@" + parameter.getKey() + "@", parameter.getValue());
         }
 
@@ -151,7 +153,7 @@ public class TQStory {
 
 //    CHARACTER
     public HashMap<String, String> getCurrentCharacterParameters() {
-        return tqquest.character.parameters;
+        return character.parameters;
     }
 
 //    STORY STATE

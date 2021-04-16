@@ -32,15 +32,15 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
             questDelete = itemView.findViewById(R.id.lib_quest_delete);
         }
 
-        public void setId(int id) {
+        public void setIdText(int id) {
             questId.setText(id);
         }
 
-        public void setTitle(String title) {
+        public void setTitleText(String title) {
             questTitle.setText(title);
         }
 
-        public void setAuthor(String author) {
+        public void setAuthorText(String author) {
             questAuthor.setText(author);
         }
 
@@ -62,8 +62,8 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.setTitle(quests[position].getQuestTitle());
-        holder.setAuthor(quests[position].getQuestAuthor());
+        holder.setTitleText(quests[position].getQuestTitle());
+        holder.setAuthorText(quests[position].getQuestAuthor());
         holder.getItemView().findViewById(R.id.lib_description).setOnClickListener(v -> Toast.makeText(v.getContext(), quests[position].getQuestTitle(), Toast.LENGTH_SHORT).show());
         holder.getItemView().findViewById(R.id.lib_quest_new_game).setOnClickListener(v -> Toast.makeText(v.getContext(), quests[position].getQuestTitle() + "\nNEW GAME", Toast.LENGTH_SHORT).show());
     }

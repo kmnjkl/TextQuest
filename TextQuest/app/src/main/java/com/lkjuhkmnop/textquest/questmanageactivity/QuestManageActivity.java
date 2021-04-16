@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,7 +31,7 @@ public class QuestManageActivity extends AppCompatActivity implements CharPAddDi
     private int action;
 
     private EditText questTitle, questAuthor;
-    private Button questJsonFile, questManageOk;
+    private Button questJsonFileButton, questManageOk;
     private ImageView[] questAddCharPDataButtons;
     private RecyclerView questCharPropertiesRecView, questCharParametersRecView;
     private CharPDataAdapter[] charPDataAdapters;
@@ -60,7 +62,7 @@ public class QuestManageActivity extends AppCompatActivity implements CharPAddDi
 
         questTitle = (EditText) findViewById(R.id.quest_title);
         questAuthor = (EditText) findViewById(R.id.quest_author);
-        questJsonFile = (Button) findViewById(R.id.quest_json_file_button);
+        questJsonFileButton = (Button) findViewById(R.id.quest_json_file_button);
         questAddCharPDataButtons[CHAR_PROPERTY] = (ImageView) findViewById(R.id.quest_add_character_property);
         questAddCharPDataButtons[CHAR_PARAMETER] = (ImageView) findViewById(R.id.quest_add_character_parameter);
         questCharPropertiesRecView = (RecyclerView) findViewById(R.id.quest_character_properties_recycler_view);
@@ -68,6 +70,29 @@ public class QuestManageActivity extends AppCompatActivity implements CharPAddDi
         questManageOk = (Button) findViewById(R.id.quest_manage_ok_button);
 //        tw = findViewById(R.id.textView);
 
+
+//        Set click listener for "ok" button (save new quest or update existing one)
+        questManageOk.setOnClickListener(v -> {
+            if (questJson == null ? true : questJson.equals("")) {
+                questJsonFileButton.setText(getText(R.string.quest_button_json_file_choose_warning));
+                questJsonFileButton.setTextColor(getColor(R.color.warningText));
+            }
+            if (questAuthor.getText().toString().equals("")) {
+                questAuthor.setBackgroundColor(getColor(R.color.warning));
+                questAuthor.setHint(getText(R.string.quest_author_empty_warning));
+                questAuthor.requestFocus();
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.showSoftInput(questAuthor, InputMethodManager.SHOW_IMPLICIT);
+            }
+            if (questTitle.getText().toString().equals("")) {
+                questTitle.setBackgroundColor(getColor(R.color.warning));
+                questTitle.setHint(getText(R.string.quest_title_empty_warning));
+                questTitle.requestFocus();
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.showSoftInput(questTitle, InputMethodManager.SHOW_IMPLICIT);
+            }
+            Tools.getTqManager().addQuest(questTitle.getText().toString(), questAuthor.getText().toString(), questCharacterProperties, questCharacterParameters, questJson, getApplicationContext(), getContentResolver());
+        });
 
 
 //        Set layout manager and adapter for character properties RecycleView
@@ -85,7 +110,7 @@ public class QuestManageActivity extends AppCompatActivity implements CharPAddDi
         action = getIntent().getIntExtra(Tools.QUEST_MANAGE_ACTION_EXTRA_NAME, Tools.QUEST_MANAGE_ACTION_ADD_QUEST);
 
 //        Click listener for json file button
-        questJsonFile.setOnClickListener(v -> {
+        questJsonFileButton.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType("application/json");
