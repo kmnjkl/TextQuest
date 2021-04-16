@@ -15,7 +15,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.lkjuhkmnop.textquest.R;
+import com.lkjuhkmnop.textquest.tools.PopupsManager;
 import com.lkjuhkmnop.textquest.tools.Tools;
 
 import java.io.BufferedReader;
@@ -28,6 +30,11 @@ import java.util.Objects;
 public class QuestManageActivity extends AppCompatActivity implements CharPAddDialog.CharPDataAddDialogListener {
     public static final int CHAR_PARAMETER = 0;
     public static final int CHAR_PROPERTY = 1;
+//    To use in intents when starting QuestManageActivity (to put extra with action type)
+        public static final String ACTION_EXTRA_NAME = "action";
+//    Action types for QuestManageActivity (to use as extra's in intents)
+        public static final int ACTION_ADD_QUEST = 1;
+    public static final int ACTION_REDACT_QUEST = 2;
     private int action;
 
     private EditText questTitle, questAuthor;
@@ -57,6 +64,8 @@ public class QuestManageActivity extends AppCompatActivity implements CharPAddDi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quest_manage);
 
+        PopupsManager.setCurrentMainView(findViewById(R.id.coordinator_layout));
+
         charPDataAdapters = new CharPDataAdapter[2];
         questAddCharPDataButtons = new ImageView[2];
 
@@ -73,11 +82,14 @@ public class QuestManageActivity extends AppCompatActivity implements CharPAddDi
 
 //        Set click listener for "ok" button (save new quest or update existing one)
         questManageOk.setOnClickListener(v -> {
+            boolean ok = true;
             if (questJson == null ? true : questJson.equals("")) {
+                ok = false;
                 questJsonFileButton.setText(getText(R.string.quest_button_json_file_choose_warning));
                 questJsonFileButton.setTextColor(getColor(R.color.warningText));
             }
             if (questAuthor.getText().toString().equals("")) {
+                ok = false;
                 questAuthor.setBackgroundColor(getColor(R.color.warning));
                 questAuthor.setHint(getText(R.string.quest_author_empty_warning));
                 questAuthor.requestFocus();
@@ -85,13 +97,23 @@ public class QuestManageActivity extends AppCompatActivity implements CharPAddDi
                 inputMethodManager.showSoftInput(questAuthor, InputMethodManager.SHOW_IMPLICIT);
             }
             if (questTitle.getText().toString().equals("")) {
+                ok = false;
                 questTitle.setBackgroundColor(getColor(R.color.warning));
                 questTitle.setHint(getText(R.string.quest_title_empty_warning));
                 questTitle.requestFocus();
                 InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputMethodManager.showSoftInput(questTitle, InputMethodManager.SHOW_IMPLICIT);
             }
-            Tools.getTqManager().addQuest(questTitle.getText().toString(), questAuthor.getText().toString(), questCharacterProperties, questCharacterParameters, questJson, getApplicationContext(), getContentResolver());
+            if (ok) {
+                if (action == ACTION_ADD_QUEST) {
+                    Tools.getPopupsManager().addPopup(getString(R.string.adding_quest_message), Snackbar.LENGTH_SHORT);
+//                    Add new quest
+                    Tools.getTqManager().addQuest(questTitle.getText().toString(), questAuthor.getText().toString(), questCharacterProperties, questCharacterParameters, questJson, getApplicationContext(), getContentResolver());
+                    finish();
+                } else if (action == ACTION_REDACT_QUEST) {
+//                    Update quest
+                }
+            }
         });
 
 
@@ -107,7 +129,7 @@ public class QuestManageActivity extends AppCompatActivity implements CharPAddDi
 
 //        Action type (add new quest / manage existing quest settings)
 //        Received as extra in intent
-        action = getIntent().getIntExtra(Tools.QUEST_MANAGE_ACTION_EXTRA_NAME, Tools.QUEST_MANAGE_ACTION_ADD_QUEST);
+        action = getIntent().getIntExtra(ACTION_EXTRA_NAME, ACTION_ADD_QUEST);
 
 //        Click listener for json file button
         questJsonFileButton.setOnClickListener(v -> {

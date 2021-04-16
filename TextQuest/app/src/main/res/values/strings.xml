@@ -8,6 +8,8 @@
 
 <!--    QuestManageActivity -->
     <string name="quest_manage_add_quest_title">Добавить квест</string>
+<!--    Snackbar messages -->
+    <string name="adding_quest_message">Добавление квеста</string>
 <!--    Quest title-->
     <string name="quest_title_label">Название квеста</string>
     <string name="quest_title_empty_warning">Введите название!</string>

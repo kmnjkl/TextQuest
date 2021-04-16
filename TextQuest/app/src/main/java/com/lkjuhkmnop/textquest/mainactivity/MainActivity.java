@@ -2,13 +2,12 @@ package com.lkjuhkmnop.textquest.mainactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActivityOptions;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.lkjuhkmnop.textquest.R;
+import com.lkjuhkmnop.textquest.tools.PopupsManager;
 import com.lkjuhkmnop.textquest.tools.Tools;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -17,9 +16,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.Theme_TextQuest);
-        setTheme(R.style.Theme_TextQuest);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        PopupsManager.setCurrentMainView(findViewById(R.id.main_activity_layout));
 
         playBtn = findViewById(R.id.play_btn);
         addBtn = findViewById(R.id.add_btn);

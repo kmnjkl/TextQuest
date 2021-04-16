@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.lkjuhkmnop.textquest.mainactivity.MainActivity;
+import com.lkjuhkmnop.textquest.tools.PopupsManager;
+import com.lkjuhkmnop.textquest.tools.Tools;
 
 public class SplashScreen extends AppCompatActivity {
 

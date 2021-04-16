@@ -14,21 +14,33 @@ import com.lkjuhkmnop.textquest.questmanageactivity.QuestManageActivity;
 import com.lkjuhkmnop.textquest.tqmanager.TQManager;
 
 public class Tools {
-    private static volatile ObjectMapper mapper;
+    private static PopupsManager popupsManager;
+    public static PopupsManager getPopupsManager() {
+        if (popupsManager == null) {
+            synchronized (PopupsManager.class) {
+                if (popupsManager == null) {
+                    popupsManager = new PopupsManager();
+                    popupsManager.start();
+                }
+            }
+        }
+        return popupsManager;
+    }
 
-//    To use in intents when starting QuestManageActivity (to put extra with action type)
-    public static final String QUEST_MANAGE_ACTION_EXTRA_NAME = "action";
-//    Action types for QuestManageActivity (to use as extra's in intents)
-    public static final int QUEST_MANAGE_ACTION_ADD_QUEST = 1;
-    public static final int QUEST_MANAGE_ACTION_REDACT_QUEST = 2;
-
-    private static final TQManager TQM = new TQManager();
-
+    private static volatile TQManager TQM;
     public static TQManager getTqManager() {
+        if (TQM == null) {
+            synchronized (TQManager.class) {
+                if (TQM == null) {
+                    TQM = new TQManager();
+                }
+            }
+        }
         return TQM;
     }
 
 
+    private static volatile ObjectMapper mapper;
     public static ObjectMapper getMapper() {
         if (mapper == null) {
             synchronized (mapper) {
@@ -67,10 +79,8 @@ public class Tools {
         Bundle options = ActivityOptions.makeClipRevealAnimation(viewToRevealFrom, viewToRevealFrom.getWidth()/2, viewToRevealFrom.getHeight()/2, viewToRevealFrom.getWidth()/4, viewToRevealFrom.getHeight()/4).toBundle();
 //            Create intent
         Intent intent = new Intent(packageContext, QuestManageActivity.class);
-        intent.putExtra(Tools.QUEST_MANAGE_ACTION_EXTRA_NAME, Tools.QUEST_MANAGE_ACTION_ADD_QUEST);
+        intent.putExtra(QuestManageActivity.ACTION_EXTRA_NAME, QuestManageActivity.ACTION_ADD_QUEST);
 //            Start the activity specified in the intent (QuestManageActivity) with options
         packageContext.startActivity(intent, options);
     }
-
-
 }
