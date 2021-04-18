@@ -198,13 +198,13 @@ public class TQManager {
 
     /**
      * Class to get an array of all quests (without json) from app's database in new thread.
-     * @see TQManager#getQuestsArray(Context)
+     * @see TQManager#getQuestsArray
      * */
     private static class GetQuestsArray extends Thread {
         /**
          * Context is needed to use Room.
-         * @see GetQuestsArray#GetQuestsArray(Context)
-         * @see TQManager#getAppDatabaseInstance(Context)
+         * @see GetQuestsArray#GetQuestsArray
+         * @see TQManager#getAppDatabaseInstance
          * */
         private final Context context;
         private DBQuest[] resQuestsArray;

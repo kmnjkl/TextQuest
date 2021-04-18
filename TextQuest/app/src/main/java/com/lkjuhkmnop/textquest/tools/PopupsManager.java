@@ -1,5 +1,6 @@
 package com.lkjuhkmnop.textquest.tools;
 
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -10,21 +11,26 @@ import java.util.LinkedList;
 
 /**
  * Class to manage pop-ups (Snackbars).
- * It shows pop-ups stored in the {@link PopupsManager#popupStack} one by one in .
- * Snackbars are stored in the {@link PopupsManager#popupStack}. Each Snackbar is wrapped in {@link Popup}.
+ * It shows pop-ups (using {@link Snackbar}) stored in the {@link PopupsManager#popupsList} one by one in the special thread.
  * Use method {@link PopupsManager#addPopup} to add a pop-up to the stack.
+ * @see Tools
  * */
 public class PopupsManager extends Thread {
-    private static View currentMainView;
-    private static boolean currViewChanged;
+    private static boolean show = true;
+
+//    View to attach Snackbars
+    private static volatile View currentMainView;
     public static View getCurrentMainView() {
         return currentMainView;
     }
     public static void setCurrentMainView(View currentMainView) {
         PopupsManager.currentMainView = currentMainView;
-        currViewChanged = true;
+        show = true;
     }
 
+    /**
+     * Pop-up includes message text, length and how many times this pop-up had been shown.
+     * */
     private static class Popup {
         String message;
         int length;
@@ -36,19 +42,34 @@ public class PopupsManager extends Thread {
         }
     }
 
-    private volatile LinkedList<Popup> popupStack = new LinkedList<>();
+    /**
+     * Stack with pop-ups.
+     * @see PopupsManager#addPopup
+     * */
+    private volatile LinkedList<Popup> popupsList = new LinkedList<>();
+    public synchronized LinkedList<Popup> getPopupsList() {
+        return popupsList;
+    }
+    public synchronized void setPopupsList(LinkedList<Popup> popupsList) {
+        this.popupsList = popupsList;
+    }
 
+    /**
+     * Adds pop-up to the stack.
+     * @see PopupsManager#popupsList
+     * */
     public void addPopup(String message, int length) {
-        popupStack.add(new Popup(message, length));
+        getPopupsList().add(new Popup(message, length));
+        show = true;
     }
 
     @NonNull
     public Popup peekPopupToShow() {
-        Popup popup = popupStack.peekLast();
+        Popup popup = getPopupsList().peekLast();
         if (popup.showsCount < 1) {
             popup.showsCount++;
         } else {
-            popupStack.removeLast();
+            getPopupsList().removeLast();
         }
         return popup;
     }
@@ -57,12 +78,23 @@ public class PopupsManager extends Thread {
     public void run() {
         super.run();
         while (true) {
-            if (currViewChanged && popupStack.size() > 0) {
-                for (Popup popup: popupStack) {
+//            If View to attach Snackbars had changed and stack has elements (pop-ups) show pop-ups
+            if (show && getPopupsList().size() > 0) {
+                for (Popup popup : getPopupsList()) {
+                    Log.d("popup", "Show pop-up: " + popup.message + "; attached to: " + getCurrentMainView());
                     Snackbar snackbar = Snackbar.make(getCurrentMainView(), popup.message, popup.length);
                     snackbar.show();
+                    popup.showsCount++;
+                    if (popup.showsCount >= 2) {
+                        getPopupsList().remove();
+                    }
                 }
-                currViewChanged = false;
+                show = false;
+//                if (getPopupStack().size() > 0) {
+//                    show = true;
+//                } else {
+//                    show = false;
+//                }
             }
         }
     }

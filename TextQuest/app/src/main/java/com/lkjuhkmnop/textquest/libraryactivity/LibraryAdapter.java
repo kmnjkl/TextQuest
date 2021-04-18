@@ -32,8 +32,8 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
             questDelete = itemView.findViewById(R.id.lib_quest_delete);
         }
 
-        public void setIdText(int id) {
-            questId.setText(id);
+        public void setIdText(String idText) {
+            questId.setText(idText);
         }
 
         public void setTitleText(String title) {
@@ -62,6 +62,7 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.setIdText(String.valueOf(quests[position].getQuestId()));
         holder.setTitleText(quests[position].getQuestTitle());
         holder.setAuthorText(quests[position].getQuestAuthor());
         holder.getItemView().findViewById(R.id.lib_description).setOnClickListener(v -> Toast.makeText(v.getContext(), quests[position].getQuestTitle(), Toast.LENGTH_SHORT).show());
