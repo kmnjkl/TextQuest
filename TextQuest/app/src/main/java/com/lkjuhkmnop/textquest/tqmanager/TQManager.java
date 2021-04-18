@@ -1,6 +1,5 @@
 package com.lkjuhkmnop.textquest.tqmanager;
 
-import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
 
@@ -196,6 +195,7 @@ public class TQManager {
         return gg.gamesList == null ? null : (DBGame[]) gg.gamesList.toArray();
     }
 
+
     /**
      * Class to get an array of all quests (without json) from app's database in new thread.
      * @see TQManager#getQuestsArray
@@ -203,10 +203,15 @@ public class TQManager {
     private static class GetQuestsArray extends Thread {
         /**
          * Context is needed to use Room.
-         * @see GetQuestsArray#GetQuestsArray
+         * @see #GetQuestsArray
+         * @see #run()
          * @see TQManager#getAppDatabaseInstance
          * */
         private final Context context;
+        /**
+         * Array to save query results.
+         * @see
+         * */
         private DBQuest[] resQuestsArray;
 
         public GetQuestsArray(Context context) {
@@ -231,4 +236,50 @@ public class TQManager {
         return gqa.resQuestsArray;
     }
 
+
+    /**
+     * Class to delete a quest from the app's database in new thread.
+     * @see #deleteQuestById
+     * */
+    private static class DeleteQuestById extends Thread {
+        /**
+         * Context is needed to use Room.
+         * @see #DeleteQuestById
+         * @see #run()
+         * @see TQManager#getAppDatabaseInstance
+         * */
+        private final Context context;
+        /**
+         * Id of the quest to delete.
+         * @see #DeleteQuestById
+         * @see #run
+         * */
+        private int id;
+
+        /**
+         * Constructor sets {@link #context} (needed to get the AppDatabase instance) and {@link #id} of the quest to delete.
+         * @see #run
+         * */
+        public DeleteQuestById(Context context, int id) {
+            this.context = context;
+            this.id = id;
+        }
+
+        @Override
+        public void run() {
+            super.run();
+            DBQuestDao questDao = getAppDatabaseInstance(context).questDao();
+            questDao.deleteQuestsByIds(id);
+        }
+    }
+    /**
+     * Method to delete a quest from the app's database by id.
+     * It uses {@link DeleteQuestById} to set the {@link DeleteQuestById#context} and the {@link DeleteQuestById#id} of the quest to delete and to start a new thread to use the app's database (using Room).
+     * @see DeleteQuestById
+     * */
+    public void deleteQuestById(Context context, int id) throws InterruptedException {
+        DeleteQuestById dqbi = new DeleteQuestById(context, id);
+        dqbi.start();
+        dqbi.join();
+    }
 }

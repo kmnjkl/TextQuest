@@ -26,4 +26,7 @@ public interface DBQuestDao {
 
     @Delete
     void deleteQuests(DBQuest... quests);
+
+    @Query("DELETE FROM DBQuest WHERE quest_id IN (:ids)")
+    void deleteQuestsByIds(int... ids);
 }

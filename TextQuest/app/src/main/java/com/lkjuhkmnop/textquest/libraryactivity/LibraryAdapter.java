@@ -1,5 +1,6 @@
 package com.lkjuhkmnop.textquest.libraryactivity;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lkjuhkmnop.textquest.R;
+import com.lkjuhkmnop.textquest.tools.Tools;
 import com.lkjuhkmnop.textquest.tqmanager.DBQuest;
 
 public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHolder> {
+    private final Context context;
     private final DBQuest[] quests;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -49,7 +52,8 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
         }
     }
 
-    public LibraryAdapter(DBQuest[] quests) {
+    public LibraryAdapter(Context context, DBQuest[] quests) {
+        this.context = context;
         this.quests = quests;
     }
 
@@ -62,11 +66,25 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+//        Set quests description
         holder.setIdText(String.valueOf(quests[position].getQuestId()));
         holder.setTitleText(quests[position].getQuestTitle());
         holder.setAuthorText(quests[position].getQuestAuthor());
+//        Set click listeners
+//        For description
         holder.getItemView().findViewById(R.id.lib_description).setOnClickListener(v -> Toast.makeText(v.getContext(), quests[position].getQuestTitle(), Toast.LENGTH_SHORT).show());
+//        For the new game button
         holder.getItemView().findViewById(R.id.lib_quest_new_game).setOnClickListener(v -> Toast.makeText(v.getContext(), quests[position].getQuestTitle() + "\nNEW GAME", Toast.LENGTH_SHORT).show());
+//        For the settings button
+//        For the delete button
+        holder.getItemView().findViewById(R.id.lib_quest_delete).setOnClickListener(v -> {
+            try {
+                Tools.getTqManager().deleteQuestById(context, quests[position].getQuestId());
+                LibraryActivity.reloadQuestsArray();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @Override

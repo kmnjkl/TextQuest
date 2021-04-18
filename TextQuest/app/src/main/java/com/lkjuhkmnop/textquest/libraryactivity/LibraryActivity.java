@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import com.lkjuhkmnop.textquest.R;
@@ -11,7 +12,11 @@ import com.lkjuhkmnop.textquest.tools.Tools;
 import com.lkjuhkmnop.textquest.tqmanager.DBQuest;
 
 public class LibraryActivity extends AppCompatActivity {
-    RecyclerView libRecyclerView;
+    private RecyclerView libRecyclerView;
+
+    private static DBQuest[] quests;
+    private static Context applicationContext;
+    private static LibraryAdapter libraryAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,15 +24,22 @@ public class LibraryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_library);
 
+        applicationContext = getApplicationContext();
+
         libRecyclerView = findViewById(R.id.lib_recycler_view);
 
         try {
-            DBQuest[] quests = Tools.getTqManager().getQuestsArray(getApplicationContext());
-            LibraryAdapter libraryAdapter = new LibraryAdapter(quests);
+            quests = Tools.getTqManager().getQuestsArray(applicationContext);
+            libraryAdapter = new LibraryAdapter(applicationContext, quests);
             libRecyclerView.setLayoutManager(new LinearLayoutManager(this));
             libRecyclerView.setAdapter(libraryAdapter);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void reloadQuestsArray() throws InterruptedException {
+        quests = Tools.getTqManager().getQuestsArray(applicationContext);
+        libraryAdapter.notifyDataSetChanged();
     }
 }
