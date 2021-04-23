@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import com.lkjuhkmnop.textquest.gamesactivity.GamesActivity;
 import com.lkjuhkmnop.textquest.libraryactivity.LibraryActivity;
 import com.lkjuhkmnop.textquest.questmanageactivity.QuestManageActivity;
@@ -56,6 +57,11 @@ public class Tools {
         return mapper;
     }
 
+    private static final Gson GSON = new Gson();
+
+    public static Gson getGson() {
+        return GSON;
+    }
 
 
     /* START ACTIVITIES */
