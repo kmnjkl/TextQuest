@@ -13,11 +13,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.lkjuhkmnop.textquest.R;
 import com.lkjuhkmnop.textquest.tools.Tools;
+import com.lkjuhkmnop.textquest.tqmanager.DBGame;
 import com.lkjuhkmnop.textquest.tqmanager.DBQuest;
 
+import java.time.Instant;
+import java.util.Calendar;
+import java.util.Date;
+
 public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHolder> {
-    private final Context context;
-    private final DBQuest[] quests;
+    private Context context;
+    private DBQuest[] quests;
+
+    public void setQuests(DBQuest[] quests) {
+        this.quests = quests;
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         View itemView;
@@ -70,12 +79,29 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
         holder.setIdText(String.valueOf(quests[position].getQuestId()));
         holder.setTitleText(quests[position].getQuestTitle());
         holder.setAuthorText(quests[position].getQuestAuthor());
+
 //        Set click listeners
 //        For description
         holder.getItemView().findViewById(R.id.lib_description).setOnClickListener(v -> Toast.makeText(v.getContext(), quests[position].getQuestTitle(), Toast.LENGTH_SHORT).show());
+
 //        For the new game button
-        holder.getItemView().findViewById(R.id.lib_quest_new_game).setOnClickListener(v -> Toast.makeText(v.getContext(), quests[position].getQuestTitle() + "\nNEW GAME", Toast.LENGTH_SHORT).show());
+        ImageView addButton = holder.getItemView().findViewById(R.id.lib_quest_new_game);
+        addButton.setOnClickListener(v -> {
+            String newGameTitle = quests[position].getQuestTitle();
+            try {
+                while (Tools.getTqManager().getGameByTitle(context, newGameTitle) != null) {
+                    newGameTitle = newGameTitle + "_n";
+                }
+                DBGame newGame = new DBGame(quests[position].getQuestId(), newGameTitle, Calendar.getInstance().getTimeInMillis());
+                Tools.getTqManager().addGame(context, newGame);
+                Tools.startPlayActivity(context, addButton, Tools.getTqManager().getGameByTitle(context, newGameTitle));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
 //        For the settings button
+
 //        For the delete button
         holder.getItemView().findViewById(R.id.lib_quest_delete).setOnClickListener(v -> {
             try {

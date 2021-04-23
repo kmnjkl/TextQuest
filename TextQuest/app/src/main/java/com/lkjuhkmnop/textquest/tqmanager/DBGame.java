@@ -2,6 +2,7 @@ package com.lkjuhkmnop.textquest.tqmanager;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 
@@ -19,6 +20,12 @@ public class DBGame {
 
     @ColumnInfo(name = "game_time")
     private long gameTimestamp;
+
+    public DBGame(int questId, String gameTitle, long gameTimestamp) {
+        this.questId = questId;
+        this.gameTitle = gameTitle;
+        this.gameTimestamp = gameTimestamp;
+    }
 
     public int getGameId() {
         return gameId;

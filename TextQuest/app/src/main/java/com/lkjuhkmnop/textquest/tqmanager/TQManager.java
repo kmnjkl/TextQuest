@@ -35,7 +35,8 @@ public class TQManager {
     }
 //    \===== singleton pattern implementation to use AppDatabase to work with app's database using Room =====/
 
-
+    /* MANAGE DATABASE*/
+    /* QUESTS TABLE*/
     /**
      * Class to add a new quest to the local library in new thread.
      * @see TQManager#addQuest
@@ -80,7 +81,7 @@ public class TQManager {
             mapper.configure(MapperFeature.AUTO_DETECT_SETTERS, false);
 //            Replace bad attribute "creator-version" (you can't use '-' in fields names in Java) with "creator_version"
             String correctedJson = twineJson.replaceAll("\"creator-version\":", "\"creator_version\":");
-            DBQuestDao questDao = getAppDatabaseInstance(context).questDao();
+            DBQuestsDao questDao = getAppDatabaseInstance(context).questDao();
             try {
                 questDao.insertAll(new DBQuest(title, author, mapper.writeValueAsString(characterProperties), mapper.writeValueAsString(characterParameters), correctedJson));
             } catch (JsonProcessingException e) {
@@ -115,7 +116,7 @@ public class TQManager {
         @Override
         public void run() {
             super.run();
-            DBQuestDao questDao = getAppDatabaseInstance(context).questDao();
+            DBQuestsDao questDao = getAppDatabaseInstance(context).questDao();
             DBQuest dbQuest = questDao.getQuestById(questId);
             String title = dbQuest.getQuestTitle();
             String author = dbQuest.getQuestAuthor();
@@ -143,59 +144,6 @@ public class TQManager {
         return questStory.resStory;
     }
 
-
-    /**
-     * Class to get all started games form app's database in new thread (using Room).
-     * @see TQManager#getGames(Context) 
-     * */
-    private static class GetGames extends Thread {
-        /**
-         * Context is needed to use Room.
-         * @see GetGames#GetGames(Context)
-         * @see TQManager#getAppDatabaseInstance(Context)
-         * */
-        private Context context;
-        /**
-         * List to save games from app's database and to have access to this information from {@link TQManager#getGames(Context)} method.
-         * @see GetGames#run()
-         * @see TQManager#getGames(Context)
-         * */
-        private List<DBGame> gamesList;
-
-        /**
-         * Constructor to set the context.
-         * @see GetGames#context
-         * @see TQManager#getGames(Context)
-         * */
-        public GetGames(Context context) {
-            this.context = context;
-        }
-
-        /**
-         * When thread is started, get games from app's database and save result to {@link GetGames#gamesList} field.
-         * @see TQManager#getGames(Context)
-         * */
-        @Override
-        public void run() {
-            super.run();
-//        Get 'tqgame' table's DAO
-            DBGameDao gameDao = getAppDatabaseInstance(context).gameDao();
-//        Get all games from database table and save result to GetGames.gamesList
-            this.gamesList = gameDao.getAllGames();
-        }
-    }
-    /**
-     * Returns an array of TQGame instances with information about started games.
-     * It uses {@link TQManager}'s inner class {@link GetGames} to set the context to use Room and start a new thread to use app's database (using Room).
-     * @see GetQuestStory
-     * */
-    public DBGame[] getGames(Context context) {
-        GetGames gg = new GetGames(context);
-        gg.start();
-        return gg.gamesList == null ? null : (DBGame[]) gg.gamesList.toArray();
-    }
-
-
     /**
      * Class to get an array of all quests (without json) from app's database in new thread.
      * @see TQManager#getQuestsArray
@@ -221,7 +169,7 @@ public class TQManager {
         @Override
         public void run() {
             super.run();
-            DBQuestDao questDao = getAppDatabaseInstance(context).questDao();
+            DBQuestsDao questDao = getAppDatabaseInstance(context).questDao();
             resQuestsArray = questDao.getAllQuestsArray();
         }
     }
@@ -268,7 +216,7 @@ public class TQManager {
         @Override
         public void run() {
             super.run();
-            DBQuestDao questDao = getAppDatabaseInstance(context).questDao();
+            DBQuestsDao questDao = getAppDatabaseInstance(context).questDao();
             questDao.deleteQuestsByIds(id);
         }
     }
@@ -281,5 +229,110 @@ public class TQManager {
         DeleteQuestById dqbi = new DeleteQuestById(context, id);
         dqbi.start();
         dqbi.join();
+    }
+
+
+    /* GAMES TABLE */
+    /**
+     * Class to get all started games form the app's database in new thread (using Room).
+     * @see TQManager#getGames(Context) 
+     * */
+    private static class GetGames extends Thread {
+        /**
+         * Context is needed to use Room.
+         * @see GetGames#GetGames(Context)
+         * @see TQManager#getAppDatabaseInstance(Context)
+         * */
+        private Context context;
+        /**
+         * List to save games from app's database and to have access to this information from {@link TQManager#getGames(Context)} method.
+         * @see GetGames#run()
+         * @see TQManager#getGames(Context)
+         * */
+        private List<DBGame> gamesList;
+
+        /**
+         * Constructor to set the context.
+         * @see GetGames#context
+         * @see TQManager#getGames(Context)
+         * */
+        public GetGames(Context context) {
+            this.context = context;
+        }
+
+        /**
+         * When thread is started, get games from app's database and save result to {@link GetGames#gamesList} field.
+         * @see TQManager#getGames(Context)
+         * */
+        @Override
+        public void run() {
+            super.run();
+//        Get 'tqgame' table's DAO
+            DBGamesDao gameDao = getAppDatabaseInstance(context).gamesDao();
+//        Get all games from database table and save result to GetGames.gamesList
+            this.gamesList = gameDao.getAllGames();
+        }
+    }
+    /**
+     * Returns an array of TQGame instances with information about started games.
+     * It uses {@link TQManager}'s inner class {@link GetGames} to set the context to use Room and start a new thread to use app's database (using Room).
+     * @see GetQuestStory
+     * */
+    public DBGame[] getGames(Context context) {
+        GetGames gg = new GetGames(context);
+        gg.start();
+        return gg.gamesList == null ? null : (DBGame[]) gg.gamesList.toArray();
+    }
+
+
+    /** Class to add new game to the app's database in new thread (using Room).*/
+    private static class AddGame extends Thread {
+        private Context context;
+        private DBGame game;
+
+        public AddGame(Context context, DBGame game) {
+            this.context = context;
+            this.game = game;
+        }
+
+        @Override
+        public void run() {
+            super.run();
+            DBGamesDao gamesDao = getAppDatabaseInstance(context).gamesDao();
+            gamesDao.insertAll(game);
+        }
+    }
+    /** Method to add a new game to the app's database in new thread.
+     * It uses {@link AddGame} to set a new game and to add it to the database.
+     * */
+    public void addGame(Context context, DBGame game) throws InterruptedException {
+        AddGame ag = new AddGame(context, game);
+        ag.start();
+        ag.join();
+    }
+
+
+    private static class GetGameByTitle extends Thread {
+        private Context context;
+        private String title;
+        private DBGame resGame;
+
+        public GetGameByTitle(Context context, String title) {
+            this.context = context;
+            this.title = title;
+        }
+
+        @Override
+        public void run() {
+            super.run();
+            DBGamesDao gamesDao = getAppDatabaseInstance(context).gamesDao();
+            resGame = gamesDao.getGameByTitle(title);
+        }
+    }
+    public DBGame getGameByTitle(Context context, String title) throws InterruptedException {
+        GetGameByTitle ggbt = new GetGameByTitle(context, title);
+        ggbt.start();
+        ggbt.join();
+        return ggbt.resGame;
     }
 }

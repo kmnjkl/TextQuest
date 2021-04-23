@@ -8,7 +8,7 @@ import androidx.room.Query;
 import java.util.List;
 
 @Dao
-public interface DBQuestDao {
+public interface DBQuestsDao {
     @Query("SELECT * FROM DBQuest")
     List<DBQuest> getAllQuests();
 

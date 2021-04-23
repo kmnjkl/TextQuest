@@ -8,7 +8,7 @@ import androidx.room.Query;
 import java.util.List;
 
 @Dao
-public interface DBGameDao {
+public interface DBGamesDao {
     @Query("SELECT * FROM DBGame")
     List<DBGame> getAllGames();
 
@@ -16,7 +16,7 @@ public interface DBGameDao {
     DBGame getGameById(int gameId);
 
     @Query("SELECT * FROM DBGame WHERE game_title = (:gameTitle)")
-    List<DBGame> getGamesByTitle(String gameTitle);
+    DBGame getGameByTitle(String gameTitle);
 
     @Insert
     void insertAll(DBGame... games);

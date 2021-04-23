@@ -1,6 +1,8 @@
 package com.lkjuhkmnop.textquest.questmanageactivity;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,12 +77,23 @@ public class CharPDataAdapter extends RecyclerView.Adapter<CharPDataAdapter.View
 //        Set char. p. data value (empty string in new property)
         holder.setCharPValueText(charPData.get(charPName));
 
-//        Save character p. data value when it's EditText loose focus
+//        Save character p. data value when it's text (in EditText) changed
         EditText charPValueET = holder.getItemView().findViewById(R.id.char_p_data_value);
-        charPValueET.setOnFocusChangeListener((v, hasFocus) -> {
-            if (position < charPData.size() && !hasFocus) {
+        charPValueET.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
                 String changeCharPName = charPData.keySet().toArray()[position].toString();
-                charPData.replace(changeCharPName, charPValueET.getText().toString());
+                charPData.replace(changeCharPName, s.toString());
             }
         });
 

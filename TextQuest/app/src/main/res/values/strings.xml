@@ -6,23 +6,23 @@
     <string name="games_title">Игры</string>
     <string name="lib_title">Библиотека</string>
 
-<!--    QuestManageActivity -->
+    <!--    QuestManageActivity -->
     <string name="quest_manage_add_quest_title">Добавить квест</string>
-<!--    Snackbar messages -->
+    <!--    Snackbar messages -->
     <string name="adding_quest_message">Добавление квеста</string>
-<!--    Quest title-->
+    <!--    Quest title-->
     <string name="quest_title_label">Название квеста</string>
     <string name="quest_title_empty_warning">Введите название!</string>
-<!--    Quest author-->
+    <!--    Quest author-->
     <string name="quest_author_label">Автор</string>
     <string name="quest_author_empty_warning">Заполните поле!</string>
-<!--    Quest json-->
+    <!--    Quest json-->
     <string name="quest_json_file_choose_label">Json файл</string>
     <string name="quest_button_json_file_choose_label">Выбрать файл</string>
     <string name="quest_button_json_file_choose_warning">Выберите файл!</string>
-<!--    Ok button-->
+    <!--    Ok button-->
     <string name="quest_manage_ok_button_text">OK</string>
-<!--    Char p. data -->
+    <!--    Char p. data -->
     <string name="character_properties_label">Характеристики персонажа (главного героя)</string>
     <string name="character_parameters_label">Основные параметры персонажа</string>
     <string name="char_p_data_add_dialog_title">Добавить</string>

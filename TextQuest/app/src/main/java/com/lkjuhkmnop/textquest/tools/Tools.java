@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lkjuhkmnop.textquest.gamesactivity.GamesActivity;
 import com.lkjuhkmnop.textquest.libraryactivity.LibraryActivity;
 import com.lkjuhkmnop.textquest.questmanageactivity.QuestManageActivity;
+import com.lkjuhkmnop.textquest.tqmanager.DBGame;
 import com.lkjuhkmnop.textquest.tqmanager.TQManager;
 
 public class Tools {
@@ -55,6 +56,13 @@ public class Tools {
         return mapper;
     }
 
+
+
+    /* START ACTIVITIES */
+
+    public static void startPlayActivity(Context packageContext, View viewToRevealFrom, DBGame game) {
+
+    }
 
     public static void startGamesActivity(Context packageContext, View viewToRevealFrom) {
 //            Build an options Bundle
