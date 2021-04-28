@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lkjuhkmnop.textquest.story.TQCharacter;
 import com.lkjuhkmnop.textquest.story.TQQuest;
 import com.lkjuhkmnop.textquest.story.TQStory;
+import com.lkjuhkmnop.textquest.tools.Tools;
 
 import java.util.HashMap;
 import java.util.List;
@@ -100,15 +101,15 @@ public class TQManager {
 
 
     /**
-     * Class to get story (quest) by id from app's database.
-     * @see TQManager#getQuestStory(Context, int) 
+     * Class to get quest by id from app's database.
+     * @see TQManager#getQuestById(Context, int)
      * */
-    private static class GetQuestStory extends Thread {
+    private static class GetQuestById extends Thread {
         private Context context;
         private int questId;
-        private TQStory resStory;
+        private DBQuest resQuest;
 
-        public GetQuestStory(Context context, int questId) {
+        public GetQuestById(Context context, int questId) {
             this.context = context;
             this.questId = questId;
         }
@@ -117,31 +118,16 @@ public class TQManager {
         public void run() {
             super.run();
             DBQuestsDao questDao = getAppDatabaseInstance(context).questDao();
-            DBQuest dbQuest = questDao.getQuestById(questId);
-            String title = dbQuest.getQuestTitle();
-            String author = dbQuest.getQuestAuthor();
-            String characterProperties = dbQuest.getCharacterProperties();
-            String characterParameters = dbQuest.getCharacterParameters();
-            String json = dbQuest.getQuestJson();
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.configure(MapperFeature.AUTO_DETECT_CREATORS, false);
-            mapper.configure(MapperFeature.AUTO_DETECT_GETTERS, false);
-            mapper.configure(MapperFeature.AUTO_DETECT_SETTERS, false);
-            try {
-                TQQuest tqQuest = mapper.readValue(json, TQQuest.class);
-                resStory = new TQStory(title, author, new TQCharacter(characterProperties, characterParameters), tqQuest);
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
+            resQuest = questDao.getQuestById(questId);
         }
     }
     /**
      * Returns story (quest) by quest_id from app's database.
-     * @see GetQuestStory
+     * @see GetQuestById
      * */
-    public TQStory getQuestStory(Context context, int questId) {
-        GetQuestStory questStory = new GetQuestStory(context, questId);
-        return questStory.resStory;
+    public DBQuest getQuestById(Context context, int questId) {
+        GetQuestById questStory = new GetQuestById(context, questId);
+        return questStory.resQuest;
     }
 
     /**
@@ -276,7 +262,7 @@ public class TQManager {
     /**
      * Returns an array of TQGame instances with information about started games.
      * It uses {@link TQManager}'s inner class {@link GetGames} to set the context to use Room and start a new thread to use app's database (using Room).
-     * @see GetQuestStory
+     * @see GetQuestById
      * */
     public DBGame[] getGames(Context context) {
         GetGames gg = new GetGames(context);
@@ -299,7 +285,7 @@ public class TQManager {
         public void run() {
             super.run();
             DBGamesDao gamesDao = getAppDatabaseInstance(context).gamesDao();
-            gamesDao.insertAll(game);
+            gamesDao.insert(game);
         }
     }
     /** Method to add a new game to the app's database in new thread.
@@ -312,6 +298,9 @@ public class TQManager {
     }
 
 
+    /**
+     * Class to get game from database by title.
+     * */
     private static class GetGameByTitle extends Thread {
         private Context context;
         private String title;
@@ -334,5 +323,20 @@ public class TQManager {
         ggbt.start();
         ggbt.join();
         return ggbt.resGame;
+    }
+
+    public TQStory getStoryByGameTitle(Context context, String gameTitle) throws InterruptedException, JsonProcessingException {
+        DBGame game = getGameByTitle(context, gameTitle);
+        DBQuest quest = getQuestById(context, game.getQuestId());
+        String charProps = game.getGameCharPropertiesJson() == null ? quest.getCharacterProperties() : game.getGameCharPropertiesJson();
+        TQCharacter character = new TQCharacter(charProps, quest.getCharacterParameters());
+        TQQuest tqQuest = Tools.getGson().fromJson(quest.getQuestJson(), TQQuest.class);
+        TQStory story;
+        if (game.getGameLastPassagePid() == -1) {
+            story = new TQStory(quest.getQuestTitle(), quest.getQuestAuthor(), character, tqQuest);
+        } else {
+            story = new TQStory(quest.getQuestTitle(), quest.getQuestAuthor(), character, tqQuest, game.getGameLastPassagePid());
+        }
+        return story;
     }
 }

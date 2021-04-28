@@ -11,8 +11,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.lkjuhkmnop.textquest.gamesactivity.GamesActivity;
 import com.lkjuhkmnop.textquest.libraryactivity.LibraryActivity;
+import com.lkjuhkmnop.textquest.playactivity.PlayActivity;
 import com.lkjuhkmnop.textquest.questmanageactivity.QuestManageActivity;
-import com.lkjuhkmnop.textquest.tqmanager.DBGame;
 import com.lkjuhkmnop.textquest.tqmanager.TQManager;
 
 public class Tools {
@@ -66,8 +66,14 @@ public class Tools {
 
     /* START ACTIVITIES */
 
-    public static void startPlayActivity(Context packageContext, View viewToRevealFrom, DBGame game) {
-
+    public static void startPlayActivity(Context packageContext, View viewToRevealFrom, String gameName) {
+//            Build an options Bundle
+        Bundle options = ActivityOptions.makeClipRevealAnimation(viewToRevealFrom, viewToRevealFrom.getWidth()/2, viewToRevealFrom.getHeight()/2, viewToRevealFrom.getWidth()/4, viewToRevealFrom.getHeight()/4).toBundle();
+//            Create intent
+        Intent intent = new Intent(packageContext, PlayActivity.class);
+        intent.putExtra(PlayActivity.GAME_NAME_EXTRA_NAME, gameName);
+//            Start the activity specified in the intent (PlayActivity) with options
+        packageContext.startActivity(intent, options);
     }
 
     public static void startGamesActivity(Context packageContext, View viewToRevealFrom) {

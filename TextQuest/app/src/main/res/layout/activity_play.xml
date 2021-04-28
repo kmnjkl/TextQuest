@@ -8,16 +8,16 @@
     android:theme="@style/Theme.TextQuest"
     tools:context=".playactivity.PlayActivity">
 
-    <LinearLayout
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/play_activity_char_params_rec_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/play_activity_char_params_rec_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
 
     <Space
         android:layout_width="match_parent"
@@ -45,9 +45,11 @@
                 android:layout_height="20dp" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/play_activity_links"
+                android:id="@+id/play_activity_links_rec_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
         </LinearLayout>
     </ScrollView>
 

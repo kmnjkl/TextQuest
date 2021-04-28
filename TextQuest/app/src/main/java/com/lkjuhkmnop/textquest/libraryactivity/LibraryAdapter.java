@@ -94,7 +94,7 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
                 }
                 DBGame newGame = new DBGame(quests[position].getQuestId(), newGameTitle, Calendar.getInstance().getTimeInMillis());
                 Tools.getTqManager().addGame(context, newGame);
-                Tools.startPlayActivity(context, addButton, Tools.getTqManager().getGameByTitle(context, newGameTitle));
+                Tools.startPlayActivity(context, addButton, newGameTitle);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

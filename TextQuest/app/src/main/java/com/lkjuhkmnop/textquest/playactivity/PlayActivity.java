@@ -3,22 +3,21 @@ package com.lkjuhkmnop.textquest.playactivity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.lkjuhkmnop.textquest.R;
 import com.lkjuhkmnop.textquest.story.TQStory;
 import com.lkjuhkmnop.textquest.tools.Tools;
-
-import java.util.HashMap;
+import com.lkjuhkmnop.textquest.tqmanager.DBGame;
+import com.lkjuhkmnop.textquest.tqmanager.DBQuest;
 
 public class PlayActivity extends AppCompatActivity {
-    private RecyclerView charParamsRecView;
+    private RecyclerView charParamsRecView, linksRecView;
 
-    public static final String GAME_ID_EXTRA_NAME = "GAME_ID_EXTRA_NAME";
+    public static final String GAME_NAME_EXTRA_NAME = "GAME_NAME_EXTRA_NAME";
 
-    private int gameId;
+    private String gameTitle;
     private TQStory story;
 
     @Override
@@ -28,9 +27,11 @@ public class PlayActivity extends AppCompatActivity {
 
         charParamsRecView = (RecyclerView) findViewById(R.id.play_activity_char_params_rec_view);
 
-        gameId = getIntent().getIntExtra(GAME_ID_EXTRA_NAME, 0);
-
-        charParams = Tools.getGson().fromJson(charParamsJson, charParams.getClass());
-        CharParamsRecViewAdapter charParamsRecViewAdapter = new CharParamsRecViewAdapter(charParams);
+        gameTitle = getIntent().getStringExtra(GAME_NAME_EXTRA_NAME);
+        try {
+            story = Tools.getTqManager().getStoryByGameTitle(getApplicationContext(), gameTitle);
+        } catch (InterruptedException | JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -19,7 +19,7 @@ public interface DBGamesDao {
     DBGame getGameByTitle(String gameTitle);
 
     @Insert
-    void insertAll(DBGame... games);
+    void insert(DBGame... games);
 
     @Delete
     void deleteGames(DBGame... games);

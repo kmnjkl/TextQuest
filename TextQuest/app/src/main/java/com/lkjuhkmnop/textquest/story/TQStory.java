@@ -34,6 +34,21 @@ public class TQStory {
         }
     }
 
+    public TQStory(String title, String author, TQCharacter character, TQQuest tqquest, int startPid) {
+        this.title = title;
+        this.author = author;
+        this.character = character;
+        this.tqquest = tqquest;
+        this.currentPassage = this.getPassageByPid(startPid);
+//        Initialize mathExpressionEvaluator
+//        set start character properties as variables
+        for (Map.Entry<String, String> prop: character.properties.entrySet()) {
+            try {
+                mathExpressionEvaluator.setVariable(prop.getKey(), Double.parseDouble(prop.getValue()));
+            } catch (NullPointerException | NumberFormatException ignored) {}
+        }
+    }
+
 //    GET PASSAGE
 //    Method finds passage with specified pid
     public TwPassage getPassageByPid(int pid) {

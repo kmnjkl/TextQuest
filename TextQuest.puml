@@ -1,0 +1,154 @@
+@startuml
+
+together {
+  package mainactivity {
+    class MainActivity
+  }
+
+  package gamesactivity {
+    class GamesActivity
+    GamesActivity ..> GamesAdapter
+    class GamesAdapter
+  }
+
+  package libraryactivity {
+    class LibraryActivity
+    LibraryActivity ..> LibraryAdapter
+    class LibraryAdapter
+  }
+
+  package questmanageactivity {
+    class QuestManageActivity
+    QuestManageActivity ..> CharPDataAdapter
+    QuestManageActivity ..> CharPAddDialog
+    class CharPDataAdapter
+    class CharPAddDialog
+  }
+
+  package playactivity {
+    class PlayActivity
+    PlayActivity ..> CharParamsAdapter
+    PlayActivity ..> LinksAdapter
+    class CharParamsAdapter
+    class LinksAdapter
+  }
+}
+
+package story {
+  class TQStory {
+    -title : String
+    -author : String
+    -character : TQCharacter
+    -tqquest : TQQuest
+    -currentPassage : TwPassage
+    -mathExpressionEvaluator : MathExpressionEvaluator
+    __
+    +getPassageByPid(int pid) : TwPassage
+    +getPassageByName(String name) : TwPassage
+    ..
+    +getCurrentPassagePid() : int
+    +getCurrentPassageName() : String
+    +processCurrentPassage() : String
+    +getCurrentPassageLinks() : TwLink
+    +goByLinkNumber(int linkNumber)
+    ..
+    +getCurrentCharacterProperties() : HashMap<String,String>
+    +getCurrentCharacterParameters() : HashMap<String,String>
+    ..
+    +isEnd() : boolean
+  }
+  note left of TQStory::processCurrentPassage
+    Returns "clean" text
+    of the current passage.
+  end note
+  TQStory *-- TQQuest
+  TQStory *-- TQCharacter
+  class TQCharacter {
+    +properties : HashMap<String, String>
+    +parameters : HashMap<String, String>
+
+    +TQCharacter()
+    +TQCharacter(HashMap<String,String> properties, HashMap<String,String> parameters)
+    +TQCharacter(String propertiesJson, String parametersJson)
+  }
+  class TQQuest {
+    +passages : TwPassage[]
+    +name : String
+    +startnode : int
+    +creator : String
+    +creator_version : String
+    +ifid : String
+  }
+  TQQuest *-- TwPassage
+  class TwPassage {
+    +text : String
+    +links : TwLink[]
+    +name : String
+    +pid : int
+    +position : TwPosition
+  }
+  TwPassage *-- TwPosition
+  TwPassage *-- TwLink
+  class TwPosition {
+    +x : float
+    +y : float
+  }
+  class TwLink {
+    +name : String
+    +link : String
+    +pid : int
+  }
+}
+
+package tqmanager {
+  class TQManager
+  PlayActivity --> TQManager
+  QuestManageActivity --> TQManager
+  GamesActivity --> TQManager
+  LibraryActivity --> TQManager
+  TQManager --> AppDatabase
+  TQManager --> DBGamesDao
+  TQManager --> DBQuestsDao
+  class AppDatabase
+  AppDatabase ..> DBGamesDao
+  AppDatabase ..> DBQuestsDao
+  together {
+    class DBGame
+    interface DBGamesDao
+    DBGamesDao ..> DBGame
+  }
+  together {
+    class DBQuest
+    interface DBQuestsDao
+    DBQuestsDao ..> DBQuest
+  }
+}
+AppDatabase -- Room
+DBGamesDao -- Room
+DBGame -- Room
+DBQuestsDao -- Room
+DBQuest -- Room
+package Room <<Rectangle>> {
+
+}
+Room -- database
+database database {
+
+}
+
+package tools {
+  class Tools
+  Tools ..> TQManager
+  MainActivity --> Tools
+  GamesActivity --> Tools
+  QuestManageActivity --> Tools
+  LibraryActivity --> Tools
+  class MathExpressionEvaluator
+  TQStory --> MathExpressionEvaluator
+}
+
+class SplashScreen {
+
+}
+
+@enduml
