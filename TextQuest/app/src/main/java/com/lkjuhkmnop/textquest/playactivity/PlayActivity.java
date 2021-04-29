@@ -1,31 +1,37 @@
 package com.lkjuhkmnop.textquest.playactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.lkjuhkmnop.textquest.R;
 import com.lkjuhkmnop.textquest.story.TQStory;
+import com.lkjuhkmnop.textquest.story.TwLink;
 import com.lkjuhkmnop.textquest.tools.Tools;
-import com.lkjuhkmnop.textquest.tqmanager.DBGame;
-import com.lkjuhkmnop.textquest.tqmanager.DBQuest;
 
 public class PlayActivity extends AppCompatActivity {
+    TextView textView;
     private RecyclerView charParamsRecView, linksRecView;
 
     public static final String GAME_NAME_EXTRA_NAME = "GAME_NAME_EXTRA_NAME";
 
     private String gameTitle;
     private TQStory story;
+    private int linkPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
 
+        textView = (TextView) findViewById(R.id.play_activity_text);
         charParamsRecView = (RecyclerView) findViewById(R.id.play_activity_char_params_rec_view);
+        linksRecView = (RecyclerView) findViewById(R.id.play_activity_links_rec_view);
 
         gameTitle = getIntent().getStringExtra(GAME_NAME_EXTRA_NAME);
         try {
@@ -33,5 +39,34 @@ public class PlayActivity extends AppCompatActivity {
         } catch (InterruptedException | JsonProcessingException e) {
             e.printStackTrace();
         }
+
+        CharParamsAdapter charParamsRecViewAdapter = new CharParamsAdapter(story.getCurrentCharacterParameters());
+        charParamsRecView.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
+        charParamsRecView.setAdapter(charParamsRecViewAdapter);
+
+        LinksAdapter linksAdapter = new LinksAdapter(this, null);
+        linksRecView.setLayoutManager(new LinearLayoutManager(this));
+        linksRecView.setAdapter(linksAdapter);
+
+        do {
+            String text = story.processCurrentPassage();
+            charParamsRecViewAdapter.notifyDataSetChanged();
+            textView.setText(text);
+            linksAdapter.notifyDataSetChanged();
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            story.goByLinkNumber(linkPosition+1);
+        } while (story.isEnd());
+    }
+
+    public int getLinkPosition() {
+        return linkPosition;
+    }
+
+    public void setLinkPosition(int linkPosition) {
+        this.linkPosition = linkPosition;
     }
 }

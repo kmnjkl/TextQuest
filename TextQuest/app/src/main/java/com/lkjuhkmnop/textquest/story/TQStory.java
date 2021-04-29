@@ -167,6 +167,9 @@ public class TQStory {
     }
 
 //    CHARACTER
+    public HashMap<String, String> getCurrentCharacterProperties() {
+    return character.properties;
+}
     public HashMap<String, String> getCurrentCharacterParameters() {
         return character.parameters;
     }

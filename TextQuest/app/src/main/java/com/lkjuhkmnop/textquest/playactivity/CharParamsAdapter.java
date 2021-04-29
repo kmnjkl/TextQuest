@@ -11,9 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.lkjuhkmnop.textquest.R;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 
-public class CharParamsRecViewAdapter extends RecyclerView.Adapter<CharParamsRecViewAdapter.ViewHolder> {
+public class CharParamsAdapter extends RecyclerView.Adapter<CharParamsAdapter.ViewHolder> {
     HashMap<String, String> charParamsData;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -34,7 +33,7 @@ public class CharParamsRecViewAdapter extends RecyclerView.Adapter<CharParamsRec
         }
     }
 
-    public CharParamsRecViewAdapter(HashMap<String, String> charParamsData) {
+    public CharParamsAdapter(HashMap<String, String> charParamsData) {
         this.charParamsData = charParamsData;
     }
 
