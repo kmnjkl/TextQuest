@@ -35,4 +35,8 @@
     <string name="char_p_data_value_label">Значение: </string>
     <string name="char_p_data_value_hint">Значение</string>
     <string name="char_p_data_add_name_used">Все названия характеристик и параметров должны быть различны! Придумайте другое название!</string>
+
+<!--    PlayActivity -->
+    <string name="play_restart_button">Начать сначала</string>
+    <string name="play_close_button">Закрыть</string>
 </resources>

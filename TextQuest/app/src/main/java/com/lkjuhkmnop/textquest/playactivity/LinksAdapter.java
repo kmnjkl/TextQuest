@@ -33,6 +33,10 @@ public class LinksAdapter extends RecyclerView.Adapter<LinksAdapter.ViewHolder> 
         }
     }
 
+    public void setData(TwLink[] newData) {
+        linksData = newData;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -53,5 +57,9 @@ public class LinksAdapter extends RecyclerView.Adapter<LinksAdapter.ViewHolder> 
     @Override
     public int getItemCount() {
         return linksData == null ? 0 : linksData.length;
+    }
+
+    public void cleanData() {
+        linksData = null;
     }
 }

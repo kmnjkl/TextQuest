@@ -49,6 +49,11 @@ public class TQStory {
         }
     }
 
+//    SPECIAL ACTIONS
+    public void restart() {
+        currentPassage = getPassageByPid(tqquest.startnode);
+    }
+
 //    GET PASSAGE
 //    Method finds passage with specified pid
     public TwPassage getPassageByPid(int pid) {

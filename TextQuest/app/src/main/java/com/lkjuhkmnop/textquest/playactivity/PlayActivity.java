@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -15,8 +17,9 @@ import com.lkjuhkmnop.textquest.story.TwLink;
 import com.lkjuhkmnop.textquest.tools.Tools;
 
 public class PlayActivity extends AppCompatActivity {
-    TextView textView;
+    private TextView textView;
     private RecyclerView charParamsRecView, linksRecView;
+    private Button restartButton, closeButton;
 
     public static final String GAME_NAME_EXTRA_NAME = "GAME_NAME_EXTRA_NAME";
 
@@ -32,6 +35,8 @@ public class PlayActivity extends AppCompatActivity {
         textView = (TextView) findViewById(R.id.play_activity_text);
         charParamsRecView = (RecyclerView) findViewById(R.id.play_activity_char_params_rec_view);
         linksRecView = (RecyclerView) findViewById(R.id.play_activity_links_rec_view);
+        restartButton = (Button) findViewById(R.id.play_restart_button);
+        closeButton = (Button) findViewById(R.id.play_close_button);
 
         gameTitle = getIntent().getStringExtra(GAME_NAME_EXTRA_NAME);
         try {
@@ -48,18 +53,39 @@ public class PlayActivity extends AppCompatActivity {
         linksRecView.setLayoutManager(new LinearLayoutManager(this));
         linksRecView.setAdapter(linksAdapter);
 
-        do {
+        boolean finish = false;
+        while (!finish) {
             String text = story.processCurrentPassage();
             charParamsRecViewAdapter.notifyDataSetChanged();
             textView.setText(text);
-            linksAdapter.notifyDataSetChanged();
+            finish = story.isEnd();
+            if (!finish) {
+                linksAdapter.setData(story.getCurrentPassageLinks());
+                linksAdapter.notifyDataSetChanged();
+            } else {
+                linksAdapter.cleanData();
+                linksAdapter.notifyDataSetChanged();
+                restartButton.setVisibility(View.VISIBLE);
+                closeButton.setVisibility(View.VISIBLE);
+                restartButton.setOnClickListener(v -> {
+//                    Restart
+                    story.restart();
+                    restartButton.setVisibility(View.INVISIBLE);
+                    closeButton.setVisibility(View.INVISIBLE);
+                    this.notify();
+                });
+                closeButton.setOnClickListener(v -> {
+//                    Close
+                    finish();
+                });
+            }
             try {
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             story.goByLinkNumber(linkPosition+1);
-        } while (story.isEnd());
+        }
     }
 
     public int getLinkPosition() {
