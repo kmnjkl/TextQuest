@@ -30,7 +30,7 @@ public class LibraryActivity extends AppCompatActivity {
 
         try {
             quests = Tools.getTqManager().getQuestsArray(applicationContext);
-            libraryAdapter = new LibraryAdapter(applicationContext, quests);
+            libraryAdapter = new LibraryAdapter(applicationContext, this, quests);
             libRecyclerView.setLayoutManager(new LinearLayoutManager(this));
             libRecyclerView.setAdapter(libraryAdapter);
         } catch (InterruptedException e) {

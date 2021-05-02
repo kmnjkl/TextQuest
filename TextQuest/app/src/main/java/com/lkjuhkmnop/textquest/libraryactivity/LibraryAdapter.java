@@ -22,6 +22,7 @@ import java.util.Date;
 
 public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHolder> {
     private Context context;
+    private LibraryActivity libraryActivity;
     private DBQuest[] quests;
 
     public void setQuests(DBQuest[] quests) {
@@ -61,8 +62,9 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
         }
     }
 
-    public LibraryAdapter(Context context, DBQuest[] quests) {
+    public LibraryAdapter(Context context, LibraryActivity libraryActivity,  DBQuest[] quests) {
         this.context = context;
+        this.libraryActivity = libraryActivity;
         this.quests = quests;
     }
 
@@ -94,7 +96,7 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
                 }
                 DBGame newGame = new DBGame(quests[position].getQuestId(), newGameTitle, Calendar.getInstance().getTimeInMillis());
                 Tools.getTqManager().addGame(context, newGame);
-                Tools.startPlayActivity(context, addButton, newGameTitle);
+                Tools.startPlayActivity(libraryActivity, addButton, newGameTitle);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

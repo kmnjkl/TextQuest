@@ -11,9 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lkjuhkmnop.textquest.R;
+import com.lkjuhkmnop.textquest.tools.Tools;
 import com.lkjuhkmnop.textquest.tqmanager.DBGame;
 
 public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.ViewHolder> {
+    private GamesActivity gamesActivity;
     private final DBGame[] games;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -44,7 +46,8 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.ViewHolder> 
         }
     }
 
-    public GamesAdapter(DBGame[] games) {
+    public GamesAdapter(GamesActivity gamesActivity, DBGame[] games) {
+        this.gamesActivity = gamesActivity;
         this.games = games;
     }
 
@@ -59,7 +62,14 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.setTitle(games[position].getGameTitle());
         holder.setTime(String.valueOf(games[position].getGameTimestamp()));
-        holder.getItemView().findViewById(R.id.game_description).setOnClickListener(v -> Toast.makeText(v.getContext(), games[position].getGameTitle(), Toast.LENGTH_SHORT).show());
+
+//        Set click listeners
+//        For description
+        holder.getItemView().findViewById(R.id.game_description).setOnClickListener(v -> {
+            Tools.startPlayActivity(gamesActivity, v, games[position].getGameTitle());
+        });
+
+//        For the new game button
         holder.getItemView().findViewById(R.id.game_new_game).setOnClickListener(v -> Toast.makeText(v.getContext(), games[position].getGameTitle() + "\nNEW GAME", Toast.LENGTH_SHORT).show());
     }
 

@@ -21,8 +21,13 @@ public class GamesActivity extends AppCompatActivity {
 
         gamesRV = findViewById(R.id.games_recycler_view);
 
-        DBGame[] games = Tools.getTqManager().getGames(getApplicationContext());
-        GamesAdapter gamesAdapter = new GamesAdapter(games);
+        DBGame[] games = new DBGame[0];
+        try {
+            games = Tools.getTqManager().getGames(getApplicationContext());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        GamesAdapter gamesAdapter = new GamesAdapter(this, games);
         gamesRV.setLayoutManager(new LinearLayoutManager(this));
         gamesRV.setAdapter(gamesAdapter);
     }

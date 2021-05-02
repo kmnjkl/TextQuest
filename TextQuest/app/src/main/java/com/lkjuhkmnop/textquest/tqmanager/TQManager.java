@@ -125,9 +125,11 @@ public class TQManager {
      * Returns story (quest) by quest_id from app's database.
      * @see GetQuestById
      * */
-    public DBQuest getQuestById(Context context, int questId) {
-        GetQuestById questStory = new GetQuestById(context, questId);
-        return questStory.resQuest;
+    public DBQuest getQuestById(Context context, int questId) throws InterruptedException {
+        GetQuestById gqbi = new GetQuestById(context, questId);
+        gqbi.start();
+        gqbi.join();
+        return gqbi.resQuest;
     }
 
     /**
@@ -235,7 +237,7 @@ public class TQManager {
          * @see GetGames#run()
          * @see TQManager#getGames(Context)
          * */
-        private List<DBGame> gamesList;
+        private DBGame[] gamesList;
 
         /**
          * Constructor to set the context.
@@ -264,10 +266,11 @@ public class TQManager {
      * It uses {@link TQManager}'s inner class {@link GetGames} to set the context to use Room and start a new thread to use app's database (using Room).
      * @see GetQuestById
      * */
-    public DBGame[] getGames(Context context) {
+    public DBGame[] getGames(Context context) throws InterruptedException {
         GetGames gg = new GetGames(context);
         gg.start();
-        return gg.gamesList == null ? null : (DBGame[]) gg.gamesList.toArray();
+        gg.join();
+        return gg.gamesList == null ? null : gg.gamesList;
     }
 
 

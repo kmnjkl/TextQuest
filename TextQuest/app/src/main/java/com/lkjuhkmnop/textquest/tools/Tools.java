@@ -45,7 +45,7 @@ public class Tools {
     private static volatile ObjectMapper mapper;
     public static ObjectMapper getMapper() {
         if (mapper == null) {
-            synchronized (mapper) {
+            synchronized (ObjectMapper.class) {
                 if (mapper == null) {
                     mapper = new ObjectMapper();
                     mapper.configure(MapperFeature.AUTO_DETECT_CREATORS, false);

@@ -10,7 +10,7 @@ import java.util.List;
 @Dao
 public interface DBGamesDao {
     @Query("SELECT * FROM DBGame")
-    List<DBGame> getAllGames();
+    DBGame[] getAllGames();
 
     @Query("SELECT * FROM DBGame WHERE game_id = (:gameId)")
     DBGame getGameById(int gameId);

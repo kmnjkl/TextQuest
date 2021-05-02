@@ -50,7 +50,6 @@ public class LinksAdapter extends RecyclerView.Adapter<LinksAdapter.ViewHolder> 
         holder.setLinkButtonText(link.link + " | " + link.pid + " : " + link.name);
         holder.linkButton.setOnClickListener(v -> {
             playActivity.setLinkPosition(position);
-            playActivity.notify();
         });
     }
 

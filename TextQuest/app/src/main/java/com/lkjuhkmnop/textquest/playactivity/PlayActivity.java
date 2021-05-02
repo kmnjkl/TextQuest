@@ -25,7 +25,7 @@ public class PlayActivity extends AppCompatActivity {
 
     private String gameTitle;
     private TQStory story;
-    private int linkPosition;
+    private int linkPosition = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,27 +72,23 @@ public class PlayActivity extends AppCompatActivity {
                     story.restart();
                     restartButton.setVisibility(View.INVISIBLE);
                     closeButton.setVisibility(View.INVISIBLE);
-                    this.notify();
                 });
                 closeButton.setOnClickListener(v -> {
 //                    Close
                     finish();
                 });
             }
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            story.goByLinkNumber(linkPosition+1);
+            while (getLinkPosition() < 0);
+            story.goByLinkNumber(getLinkPosition()+1);
+            setLinkPosition(-1);
         }
     }
 
-    public int getLinkPosition() {
+    public synchronized int getLinkPosition() {
         return linkPosition;
     }
 
-    public void setLinkPosition(int linkPosition) {
+    public synchronized void setLinkPosition(int linkPosition) {
         this.linkPosition = linkPosition;
     }
 }
