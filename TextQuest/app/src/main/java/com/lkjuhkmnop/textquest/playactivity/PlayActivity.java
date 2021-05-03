@@ -30,6 +30,7 @@ public class PlayActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.Theme_TextQuest);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
 
@@ -85,6 +86,7 @@ public class PlayActivity extends AppCompatActivity {
                 story.restart();
                 restartButton.setVisibility(View.INVISIBLE);
                 closeButton.setVisibility(View.INVISIBLE);
+                displayCurrentPassage();
             });
             closeButton.setOnClickListener(v -> {
 //                    Close

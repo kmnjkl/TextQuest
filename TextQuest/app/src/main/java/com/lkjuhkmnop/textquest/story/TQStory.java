@@ -116,21 +116,23 @@ public class TQStory {
         int findStart = 0;
         while (propActMatcher.find(findStart)) {
             findStart = propActMatcher.start();
-            propActExpression = sbtext.substring(propActMatcher.start()+2, propActMatcher.end()-2);
-            sbtext.delete(propActMatcher.start(), propActMatcher.end()+1);
+            propActExpression = sbtext.substring(propActMatcher.start() + 2, propActMatcher.end() - 2);
+            sbtext.delete(propActMatcher.start(), propActMatcher.end() + 1);
             propName = propActExpression.substring(0, propActExpression.indexOf('='));
-            propActExpression = propActExpression.substring(propActExpression.indexOf('=')+1);
-            propNewVal = mathExpressionEvaluator.evaluate(propActExpression);
+            if (character.properties.containsKey(propName)) {
+                propActExpression = propActExpression.substring(propActExpression.indexOf('=') + 1);
+                propNewVal = mathExpressionEvaluator.evaluate(propActExpression);
 //            Save the new value of the character property
-            try {
-//                If value must be integer (we can use parseInt without exception)
-                Integer.parseInt(character.properties.get(propName));
-                character.properties.replace(propName, Integer.toString(propNewVal.intValue()));
-            } catch (NumberFormatException e) {
+                try {
+//                If the value must be integer (we can use parseInt without exception)
+                    Integer.parseInt(character.properties.get(propName));
+                    character.properties.replace(propName, Integer.toString(propNewVal.intValue()));
+                } catch (NumberFormatException e) {
 //                If value must be double
-                character.properties.replace(propName, propNewVal.toString());
+                    character.properties.replace(propName, propNewVal.toString());
+                }
+                mathExpressionEvaluator.setVariable(propName, propNewVal);
             }
-            mathExpressionEvaluator.setVariable(propName, propNewVal);
         }
         text = sbtext.toString();
 //        2. Replace character properties and parameters
