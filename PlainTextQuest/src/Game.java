@@ -55,6 +55,7 @@ public class Game {
         sc.close();
     }
 
+
     public static void consolePrint(String text) {
         System.out.print(text);
     }

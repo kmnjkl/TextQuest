@@ -49,7 +49,7 @@ public class LinksAdapter extends RecyclerView.Adapter<LinksAdapter.ViewHolder> 
         TwLink link = linksData[position];
         holder.setLinkButtonText(link.link + " | " + link.pid + " : " + link.name);
         holder.linkButton.setOnClickListener(v -> {
-            playActivity.setLinkPosition(position);
+            playActivity.goByLinkPosition(position);
         });
     }
 

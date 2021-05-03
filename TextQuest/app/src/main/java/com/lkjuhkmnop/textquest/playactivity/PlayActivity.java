@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.lkjuhkmnop.textquest.R;
 import com.lkjuhkmnop.textquest.story.TQStory;
-import com.lkjuhkmnop.textquest.story.TwLink;
 import com.lkjuhkmnop.textquest.tools.Tools;
 
 public class PlayActivity extends AppCompatActivity {
@@ -26,6 +25,8 @@ public class PlayActivity extends AppCompatActivity {
     private String gameTitle;
     private TQStory story;
     private int linkPosition = -1;
+    private CharParamsAdapter charParamsAdapter;
+    private LinksAdapter linksAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,50 +46,63 @@ public class PlayActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        CharParamsAdapter charParamsRecViewAdapter = new CharParamsAdapter(story.getCurrentCharacterParameters());
+        charParamsAdapter = new CharParamsAdapter(story.getCurrentCharacterParameters());
         charParamsRecView.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
-        charParamsRecView.setAdapter(charParamsRecViewAdapter);
+        charParamsRecView.setAdapter(charParamsAdapter);
 
-        LinksAdapter linksAdapter = new LinksAdapter(this, null);
+        linksAdapter = new LinksAdapter(this, null);
         linksRecView.setLayoutManager(new LinearLayoutManager(this));
         linksRecView.setAdapter(linksAdapter);
 
-        boolean finish = false;
-        while (!finish) {
-            String text = story.processCurrentPassage();
-            charParamsRecViewAdapter.notifyDataSetChanged();
-            textView.setText(text);
-            finish = story.isEnd();
-            if (!finish) {
-                linksAdapter.setData(story.getCurrentPassageLinks());
-                linksAdapter.notifyDataSetChanged();
-            } else {
-                linksAdapter.cleanData();
-                linksAdapter.notifyDataSetChanged();
-                restartButton.setVisibility(View.VISIBLE);
-                closeButton.setVisibility(View.VISIBLE);
-                restartButton.setOnClickListener(v -> {
+        displayCurrentPassage();
+
+//        PlayManager playManager = new PlayManager();
+//        playManager.start();
+    }
+
+//    private class PlayManager extends Thread {
+//        @Override
+//        public void run() {
+//            super.run();
+//            displayCurrentPassage();
+//        }
+//    }
+
+    private void displayCurrentPassage() {
+        String text = story.processCurrentPassage();
+        charParamsAdapter.notifyDataSetChanged();
+        textView.setText(text);
+        if (!story.isEnd()) {
+            linksAdapter.setData(story.getCurrentPassageLinks());
+            linksAdapter.notifyDataSetChanged();
+        } else {
+            linksAdapter.cleanData();
+            linksAdapter.notifyDataSetChanged();
+            restartButton.setVisibility(View.VISIBLE);
+            closeButton.setVisibility(View.VISIBLE);
+            restartButton.setOnClickListener(v -> {
 //                    Restart
-                    story.restart();
-                    restartButton.setVisibility(View.INVISIBLE);
-                    closeButton.setVisibility(View.INVISIBLE);
-                });
-                closeButton.setOnClickListener(v -> {
+                story.restart();
+                restartButton.setVisibility(View.INVISIBLE);
+                closeButton.setVisibility(View.INVISIBLE);
+            });
+            closeButton.setOnClickListener(v -> {
 //                    Close
-                    finish();
-                });
-            }
-            while (getLinkPosition() < 0);
-            story.goByLinkNumber(getLinkPosition()+1);
-            setLinkPosition(-1);
+                finish();
+            });
         }
     }
 
-    public synchronized int getLinkPosition() {
+    public void goByLinkPosition(int linkPosition) {
+        story.goByLinkNumber(linkPosition+1);
+        displayCurrentPassage();
+    }
+
+    public int getLinkPosition() {
         return linkPosition;
     }
 
-    public synchronized void setLinkPosition(int linkPosition) {
+    public void setLinkPosition(int linkPosition) {
         this.linkPosition = linkPosition;
     }
 }
