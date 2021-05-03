@@ -34,7 +34,15 @@ public class DBGame {
         this.gameTimestamp = gameTimestamp;
     }
 
-//    public DBGame(int questId, String gameTitle, int gameLastPassagePid, long gameTimestamp, String gameCharPropertiesJson) {
+//    Constructor to update existing game
+    public DBGame(int gameId, int gameLastPassagePid, long gameTimestamp, String gameCharPropertiesJson) {
+        this.gameId = gameId;
+        this.gameLastPassagePid = gameLastPassagePid;
+        this.gameTimestamp = gameTimestamp;
+        this.gameCharPropertiesJson = gameCharPropertiesJson;
+    }
+
+    //    public DBGame(int questId, String gameTitle, int gameLastPassagePid, long gameTimestamp, String gameCharPropertiesJson) {
 //        this.questId = questId;
 //        this.gameTitle = gameTitle;
 //        this.gameLastPassagePid = gameLastPassagePid;

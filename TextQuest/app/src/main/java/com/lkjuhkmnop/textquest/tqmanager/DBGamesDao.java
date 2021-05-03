@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -17,6 +18,9 @@ public interface DBGamesDao {
 
     @Query("SELECT * FROM DBGame WHERE game_title = (:gameTitle)")
     DBGame getGameByTitle(String gameTitle);
+
+    @Update
+    void updateGames(DBGame... games);
 
     @Insert
     void insert(DBGame... games);

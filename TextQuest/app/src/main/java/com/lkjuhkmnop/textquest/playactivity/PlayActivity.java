@@ -14,6 +14,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.lkjuhkmnop.textquest.R;
 import com.lkjuhkmnop.textquest.story.TQStory;
 import com.lkjuhkmnop.textquest.tools.Tools;
+import com.lkjuhkmnop.textquest.tqmanager.DBGame;
+
+import java.util.Calendar;
 
 public class PlayActivity extends AppCompatActivity {
     private TextView textView;
@@ -106,5 +109,15 @@ public class PlayActivity extends AppCompatActivity {
 
     public void setLinkPosition(int linkPosition) {
         this.linkPosition = linkPosition;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        try {
+            Tools.getTqManager().updateGame(getApplicationContext(), new DBGame(story.getGameId(), story.getCurrentPassagePid(), Calendar.getInstance().getTimeInMillis(), Tools.getGson().toJson(story.getCurrentCharacterProperties())));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

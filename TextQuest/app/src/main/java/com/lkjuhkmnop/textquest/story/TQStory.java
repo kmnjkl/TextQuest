@@ -8,6 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TQStory {
+    private int gameId;
     private String title;
     private String author;
     private TQCharacter character;
@@ -17,7 +18,8 @@ public class TQStory {
     private String currentPassageCleanText;
     private final MathExpressionEvaluator mathExpressionEvaluator = new MathExpressionEvaluator();
 
-    public TQStory(String title, String author, TQCharacter character, TQQuest tqquest) {
+    public TQStory(int gameId, String title, String author, TQCharacter character, TQQuest tqquest) {
+        this.gameId = gameId;
         this.title = title;
         this.author = author;
         this.character = character;
@@ -34,7 +36,8 @@ public class TQStory {
         }
     }
 
-    public TQStory(String title, String author, TQCharacter character, TQQuest tqquest, int startPid) {
+    public TQStory(int gameId, String title, String author, TQCharacter character, TQQuest tqquest, int startPid) {
+        this.gameId = gameId;
         this.title = title;
         this.author = author;
         this.character = character;
@@ -185,5 +188,10 @@ public class TQStory {
 //    Method checks if this passage is last (the game ends on it)
     public boolean isEnd() {
         return currentPassage.links == null || currentPassage.links.length == 0 || currentPassage.name.equals("end") || currentPassage.name.equals("last");
+    }
+
+//    INFORMATION
+    public int getGameId() {
+        return gameId;
     }
 }

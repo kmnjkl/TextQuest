@@ -350,6 +350,29 @@ public class TQManager {
         dgbi.join();
     }
 
+
+    private static class UpdateGame extends Thread {
+        private Context context;
+        private DBGame game;
+
+        public UpdateGame(Context context, DBGame game) {
+            this.context = context;
+            this.game = game;
+        }
+
+        @Override
+        public void run() {
+            super.run();
+            DBGamesDao gamesDao = getAppDatabaseInstance(context).gamesDao();
+            gamesDao.updateGames(game);
+        }
+    }
+    public void updateGame(Context context, DBGame game) throws InterruptedException {
+        UpdateGame ug = new UpdateGame(context, game);
+        ug.start();
+        ug.join();
+    }
+
     public TQStory getStoryByGameTitle(Context context, String gameTitle) throws InterruptedException, JsonProcessingException {
         DBGame game = getGameByTitle(context, gameTitle);
         DBQuest quest = getQuestById(context, game.getQuestId());
@@ -358,9 +381,9 @@ public class TQManager {
         TQQuest tqQuest = Tools.getGson().fromJson(quest.getQuestJson(), TQQuest.class);
         TQStory story;
         if (game.getGameLastPassagePid() == -1) {
-            story = new TQStory(quest.getQuestTitle(), quest.getQuestAuthor(), character, tqQuest);
+            story = new TQStory(game.getGameId(), quest.getQuestTitle(), quest.getQuestAuthor(), character, tqQuest);
         } else {
-            story = new TQStory(quest.getQuestTitle(), quest.getQuestAuthor(), character, tqQuest, game.getGameLastPassagePid());
+            story = new TQStory(game.getGameId(), quest.getQuestTitle(), quest.getQuestAuthor(), character, tqQuest, game.getGameLastPassagePid());
         }
         return story;
     }
