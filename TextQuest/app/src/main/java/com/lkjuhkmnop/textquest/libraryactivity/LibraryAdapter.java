@@ -16,9 +16,7 @@ import com.lkjuhkmnop.textquest.tools.Tools;
 import com.lkjuhkmnop.textquest.tqmanager.DBGame;
 import com.lkjuhkmnop.textquest.tqmanager.DBQuest;
 
-import java.time.Instant;
 import java.util.Calendar;
-import java.util.Date;
 
 public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHolder> {
     private Context context;
@@ -108,7 +106,7 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
         holder.getItemView().findViewById(R.id.lib_quest_delete).setOnClickListener(v -> {
             try {
                 Tools.getTqManager().deleteQuestById(context, quests[position].getQuestId());
-                LibraryActivity.reloadQuestsArray();
+                LibraryActivity.reloadQuestsList();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

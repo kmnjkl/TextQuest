@@ -1,5 +1,6 @@
 package com.lkjuhkmnop.textquest.gamesactivity;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,8 @@ import com.lkjuhkmnop.textquest.tqmanager.DBGame;
 
 public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.ViewHolder> {
     private GamesActivity gamesActivity;
-    private final DBGame[] games;
+    private Context context;
+    private DBGame[] games;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         View itemView;
@@ -46,8 +48,9 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.ViewHolder> 
         }
     }
 
-    public GamesAdapter(GamesActivity gamesActivity, DBGame[] games) {
+    public GamesAdapter(GamesActivity gamesActivity, Context context, DBGame[] games) {
         this.gamesActivity = gamesActivity;
+        this.context = context;
         this.games = games;
     }
 
@@ -71,10 +74,28 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.ViewHolder> 
 
 //        For the new game button
         holder.getItemView().findViewById(R.id.game_new_game).setOnClickListener(v -> Toast.makeText(v.getContext(), games[position].getGameTitle() + "\nNEW GAME", Toast.LENGTH_SHORT).show());
+
+//        For the delete button
+        holder.getItemView().findViewById(R.id.game_delete).setOnClickListener(v -> {
+            try {
+                Tools.getTqManager().deleteGameById(context, games[position].getGameId());
+                gamesActivity.reloadGamesList();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return games == null ? 0 : games.length;
+    }
+
+    public void setGames(DBGame[] games) {
+        this.games = games;
+    }
+
+    public DBGame[] getGames() {
+        return games;
     }
 }

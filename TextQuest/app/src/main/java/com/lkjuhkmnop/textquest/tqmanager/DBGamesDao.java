@@ -21,6 +21,9 @@ public interface DBGamesDao {
     @Insert
     void insert(DBGame... games);
 
+    @Query("DELETE FROM DBGame WHERE game_id IN (:ids)")
+    void deleteGamesByIds(int... ids);
+
     @Delete
     void deleteGames(DBGame... games);
 }

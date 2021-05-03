@@ -11,7 +11,9 @@ import com.lkjuhkmnop.textquest.tools.Tools;
 import com.lkjuhkmnop.textquest.tqmanager.DBGame;
 
 public class GamesActivity extends AppCompatActivity {
-    private RecyclerView gamesRV;
+    private RecyclerView gamesResView;
+
+    private GamesAdapter gamesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +21,7 @@ public class GamesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_games);
 
-        gamesRV = findViewById(R.id.games_recycler_view);
+        gamesResView = findViewById(R.id.games_recycler_view);
 
         DBGame[] games = new DBGame[0];
         try {
@@ -27,8 +29,13 @@ public class GamesActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        GamesAdapter gamesAdapter = new GamesAdapter(this, games);
-        gamesRV.setLayoutManager(new LinearLayoutManager(this));
-        gamesRV.setAdapter(gamesAdapter);
+        gamesAdapter = new GamesAdapter(this, getApplicationContext(), games);
+        gamesResView.setLayoutManager(new LinearLayoutManager(this));
+        gamesResView.setAdapter(gamesAdapter);
+    }
+
+    public void reloadGamesList() throws InterruptedException {
+        gamesAdapter.setGames(Tools.getTqManager().getGames(getApplicationContext()));
+        gamesAdapter.notifyDataSetChanged();
     }
 }

@@ -328,6 +328,28 @@ public class TQManager {
         return ggbt.resGame;
     }
 
+    private static class DeleteGameById extends Thread {
+        private Context context;
+        private int gameId;
+
+        public DeleteGameById(Context context, int gameId) {
+            this.context = context;
+            this.gameId = gameId;
+        }
+
+        @Override
+        public void run() {
+            super.run();
+            DBGamesDao gamesDao = getAppDatabaseInstance(context).gamesDao();
+            gamesDao.deleteGamesByIds(gameId);
+        }
+    }
+    public void deleteGameById(Context context, int gameId) throws InterruptedException {
+        DeleteGameById dgbi = new DeleteGameById(context, gameId);
+        dgbi.start();
+        dgbi.join();
+    }
+
     public TQStory getStoryByGameTitle(Context context, String gameTitle) throws InterruptedException, JsonProcessingException {
         DBGame game = getGameByTitle(context, gameTitle);
         DBQuest quest = getQuestById(context, game.getQuestId());

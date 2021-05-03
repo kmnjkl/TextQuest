@@ -12,6 +12,14 @@
         android:textAppearance="@style/TextAppearance.TextQuest.CharParameterName" />
 
     <TextView
+        android:id="@+id/char_param_divider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/char_param_divider_text"
+        android:textAppearance="@style/TextAppearance.TextQuest.CharParameterName" />
+
+    <TextView
         android:id="@+id/char_param_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
