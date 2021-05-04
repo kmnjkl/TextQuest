@@ -14,7 +14,6 @@ import com.lkjuhkmnop.textquest.story.TQStory;
 import com.lkjuhkmnop.textquest.tools.Tools;
 
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Class to manage local quests library.
@@ -364,7 +363,7 @@ public class TQManager {
         public void run() {
             super.run();
             DBGamesDao gamesDao = getAppDatabaseInstance(context).gamesDao();
-            gamesDao.updateGames(game);
+            gamesDao.updateGame(game.getGameId(), game.getGameLastPassagePid(), game.getGameTimestamp(), game.getGameCharPropertiesJson());
         }
     }
     public void updateGame(Context context, DBGame game) throws InterruptedException {

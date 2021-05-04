@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.lkjuhkmnop.textquest.R;
-import com.lkjuhkmnop.textquest.tools.PopupsManager;
 import com.lkjuhkmnop.textquest.tools.Tools;
 
 import java.io.BufferedReader;
@@ -64,8 +63,6 @@ public class QuestManageActivity extends AppCompatActivity implements CharPAddDi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quest_manage);
 
-        PopupsManager.setCurrentMainView(findViewById(R.id.coordinator_layout));
-
         charPDataAdapters = new CharPDataAdapter[2];
         questAddCharPDataButtons = new ImageView[2];
 
@@ -106,7 +103,6 @@ public class QuestManageActivity extends AppCompatActivity implements CharPAddDi
             }
             if (ok) {
                 if (action == ACTION_ADD_QUEST) {
-                    Tools.getPopupsManager().addPopup(getString(R.string.adding_quest_message), Snackbar.LENGTH_SHORT);
 //                    Add new quest
                     Tools.getTqManager().addQuest(questTitle.getText().toString(), questAuthor.getText().toString(), questCharacterProperties, questCharacterParameters, questJson, getApplicationContext(), getContentResolver());
                     finish();

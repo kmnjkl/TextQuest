@@ -2,6 +2,7 @@ package com.lkjuhkmnop.textquest.tqmanager;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
@@ -35,6 +36,7 @@ public class DBGame {
     }
 
 //    Constructor to update existing game
+    @Ignore
     public DBGame(int gameId, int gameLastPassagePid, long gameTimestamp, String gameCharPropertiesJson) {
         this.gameId = gameId;
         this.gameLastPassagePid = gameLastPassagePid;

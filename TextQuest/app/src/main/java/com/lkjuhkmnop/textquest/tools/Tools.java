@@ -16,19 +16,6 @@ import com.lkjuhkmnop.textquest.questmanageactivity.QuestManageActivity;
 import com.lkjuhkmnop.textquest.tqmanager.TQManager;
 
 public class Tools {
-    private static PopupsManager popupsManager;
-    public static PopupsManager getPopupsManager() {
-        if (popupsManager == null) {
-            synchronized (PopupsManager.class) {
-                if (popupsManager == null) {
-                    popupsManager = new PopupsManager();
-                    popupsManager.start();
-                }
-            }
-        }
-        return popupsManager;
-    }
-
     private static volatile TQManager TQM;
     public static TQManager getTqManager() {
         if (TQM == null) {

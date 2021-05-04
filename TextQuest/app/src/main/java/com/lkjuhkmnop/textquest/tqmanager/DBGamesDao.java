@@ -19,8 +19,8 @@ public interface DBGamesDao {
     @Query("SELECT * FROM DBGame WHERE game_title = (:gameTitle)")
     DBGame getGameByTitle(String gameTitle);
 
-    @Update
-    void updateGames(DBGame... games);
+    @Query("UPDATE DBGame SET game_last_passage_pid = (:gameLastPassagePid), game_time = (:gameTimestamp), game_char_properties_json = (:gameCharPropertiesJson) WHERE game_id = (:gameId)")
+    void updateGame(int gameId, int gameLastPassagePid, long gameTimestamp, String gameCharPropertiesJson);
 
     @Insert
     void insert(DBGame... games);
