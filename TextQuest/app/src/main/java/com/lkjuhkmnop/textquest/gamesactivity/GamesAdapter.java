@@ -15,6 +15,11 @@ import com.lkjuhkmnop.textquest.R;
 import com.lkjuhkmnop.textquest.tools.Tools;
 import com.lkjuhkmnop.textquest.tqmanager.DBGame;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.ViewHolder> {
     private GamesActivity gamesActivity;
     private Context context;
@@ -64,7 +69,7 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.setTitle(games[position].getGameTitle());
-        holder.setTime(String.valueOf(games[position].getGameTimestamp()));
+        holder.setTime((new SimpleDateFormat("dd.MM.yy HH:mm:ss", Locale.ROOT)).format(new Date(games[position].getGameTimestamp())));
 
 //        Set click listeners
 //        For description

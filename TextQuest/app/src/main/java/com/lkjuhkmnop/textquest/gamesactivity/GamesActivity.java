@@ -38,4 +38,14 @@ public class GamesActivity extends AppCompatActivity {
         gamesAdapter.setGames(Tools.getTqManager().getGames(getApplicationContext()));
         gamesAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        try {
+            reloadGamesList();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
