@@ -16,6 +16,8 @@ import com.lkjuhkmnop.textquest.questmanageactivity.QuestManageActivity;
 import com.lkjuhkmnop.textquest.tqmanager.TQManager;
 
 public class Tools {
+    public static final int AUTH_REQUEST_CODE = 1;
+
     private static volatile TQManager TQM;
     public static TQManager getTqManager() {
         if (TQM == null) {
