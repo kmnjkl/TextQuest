@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                FirebaseUser user = Tools.authTools().setUser(FirebaseAuth.getInstance().getCurrentUser());
                 String userInfoText = "Uid: " + user.getUid() + "; Prov.id: " + user.getProviderId()
                         + "\nEmail: " + user.getEmail() + "; Display name: " + user.getDisplayName();
                 Log.d("AUTH", userInfoText);

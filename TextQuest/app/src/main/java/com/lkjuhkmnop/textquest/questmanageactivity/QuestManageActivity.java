@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.lkjuhkmnop.textquest.R;
 import com.lkjuhkmnop.textquest.tools.Tools;
 
@@ -104,7 +103,7 @@ public class QuestManageActivity extends AppCompatActivity implements CharPAddDi
             if (ok) {
                 if (action == ACTION_ADD_QUEST) {
 //                    Add new quest
-                    Tools.getTqManager().addQuest(questTitle.getText().toString(), questAuthor.getText().toString(), questCharacterProperties, questCharacterParameters, questJson, getApplicationContext(), getContentResolver());
+                    Tools.tqManager().addQuest(questTitle.getText().toString(), questAuthor.getText().toString(), questCharacterProperties, questCharacterParameters, questJson, getApplicationContext(), getContentResolver());
                     finish();
                 } else if (action == ACTION_REDACT_QUEST) {
 //                    Update quest

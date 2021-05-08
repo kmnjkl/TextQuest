@@ -112,11 +112,11 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
         addButton.setOnClickListener(v -> {
             String newGameTitle = questsData[position].getQuestTitle();
             try {
-                while (Tools.getTqManager().getGameByTitle(context, newGameTitle) != null) {
+                while (Tools.tqManager().getGameByTitle(context, newGameTitle) != null) {
                     newGameTitle = newGameTitle + "_n";
                 }
                 DBGame newGame = new DBGame(questsData[position].getQuestId(), newGameTitle, Calendar.getInstance().getTimeInMillis());
-                Tools.getTqManager().addGame(context, newGame);
+                Tools.tqManager().addGame(context, newGame);
                 Tools.startPlayActivity(libraryActivity, addButton, newGameTitle);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -126,7 +126,7 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
 //        For the cloud upload button
         holder.qCloudUpload.setOnClickListener(v -> {
             try {
-                Tools.getCloudManager().uploadQuest(
+                Tools.cloudManager().uploadQuest(
                         context,
                         questsData[position].getQuestId(),
                         response -> {
@@ -143,7 +143,7 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
 //        For the delete button
         holder.qDelete.setOnClickListener(v -> {
             try {
-                Tools.getTqManager().deleteQuestById(context, questsData[position].getQuestId());
+                Tools.tqManager().deleteQuestById(context, questsData[position].getQuestId());
                 LibraryActivity.reloadQuestsList();
             } catch (InterruptedException e) {
                 e.printStackTrace();

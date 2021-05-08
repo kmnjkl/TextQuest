@@ -25,7 +25,7 @@ public class GamesActivity extends AppCompatActivity {
 
         DBGame[] games = new DBGame[0];
         try {
-            games = Tools.getTqManager().getGames(getApplicationContext());
+            games = Tools.tqManager().getGames(getApplicationContext());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -35,7 +35,7 @@ public class GamesActivity extends AppCompatActivity {
     }
 
     public void reloadGamesList() throws InterruptedException {
-        gamesAdapter.setGames(Tools.getTqManager().getGames(getApplicationContext()));
+        gamesAdapter.setGames(Tools.tqManager().getGames(getApplicationContext()));
         gamesAdapter.notifyDataSetChanged();
     }
 

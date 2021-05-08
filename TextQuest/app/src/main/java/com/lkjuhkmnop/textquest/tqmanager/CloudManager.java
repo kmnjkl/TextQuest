@@ -10,6 +10,9 @@ public class CloudManager {
     public static final int RESPONSE_OK = 1;
 
     private static final String FIRESTORE_COLLECTION = "tqlibrary";
+    private static final String DBQUEST_ID_FIELD_NAME = "questId";
+    private static final String DBQUEST_TITLE_FIELD_NAME = "questTitle";
+    private static final String DBQUEST_AUTHOR_FIELD_NAME = "questAuthor";
 
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
@@ -28,11 +31,9 @@ public class CloudManager {
     }
 
     public void uploadQuest(Context context, int localQuestId, CMResponseListener cmResponseListener) throws InterruptedException {
-        DBQuest quest = Tools.getTqManager().getQuestById(context, localQuestId);
+        DBQuest quest = Tools.tqManager().getQuestById(context, localQuestId);
         quest.setUploadedToCloud(true);
-        quest.setUploaderUserId();
-        final boolean[] success = {false};
-        CMResponse response;
+        quest.setUploaderUserId(Tools.authTools().getUser().getUid());
         firestore.collection(FIRESTORE_COLLECTION)
                 .add(quest)
                 .addOnSuccessListener(documentReference -> {
@@ -42,6 +43,8 @@ public class CloudManager {
 
 
     public CMResponse matchQuest(DBQuest quest) {
-        firestore.
+        firestore.collection(FIRESTORE_COLLECTION)
+                .whereEqualTo(DBQUEST_TITLE_FIELD_NAME, quest.getQuestTitle())
+                .whereEqualTo(DBQUEST_AUTHOR_FIELD_NAME, quest.getQuestAuthor())
     }
 }

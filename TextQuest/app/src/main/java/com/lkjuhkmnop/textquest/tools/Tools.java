@@ -20,8 +20,18 @@ public class Tools {
     public static final int AUTH_REQUEST_CODE = 1;
 
 
+    private static volatile AuthTools authTools;
+    public static AuthTools authTools() {
+        if (authTools == null) {
+            synchronized (AuthTools.class) {
+                authTools = new AuthTools();
+            }
+        }
+        return authTools;
+    }
+
     private static volatile CloudManager cloudManager;
-    public static CloudManager getCloudManager() {
+    public static CloudManager cloudManager() {
         if (cloudManager == null) {
             synchronized (CloudManager.class) {
                 if (cloudManager == null) {
@@ -34,7 +44,7 @@ public class Tools {
 
 
     private static volatile TQManager TQM;
-    public static TQManager getTqManager() {
+    public static TQManager tqManager() {
         if (TQM == null) {
             synchronized (TQManager.class) {
                 if (TQM == null) {
@@ -47,7 +57,7 @@ public class Tools {
 
 
     private static volatile ObjectMapper mapper;
-    public static ObjectMapper getMapper() {
+    public static ObjectMapper mapper() {
         if (mapper == null) {
             synchronized (ObjectMapper.class) {
                 if (mapper == null) {

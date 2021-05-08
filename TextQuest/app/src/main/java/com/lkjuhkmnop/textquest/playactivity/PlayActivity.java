@@ -45,7 +45,7 @@ public class PlayActivity extends AppCompatActivity {
 
         gameTitle = getIntent().getStringExtra(GAME_NAME_EXTRA_NAME);
         try {
-            story = Tools.getTqManager().getStoryByGameTitle(getApplicationContext(), gameTitle);
+            story = Tools.tqManager().getStoryByGameTitle(getApplicationContext(), gameTitle);
         } catch (InterruptedException | JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -115,7 +115,7 @@ public class PlayActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         try {
-            Tools.getTqManager().updateGame(getApplicationContext(), new DBGame(story.getGameId(), story.getCurrentPassagePid(), Calendar.getInstance().getTimeInMillis(), Tools.getGson().toJson(story.getCurrentCharacterProperties())));
+            Tools.tqManager().updateGame(getApplicationContext(), new DBGame(story.getGameId(), story.getCurrentPassagePid(), Calendar.getInstance().getTimeInMillis(), Tools.getGson().toJson(story.getCurrentCharacterProperties())));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

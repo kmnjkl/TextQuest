@@ -1,7 +1,6 @@
 package com.lkjuhkmnop.textquest.story;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.MapperFeature;
 import com.lkjuhkmnop.textquest.tools.Tools;
 
 import java.util.HashMap;
@@ -21,7 +20,7 @@ public class TQCharacter {
     }
 
     public TQCharacter(String propertiesJson, String parametersJson) throws JsonProcessingException {
-        this.properties = Tools.getMapper().readValue(propertiesJson, properties.getClass());
-        this.parameters = Tools.getMapper().readValue(parametersJson, parameters.getClass());
+        this.properties = Tools.mapper().readValue(propertiesJson, properties.getClass());
+        this.parameters = Tools.mapper().readValue(parametersJson, parameters.getClass());
     }
 }

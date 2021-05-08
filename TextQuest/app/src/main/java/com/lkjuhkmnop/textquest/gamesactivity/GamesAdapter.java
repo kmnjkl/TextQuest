@@ -16,7 +16,6 @@ import com.lkjuhkmnop.textquest.tools.Tools;
 import com.lkjuhkmnop.textquest.tqmanager.DBGame;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -83,7 +82,7 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.ViewHolder> 
 //        For the delete button
         holder.getItemView().findViewById(R.id.game_delete).setOnClickListener(v -> {
             try {
-                Tools.getTqManager().deleteGameById(context, games[position].getGameId());
+                Tools.tqManager().deleteGameById(context, games[position].getGameId());
                 gamesActivity.reloadGamesList();
             } catch (InterruptedException e) {
                 e.printStackTrace();

@@ -29,7 +29,7 @@ public class LibraryActivity extends AppCompatActivity {
         libRecyclerView = findViewById(R.id.lib_recycler_view);
 
         try {
-            quests = Tools.getTqManager().getQuestsArray(applicationContext);
+            quests = Tools.tqManager().getQuestsArray(applicationContext);
             libraryAdapter = new LibraryAdapter(applicationContext, this, quests);
             libRecyclerView.setLayoutManager(new LinearLayoutManager(this));
             libRecyclerView.setAdapter(libraryAdapter);
@@ -39,7 +39,7 @@ public class LibraryActivity extends AppCompatActivity {
     }
 
     public static void reloadQuestsList() throws InterruptedException {
-        libraryAdapter.setQuestsData(Tools.getTqManager().getQuestsArray(applicationContext));
+        libraryAdapter.setQuestsData(Tools.tqManager().getQuestsArray(applicationContext));
         libraryAdapter.notifyDataSetChanged();
     }
 }
