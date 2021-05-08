@@ -66,6 +66,19 @@
             android:layout_weight="1" />
 
         <ImageView
+            android:id="@+id/lib_quest_cloud_upload"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/ic_cloud_upload" />
+
+        <Space
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <ImageView
             android:id="@+id/lib_quest_settings"
             android:layout_width="40dp"
             android:layout_height="match_parent"

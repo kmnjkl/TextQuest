@@ -13,10 +13,25 @@ import com.lkjuhkmnop.textquest.gamesactivity.GamesActivity;
 import com.lkjuhkmnop.textquest.libraryactivity.LibraryActivity;
 import com.lkjuhkmnop.textquest.playactivity.PlayActivity;
 import com.lkjuhkmnop.textquest.questmanageactivity.QuestManageActivity;
+import com.lkjuhkmnop.textquest.tqmanager.CloudManager;
 import com.lkjuhkmnop.textquest.tqmanager.TQManager;
 
 public class Tools {
     public static final int AUTH_REQUEST_CODE = 1;
+
+
+    private static volatile CloudManager cloudManager;
+    public static CloudManager getCloudManager() {
+        if (cloudManager == null) {
+            synchronized (CloudManager.class) {
+                if (cloudManager == null) {
+                    cloudManager = new CloudManager();
+                }
+            }
+        }
+        return cloudManager;
+    }
+
 
     private static volatile TQManager TQM;
     public static TQManager getTqManager() {

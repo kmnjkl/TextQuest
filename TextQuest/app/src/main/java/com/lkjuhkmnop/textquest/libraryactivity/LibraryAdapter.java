@@ -21,16 +21,16 @@ import java.util.Calendar;
 public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHolder> {
     private Context context;
     private LibraryActivity libraryActivity;
-    private DBQuest[] quests;
+    private DBQuest[] questsData;
 
-    public void setQuests(DBQuest[] quests) {
-        this.quests = quests;
+    public void setQuestsData(DBQuest[] questsData) {
+        this.questsData = questsData;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         View itemView;
         TextView questId, questTitle, questAuthor;
-        ImageView questNewGame, questSettings, questDelete;
+        ImageView qNewGame, qCloudUpload, qSettings, qDelete;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -38,9 +38,10 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
             questId = itemView.findViewById(R.id.quest_id);
             questTitle = itemView.findViewById(R.id.lib_quest_title);
             questAuthor = itemView.findViewById(R.id.lib_quest_author);
-            questNewGame = itemView.findViewById(R.id.lib_quest_new_game);
-            questSettings = itemView.findViewById(R.id.lib_quest_settings);
-            questDelete = itemView.findViewById(R.id.lib_quest_delete);
+            qNewGame = itemView.findViewById(R.id.lib_quest_new_game);
+            qCloudUpload = itemView.findViewById(R.id.lib_quest_cloud_upload);
+            qSettings = itemView.findViewById(R.id.lib_quest_settings);
+            qDelete = itemView.findViewById(R.id.lib_quest_delete);
         }
 
         public void setIdText(String idText) {
@@ -60,10 +61,32 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
         }
     }
 
+    private class CloudMatcher extends Thread {
+        private boolean run = true;
+
+        @Override
+        public void run() {
+            super.run();
+            while (run) {
+                for (DBQuest quest: questsData) {
+
+                }
+            }
+        }
+
+        public boolean isRun() {
+            return run;
+        }
+
+        public void setRun(boolean run) {
+            this.run = run;
+        }
+    }
+
     public LibraryAdapter(Context context, LibraryActivity libraryActivity,  DBQuest[] quests) {
         this.context = context;
         this.libraryActivity = libraryActivity;
-        this.quests = quests;
+        this.questsData = quests;
     }
 
     @NonNull
@@ -76,23 +99,23 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 //        Set quests description
-        holder.setIdText(String.valueOf(quests[position].getQuestId()));
-        holder.setTitleText(quests[position].getQuestTitle());
-        holder.setAuthorText(quests[position].getQuestAuthor());
+        holder.setIdText(String.valueOf(questsData[position].getQuestId()));
+        holder.setTitleText(questsData[position].getQuestTitle());
+        holder.setAuthorText(questsData[position].getQuestAuthor());
 
 //        Set click listeners
 //        For description
-        holder.getItemView().findViewById(R.id.lib_description).setOnClickListener(v -> Toast.makeText(v.getContext(), quests[position].getQuestTitle(), Toast.LENGTH_SHORT).show());
+        holder.getItemView().findViewById(R.id.lib_description).setOnClickListener(v -> Toast.makeText(v.getContext(), questsData[position].getQuestTitle(), Toast.LENGTH_SHORT).show());
 
 //        For the new game button
-        ImageView addButton = holder.getItemView().findViewById(R.id.lib_quest_new_game);
+        ImageView addButton = holder.qNewGame;
         addButton.setOnClickListener(v -> {
-            String newGameTitle = quests[position].getQuestTitle();
+            String newGameTitle = questsData[position].getQuestTitle();
             try {
                 while (Tools.getTqManager().getGameByTitle(context, newGameTitle) != null) {
                     newGameTitle = newGameTitle + "_n";
                 }
-                DBGame newGame = new DBGame(quests[position].getQuestId(), newGameTitle, Calendar.getInstance().getTimeInMillis());
+                DBGame newGame = new DBGame(questsData[position].getQuestId(), newGameTitle, Calendar.getInstance().getTimeInMillis());
                 Tools.getTqManager().addGame(context, newGame);
                 Tools.startPlayActivity(libraryActivity, addButton, newGameTitle);
             } catch (InterruptedException e) {
@@ -100,12 +123,27 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
             }
         });
 
+//        For the cloud upload button
+        holder.qCloudUpload.setOnClickListener(v -> {
+            try {
+                Tools.getCloudManager().uploadQuest(
+                        context,
+                        questsData[position].getQuestId(),
+                        response -> {
+                            holder.qCloudUpload.setVisibility(View.INVISIBLE);
+                        });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+
 //        For the settings button
 
 //        For the delete button
-        holder.getItemView().findViewById(R.id.lib_quest_delete).setOnClickListener(v -> {
+        holder.qDelete.setOnClickListener(v -> {
             try {
-                Tools.getTqManager().deleteQuestById(context, quests[position].getQuestId());
+                Tools.getTqManager().deleteQuestById(context, questsData[position].getQuestId());
                 LibraryActivity.reloadQuestsList();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -115,6 +153,6 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return quests == null ? 0 : quests.length;
+        return questsData == null ? 0 : questsData.length;
     }
 }

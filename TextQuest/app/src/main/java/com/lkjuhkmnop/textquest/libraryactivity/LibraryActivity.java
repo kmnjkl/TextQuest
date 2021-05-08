@@ -39,7 +39,7 @@ public class LibraryActivity extends AppCompatActivity {
     }
 
     public static void reloadQuestsList() throws InterruptedException {
-        libraryAdapter.setQuests(Tools.getTqManager().getQuestsArray(applicationContext));
+        libraryAdapter.setQuestsData(Tools.getTqManager().getQuestsArray(applicationContext));
         libraryAdapter.notifyDataSetChanged();
     }
 }

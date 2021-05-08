@@ -2,6 +2,7 @@ package com.lkjuhkmnop.textquest.tqmanager;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -25,6 +26,24 @@ public class DBQuest {
     @ColumnInfo(name = "quest_json")
     private String questJson;
 
+    @Ignore
+    private boolean uploadedToCloud = false;
+    public boolean isUploadedToCloud() {
+        return uploadedToCloud;
+    }
+    public void setUploadedToCloud(boolean uploadedToCloud) {
+        this.uploadedToCloud = uploadedToCloud;
+    }
+
+    @Ignore
+    private String uploaderUserId;
+    public String getUploaderUserId() {
+        return uploaderUserId;
+    }
+    public void setUploaderUserId(String uploaderUserId) {
+        this.uploaderUserId = uploaderUserId;
+    }
+
     public DBQuest(String questTitle, String questAuthor, String characterProperties, String characterParameters, String questJson) {
         this.questTitle = questTitle;
         this.questAuthor = questAuthor;
@@ -32,6 +51,9 @@ public class DBQuest {
         this.characterParameters = characterParameters;
         this.questJson = questJson;
     }
+
+    @Ignore
+    public DBQuest() {}
 
     public int getQuestId() {
         return questId;

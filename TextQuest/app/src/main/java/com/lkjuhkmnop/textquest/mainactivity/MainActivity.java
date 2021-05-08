@@ -46,9 +46,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             List<AuthUI.IdpConfig> providers = Arrays.asList(new AuthUI.IdpConfig.EmailBuilder().build());
             startActivityForResult(
                     AuthUI.getInstance()
-                        .createSignInIntentBuilder()
-                        .setAvailableProviders(providers)
-                        .build(),
+                            .createSignInIntentBuilder()
+                            .setAvailableProviders(providers)
+                            .build(),
                     Tools.AUTH_REQUEST_CODE);
         });
     }
@@ -74,7 +74,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                userInfo.setText(user.toString());
+                String userInfoText = "Uid: " + user.getUid() + "; Prov.id: " + user.getProviderId()
+                        + "\nEmail: " + user.getEmail() + "; Display name: " + user.getDisplayName();
+                Log.d("AUTH", userInfoText);
+                userInfo.setText(userInfoText);
             } else {
                 // Sign in failed. If response is null the user canceled the
                 // sign-in flow using the back button. Otherwise check
