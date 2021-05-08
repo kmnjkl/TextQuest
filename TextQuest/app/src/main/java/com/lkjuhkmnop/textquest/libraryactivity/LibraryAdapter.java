@@ -83,16 +83,37 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
                 Tools.cloudManager().matchQuest(localQuest, response -> {
                     if (response.getResponseCode() == CloudManager.OK && response.getData() == CloudManager.QUEST_MATCH) {
                         lqViewHolder.setCloudUploadVisibility(View.INVISIBLE);
+//                        Set authors name
+                        Tools.cloudManager().getUserDisplayName(localQuest.getQuestAuthor(), new CloudManager.OnCMResponseListener<String>() {
+                            @Override
+                            public void onCMResponse(CloudManager.CMResponse<String> response) {
+                                lqViewHolder.setAuthorText(response.getData());
+                            }
+                        });
                     } else {
                         localQuest.setQuestCloudId(null);
                         localQuest.setQuestUploaderUserId(null);
                         Tools.tqManager().updateQuest(context, localQuest);
-                        lqViewHolder.setCloudUploadVisibility(View.VISIBLE);
+                        enableUpload();
                     }
                 });
             } else {
                 lqViewHolder.setCloudUploadVisibility(View.VISIBLE);
+                enableUpload();
             }
+        }
+
+        private void enableUpload() {
+            lqViewHolder.setAuthorText("Anonymous");
+            lqViewHolder.setCloudUploadVisibility(View.VISIBLE);
+//            Set on click listener for the cloud upload button
+            lqViewHolder.qCloudUpload.setOnClickListener(v -> {
+                Tools.cloudManager().uploadQuest(context, localQuest,
+                        response -> {
+                            CloudMatcher cloudMatcher = new CloudMatcher(localQuest, lqViewHolder);
+                            cloudMatcher.start();
+                        });
+            });
         }
     }
 
@@ -114,16 +135,6 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
 //        Set quests description
         holder.setIdText(String.valueOf(questsData[position].getQuestId()));
         holder.setTitleText(questsData[position].getQuestTitle());
-        if (questsData[position].getQuestAuthor() == "") {
-            holder.setAuthorText("Anonymous");
-        } else {
-            Tools.cloudManager().getUserDisplayName(questsData[position].getQuestAuthor(), new CloudManager.OnCMResponseListener<String>() {
-                @Override
-                public void onCMResponse(CloudManager.CMResponse<String> response) {
-                    holder.setAuthorText(response.getData());
-                }
-            });
-        }
 
 //        Set click listeners
 //        For description
@@ -145,15 +156,6 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
             }
         });
 
-//        For the cloud upload button
-        holder.qCloudUpload.setOnClickListener(v -> {
-            Tools.cloudManager().uploadQuest(context, questsData[position],
-                    response -> {
-                        holder.qCloudUpload.setVisibility(View.INVISIBLE);
-                    });
-        });
-
-
 //        For the settings button
 
 //        For the delete button
@@ -165,6 +167,9 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
                 e.printStackTrace();
             }
         });
+
+        CloudMatcher cloudMatcher = new CloudMatcher(questsData[position], holder);
+        cloudMatcher.start();
     }
 
     @Override
