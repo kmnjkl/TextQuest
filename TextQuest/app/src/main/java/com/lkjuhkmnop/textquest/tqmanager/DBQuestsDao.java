@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -22,7 +23,10 @@ public interface DBQuestsDao {
     List<DBQuest> getQuestsByTitle(String gameTitle);
 
     @Insert
-    void insertAll(DBQuest... quests);
+    void insert(DBQuest... quests);
+
+    @Update
+    void update(DBQuest... quests);
 
     @Delete
     void deleteQuests(DBQuest... quests);

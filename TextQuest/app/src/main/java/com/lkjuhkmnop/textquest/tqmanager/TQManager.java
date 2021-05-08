@@ -4,10 +4,9 @@ import android.content.ContentResolver;
 import android.content.Context;
 
 import androidx.room.Room;
+import androidx.room.Update;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.MapperFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lkjuhkmnop.textquest.story.TQCharacter;
 import com.lkjuhkmnop.textquest.story.TQQuest;
 import com.lkjuhkmnop.textquest.story.TQStory;
@@ -75,18 +74,10 @@ public class TQManager {
         @Override
         public void run() {
             super.run();
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.configure(MapperFeature.AUTO_DETECT_CREATORS, false);
-            mapper.configure(MapperFeature.AUTO_DETECT_GETTERS, false);
-            mapper.configure(MapperFeature.AUTO_DETECT_SETTERS, false);
 //            Replace bad attribute "creator-version" (you can't use '-' in fields names in Java) with "creator_version"
             String correctedJson = twineJson.replaceAll("\"creator-version\":", "\"creator_version\":");
-            DBQuestsDao questDao = getAppDatabaseInstance(context).questDao();
-            try {
-                questDao.insertAll(new DBQuest(title, author, mapper.writeValueAsString(characterProperties), mapper.writeValueAsString(characterParameters), correctedJson));
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
+            DBQuestsDao questDao = getAppDatabaseInstance(context).questsDao();
+            questDao.insert(new DBQuest(null, title, author, Tools.getGson().toJson(characterProperties), Tools.getGson().toJson(characterParameters), correctedJson));
         }
     }
     /**
@@ -96,6 +87,29 @@ public class TQManager {
     public void addQuest(String title, String author, HashMap<String, String> characterProperties, HashMap<String, String> characterParameters, String twineJson, Context context, ContentResolver contentResolver) {
         AddQuest aq = new AddQuest(title, author, characterProperties, characterParameters, twineJson, context, contentResolver);
         aq.start();
+    }
+
+
+    private static class UpdateQuest extends Thread {
+        Context context;
+        private DBQuest quest;
+
+        public UpdateQuest(Context context, DBQuest quest) {
+            this.context = context;
+            this.quest = quest;
+        }
+
+        @Override
+        public void run() {
+            super.run();
+            DBQuestsDao questsDao = getAppDatabaseInstance(context).questsDao();
+            questsDao.update(quest);
+        }
+    }
+    public void updateQuest(Context context, DBQuest quest) throws InterruptedException {
+        UpdateQuest uq = new UpdateQuest(context, quest);
+        uq.start();
+        uq.join();
     }
 
 
@@ -116,7 +130,7 @@ public class TQManager {
         @Override
         public void run() {
             super.run();
-            DBQuestsDao questDao = getAppDatabaseInstance(context).questDao();
+            DBQuestsDao questDao = getAppDatabaseInstance(context).questsDao();
             resQuest = questDao.getQuestById(questId);
         }
     }
@@ -156,7 +170,7 @@ public class TQManager {
         @Override
         public void run() {
             super.run();
-            DBQuestsDao questDao = getAppDatabaseInstance(context).questDao();
+            DBQuestsDao questDao = getAppDatabaseInstance(context).questsDao();
             resQuestsArray = questDao.getAllQuestsArray();
         }
     }
@@ -203,7 +217,7 @@ public class TQManager {
         @Override
         public void run() {
             super.run();
-            DBQuestsDao questDao = getAppDatabaseInstance(context).questDao();
+            DBQuestsDao questDao = getAppDatabaseInstance(context).questsDao();
             questDao.deleteQuestsByIds(id);
         }
     }

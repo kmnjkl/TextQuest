@@ -11,6 +11,12 @@ public class DBQuest {
     @ColumnInfo(name = "quest_id")
     private int questId;
 
+    @ColumnInfo(name = "quest_cloud_id")
+    private String questCloudId;
+
+    @ColumnInfo(name = "quest_uploader_user_id")
+    private String questUploaderUserId;
+
     @ColumnInfo(name = "quest_title")
     private String questTitle;
 
@@ -26,25 +32,9 @@ public class DBQuest {
     @ColumnInfo(name = "quest_json")
     private String questJson;
 
-    @Ignore
-    private boolean uploadedToCloud = false;
-    public boolean isUploadedToCloud() {
-        return uploadedToCloud;
-    }
-    public void setUploadedToCloud(boolean uploadedToCloud) {
-        this.uploadedToCloud = uploadedToCloud;
-    }
 
-    @Ignore
-    private String uploaderUserId;
-    public String getUploaderUserId() {
-        return uploaderUserId;
-    }
-    public void setUploaderUserId(String uploaderUserId) {
-        this.uploaderUserId = uploaderUserId;
-    }
-
-    public DBQuest(String questTitle, String questAuthor, String characterProperties, String characterParameters, String questJson) {
+    public DBQuest(String questCloudId, String questTitle, String questAuthor, String characterProperties, String characterParameters, String questJson) {
+        this.questCloudId = questCloudId;
         this.questTitle = questTitle;
         this.questAuthor = questAuthor;
         this.characterProperties = characterProperties;
@@ -61,6 +51,21 @@ public class DBQuest {
 
     public void setQuestId(int questId) {
         this.questId = questId;
+    }
+
+    public String getQuestCloudId() {
+        return questCloudId;
+    }
+
+    public void setQuestCloudId(String questCloudId) {
+        this.questCloudId = questCloudId;
+    }
+
+    public String getQuestUploaderUserId() {
+        return questUploaderUserId;
+    }
+    public void setQuestUploaderUserId(String questUploaderUserId) {
+        this.questUploaderUserId = questUploaderUserId;
     }
 
     public String getQuestTitle() {

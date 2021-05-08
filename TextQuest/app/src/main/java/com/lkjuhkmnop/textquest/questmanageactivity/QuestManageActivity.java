@@ -35,7 +35,7 @@ public class QuestManageActivity extends AppCompatActivity implements CharPAddDi
     public static final int ACTION_REDACT_QUEST = 2;
     private int action;
 
-    private EditText questTitle, questAuthor;
+    private EditText questTitle;
     private Button questJsonFileButton, questManageOk;
     private ImageView[] questAddCharPDataButtons;
     private RecyclerView questCharPropertiesRecView, questCharParametersRecView;
@@ -66,7 +66,6 @@ public class QuestManageActivity extends AppCompatActivity implements CharPAddDi
         questAddCharPDataButtons = new ImageView[2];
 
         questTitle = (EditText) findViewById(R.id.quest_title);
-        questAuthor = (EditText) findViewById(R.id.quest_author);
         questJsonFileButton = (Button) findViewById(R.id.quest_json_file_button);
         questAddCharPDataButtons[CHAR_PROPERTY] = (ImageView) findViewById(R.id.quest_add_character_property);
         questAddCharPDataButtons[CHAR_PARAMETER] = (ImageView) findViewById(R.id.quest_add_character_parameter);
@@ -84,14 +83,6 @@ public class QuestManageActivity extends AppCompatActivity implements CharPAddDi
                 questJsonFileButton.setText(getText(R.string.quest_button_json_file_choose_warning));
                 questJsonFileButton.setTextColor(getColor(R.color.warningText));
             }
-            if (questAuthor.getText().toString().equals("")) {
-                ok = false;
-                questAuthor.setBackgroundColor(getColor(R.color.warning));
-                questAuthor.setHint(getText(R.string.quest_author_empty_warning));
-                questAuthor.requestFocus();
-                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputMethodManager.showSoftInput(questAuthor, InputMethodManager.SHOW_IMPLICIT);
-            }
             if (questTitle.getText().toString().equals("")) {
                 ok = false;
                 questTitle.setBackgroundColor(getColor(R.color.warning));
@@ -103,7 +94,14 @@ public class QuestManageActivity extends AppCompatActivity implements CharPAddDi
             if (ok) {
                 if (action == ACTION_ADD_QUEST) {
 //                    Add new quest
-                    Tools.tqManager().addQuest(questTitle.getText().toString(), questAuthor.getText().toString(), questCharacterProperties, questCharacterParameters, questJson, getApplicationContext(), getContentResolver());
+//                    Author is empty if the user haven't signed in and populated with the users ID otherwise
+                    String author;
+                    if (Tools.authTools().getUser() == null) {
+                        author = "";
+                    } else {
+                        author = Tools.authTools().getUser().getUid();
+                    }
+                    Tools.tqManager().addQuest(questTitle.getText().toString(), author, questCharacterProperties, questCharacterParameters, questJson, getApplicationContext(), getContentResolver());
                     finish();
                 } else if (action == ACTION_REDACT_QUEST) {
 //                    Update quest

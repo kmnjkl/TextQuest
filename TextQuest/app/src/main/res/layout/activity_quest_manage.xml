@@ -83,45 +83,6 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/CL_author"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/quest_author_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:text="@string/quest_author_label"
-                        android:textAppearance="@style/TextAppearance.TextQuest.Label"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <EditText
-                        android:id="@+id/quest_author"
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="10dp"
-                        android:ems="10"
-                        android:hint="@string/quest_author_label"
-                        android:inputType="date|textUri|textShortMessage|textLongMessage|textAutoCorrect|numberSigned|textVisiblePassword|textWebEditText|textMultiLine|textNoSuggestions|textFilter|number|datetime|textWebEmailAddress|textPersonName|text|textPhonetic|textCapSentences|textPassword|textAutoComplete|textImeMultiLine|textPostalAddress|numberDecimal|textEmailAddress|numberPassword|textCapWords|phone|textEmailSubject|textCapCharacters|time|textWebPassword"
-                        android:textAppearance="@style/TextAppearance.TextQuest.Standard"
-                        android:textColor="@color/standardTextColor"
-                        android:textIsSelectable="true"
-                        app:layout_constraintBottom_toBottomOf="@+id/quest_author_label"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toEndOf="@+id/quest_author_label"
-                        app:layout_constraintTop_toTopOf="@+id/quest_author_label"
-                        app:layout_constraintVertical_bias="0.5" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/CL_json_file"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">

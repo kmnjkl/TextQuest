@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.lkjuhkmnop.textquest.R;
 import com.lkjuhkmnop.textquest.tools.Tools;
+import com.lkjuhkmnop.textquest.tqmanager.CloudManager;
 import com.lkjuhkmnop.textquest.tqmanager.DBGame;
 import com.lkjuhkmnop.textquest.tqmanager.DBQuest;
 
@@ -56,30 +57,42 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
             questAuthor.setText(author);
         }
 
+        public void setCloudUploadVisibility(int visibility) {
+            qCloudUpload.setVisibility(visibility);
+        }
+
         public View getItemView() {
             return itemView;
         }
     }
 
     private class CloudMatcher extends Thread {
-        private boolean run = true;
+        private DBQuest localQuest;
+        private ViewHolder lqViewHolder;
+
+        public CloudMatcher(DBQuest localQuest, ViewHolder lqViewHolder) {
+            this.localQuest = localQuest;
+            this.lqViewHolder = lqViewHolder;
+        }
 
         @Override
         public void run() {
             super.run();
-            while (run) {
-                for (DBQuest quest: questsData) {
-
-                }
+            if (localQuest.getQuestCloudId() != null && !localQuest.getQuestCloudId().equals("")
+            && localQuest.getQuestUploaderUserId() != null && !localQuest.getQuestUploaderUserId().equals("")) {
+                Tools.cloudManager().matchQuest(localQuest, response -> {
+                    if (response.getResponseCode() == CloudManager.OK && response.getData() == CloudManager.QUEST_MATCH) {
+                        lqViewHolder.setCloudUploadVisibility(View.INVISIBLE);
+                    } else {
+                        localQuest.setQuestCloudId(null);
+                        localQuest.setQuestUploaderUserId(null);
+                        Tools.tqManager().updateQuest(context, localQuest);
+                        lqViewHolder.setCloudUploadVisibility(View.VISIBLE);
+                    }
+                });
+            } else {
+                lqViewHolder.setCloudUploadVisibility(View.VISIBLE);
             }
-        }
-
-        public boolean isRun() {
-            return run;
-        }
-
-        public void setRun(boolean run) {
-            this.run = run;
         }
     }
 
@@ -101,7 +114,16 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
 //        Set quests description
         holder.setIdText(String.valueOf(questsData[position].getQuestId()));
         holder.setTitleText(questsData[position].getQuestTitle());
-        holder.setAuthorText(questsData[position].getQuestAuthor());
+        if (questsData[position].getQuestAuthor() == "") {
+            holder.setAuthorText("Anonymous");
+        } else {
+            Tools.cloudManager().getUserDisplayName(questsData[position].getQuestAuthor(), new CloudManager.OnCMResponseListener<String>() {
+                @Override
+                public void onCMResponse(CloudManager.CMResponse<String> response) {
+                    holder.setAuthorText(response.getData());
+                }
+            });
+        }
 
 //        Set click listeners
 //        For description
@@ -125,16 +147,10 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
 
 //        For the cloud upload button
         holder.qCloudUpload.setOnClickListener(v -> {
-            try {
-                Tools.cloudManager().uploadQuest(
-                        context,
-                        questsData[position].getQuestId(),
-                        response -> {
-                            holder.qCloudUpload.setVisibility(View.INVISIBLE);
-                        });
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            Tools.cloudManager().uploadQuest(context, questsData[position],
+                    response -> {
+                        holder.qCloudUpload.setVisibility(View.INVISIBLE);
+                    });
         });
 
 
