@@ -20,9 +20,6 @@ public class DBQuest {
     @ColumnInfo(name = "quest_title")
     private String questTitle;
 
-    @ColumnInfo(name = "quest_author")
-    private String questAuthor;
-
     @ColumnInfo(name = "character_properties")
     private String characterProperties;
 
@@ -33,10 +30,9 @@ public class DBQuest {
     private String questJson;
 
 
-    public DBQuest(String questCloudId, String questTitle, String questAuthor, String characterProperties, String characterParameters, String questJson) {
+    public DBQuest(String questCloudId, String questTitle, String characterProperties, String characterParameters, String questJson) {
         this.questCloudId = questCloudId;
         this.questTitle = questTitle;
-        this.questAuthor = questAuthor;
         this.characterProperties = characterProperties;
         this.characterParameters = characterParameters;
         this.questJson = questJson;
@@ -74,14 +70,6 @@ public class DBQuest {
 
     public void setQuestTitle(String questTitle) {
         this.questTitle = questTitle;
-    }
-
-    public String getQuestAuthor() {
-        return questAuthor;
-    }
-
-    public void setQuestAuthor(String questAuthor) {
-        this.questAuthor = questAuthor;
     }
 
     public String getQuestJson() {

@@ -1,6 +1,7 @@
 package com.lkjuhkmnop.textquest.libraryactivity;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,55 +67,55 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
         }
     }
 
-    private class CloudMatcher extends Thread {
-        private DBQuest localQuest;
-        private ViewHolder lqViewHolder;
-
-        public CloudMatcher(DBQuest localQuest, ViewHolder lqViewHolder) {
-            this.localQuest = localQuest;
-            this.lqViewHolder = lqViewHolder;
-        }
-
-        @Override
-        public void run() {
-            super.run();
-            if (localQuest.getQuestCloudId() != null && !localQuest.getQuestCloudId().equals("")
-            && localQuest.getQuestUploaderUserId() != null && !localQuest.getQuestUploaderUserId().equals("")) {
-                Tools.cloudManager().matchQuest(localQuest, response -> {
-                    if (response.getResponseCode() == CloudManager.OK && response.getData() == CloudManager.QUEST_MATCH) {
-                        lqViewHolder.setCloudUploadVisibility(View.INVISIBLE);
-//                        Set authors name
-                        Tools.cloudManager().getUserDisplayName(localQuest.getQuestAuthor(), new CloudManager.OnCMResponseListener<String>() {
-                            @Override
-                            public void onCMResponse(CloudManager.CMResponse<String> response) {
-                                lqViewHolder.setAuthorText(response.getData());
-                            }
-                        });
-                    } else {
-                        localQuest.setQuestCloudId(null);
-                        localQuest.setQuestUploaderUserId(null);
+    private void matchQuest(DBQuest localQuest, ViewHolder lqViewHolder) {
+        Log.d("LKJD", "mathQuest");
+        if (localQuest.getQuestCloudId() != null && !localQuest.getQuestCloudId().equals("")
+                && localQuest.getQuestUploaderUserId() != null && !localQuest.getQuestUploaderUserId().equals("")) {
+            Log.d("LKJD", "cloud matchQuest");
+            Tools.cloudManager().matchQuest(localQuest, response -> {
+                if (response.getResponseCode() == CloudManager.OK && response.getData() == CloudManager.QUEST_MATCH) {
+                    Log.d("LKJD", "ok matchQuest: " + response);
+                    lqViewHolder.setCloudUploadVisibility(View.INVISIBLE);
+//                        Set author's name
+                    Tools.cloudManager().getUserDisplayName(localQuest.getQuestUploaderUserId(), new CloudManager.OnCMResponseListener<String>() {
+                        @Override
+                        public void onCMResponse(CloudManager.CMResponse<String> response) {
+                            lqViewHolder.setAuthorText(response.getData());
+                        }
+                    });
+                } else {
+                    Log.d("LKJD", "no matchQuest: " + response);
+                    localQuest.setQuestCloudId(null);
+                    localQuest.setQuestUploaderUserId(null);
+                    try {
                         Tools.tqManager().updateQuest(context, localQuest);
-                        enableUpload();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-                });
-            } else {
-                lqViewHolder.setCloudUploadVisibility(View.VISIBLE);
-                enableUpload();
-            }
-        }
-
-        private void enableUpload() {
-            lqViewHolder.setAuthorText("Anonymous");
-            lqViewHolder.setCloudUploadVisibility(View.VISIBLE);
-//            Set on click listener for the cloud upload button
-            lqViewHolder.qCloudUpload.setOnClickListener(v -> {
-                Tools.cloudManager().uploadQuest(context, localQuest,
-                        response -> {
-                            CloudMatcher cloudMatcher = new CloudMatcher(localQuest, lqViewHolder);
-                            cloudMatcher.start();
-                        });
+                    enableUpload(localQuest, lqViewHolder);
+                }
             });
+        } else {
+            Log.d("LKJD", "no cloud mathQuest needed");
+            lqViewHolder.setCloudUploadVisibility(View.VISIBLE);
+            enableUpload(localQuest, lqViewHolder);
         }
+    }
+
+    private void enableUpload(DBQuest localQuest, ViewHolder lqViewHolder) {
+        lqViewHolder.setAuthorText("Anonymous");
+        lqViewHolder.setCloudUploadVisibility(View.VISIBLE);
+//            Set on click listener for the cloud upload button
+        lqViewHolder.qCloudUpload.setOnClickListener(v -> {
+            try {
+                Tools.cloudManager().uploadQuest(context, localQuest.getQuestId(),
+                        response -> {
+                            matchQuest(localQuest, lqViewHolder);
+                        });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public LibraryAdapter(Context context, LibraryActivity libraryActivity,  DBQuest[] quests) {
@@ -138,7 +139,10 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
 
 //        Set click listeners
 //        For description
-        holder.getItemView().findViewById(R.id.lib_description).setOnClickListener(v -> Toast.makeText(v.getContext(), questsData[position].getQuestTitle(), Toast.LENGTH_SHORT).show());
+        holder.getItemView().findViewById(R.id.lib_description).setOnClickListener(v -> {
+            Toast.makeText(v.getContext(), questsData[position].getQuestTitle(), Toast.LENGTH_SHORT).show();
+            matchQuest(questsData[position], holder);
+        });
 
 //        For the new game button
         ImageView addButton = holder.qNewGame;
@@ -168,8 +172,7 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
             }
         });
 
-        CloudMatcher cloudMatcher = new CloudMatcher(questsData[position], holder);
-        cloudMatcher.start();
+        matchQuest(questsData[position], holder);
     }
 
     @Override

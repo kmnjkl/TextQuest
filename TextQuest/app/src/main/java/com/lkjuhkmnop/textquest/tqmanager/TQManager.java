@@ -26,7 +26,10 @@ public class TQManager {
         if (APP_DATABASE_INSTANCE == null) {
             synchronized (AppDatabase.class) {
                 if (APP_DATABASE_INSTANCE == null) {
-                    APP_DATABASE_INSTANCE = Room.databaseBuilder(context, AppDatabase.class, DATABASE_NAME).build();
+                    APP_DATABASE_INSTANCE
+                            = Room.databaseBuilder(context, AppDatabase.class, DATABASE_NAME)
+                            .fallbackToDestructiveMigration()
+                            .build();
                 }
             }
         }
@@ -77,7 +80,7 @@ public class TQManager {
 //            Replace bad attribute "creator-version" (you can't use '-' in fields names in Java) with "creator_version"
             String correctedJson = twineJson.replaceAll("\"creator-version\":", "\"creator_version\":");
             DBQuestsDao questDao = getAppDatabaseInstance(context).questsDao();
-            questDao.insert(new DBQuest(null, title, author, Tools.getGson().toJson(characterProperties), Tools.getGson().toJson(characterParameters), correctedJson));
+            questDao.insert(new DBQuest(null, title, Tools.getGson().toJson(characterProperties), Tools.getGson().toJson(characterParameters), correctedJson));
         }
     }
     /**
@@ -394,9 +397,9 @@ public class TQManager {
         TQQuest tqQuest = Tools.getGson().fromJson(quest.getQuestJson(), TQQuest.class);
         TQStory story;
         if (game.getGameLastPassagePid() == -1) {
-            story = new TQStory(game.getGameId(), quest.getQuestTitle(), quest.getQuestAuthor(), character, tqQuest);
+            story = new TQStory(game.getGameId(), quest.getQuestTitle(), quest.getQuestUploaderUserId(), character, tqQuest);
         } else {
-            story = new TQStory(game.getGameId(), quest.getQuestTitle(), quest.getQuestAuthor(), character, tqQuest, game.getGameLastPassagePid());
+            story = new TQStory(game.getGameId(), quest.getQuestTitle(), quest.getQuestUploaderUserId(), character, tqQuest, game.getGameLastPassagePid());
         }
         return story;
     }

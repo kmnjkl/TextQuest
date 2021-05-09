@@ -13,6 +13,11 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.lkjuhkmnop.textquest.tools.Tools;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
 public class CloudManager {
     public static final int OK = 1;
     public static final int NO_SUCH_DOCUMENT = 2;
@@ -67,21 +72,31 @@ public class CloudManager {
         public Exception getException() {
             return exception;
         }
+
+        @Override
+        public String toString() {
+            return "CMResponse{" +
+                    "responseCode=" + responseCode +
+                    ", data=" + data +
+                    ", exception=" + exception +
+                    '}';
+        }
     }
 
     public interface OnCMResponseListener<T> {
-        void onCMResponse(CMResponse<T> response) throws InterruptedException;
+        void onCMResponse(CMResponse<T> response);
     }
 
 
-    public void uploadQuest(Context context, DBQuest quest, OnCMResponseListener<String> cmResponseListener) {
+    public void uploadQuest(Context context, int questId, OnCMResponseListener<String> cmResponseListener) throws InterruptedException {
+        DBQuest quest = Tools.tqManager().getQuestById(context, questId);
+        quest.setQuestUploaderUserId(Tools.authTools().getUser().getUid());
         firestore.collection(FIRESTORE_LIBRARY_COLLECTION)
                 .add(quest)
                 .addOnSuccessListener(documentReference -> {
                     cmResponseListener.onCMResponse(new CMResponse<String>(OK, documentReference.getId()));
 //                    Update local database
                     quest.setQuestCloudId(documentReference.getId());
-                    quest.setQuestUploaderUserId(Tools.authTools().getUser().getUid());
                     try {
                         Tools.tqManager().updateQuest(context, quest);
                     } catch (InterruptedException e) {
@@ -99,7 +114,8 @@ public class CloudManager {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot documentSnapshot = task.getResult();
-                    if (documentSnapshot.getString(DBQUEST_UPLOADER_USER_ID_FIELD).equals(quest.getQuestUploaderUserId())) {
+                    String cloudUploaderUserId = documentSnapshot.getString(DBQUEST_UPLOADER_USER_ID_FIELD);
+                    if (cloudUploaderUserId != null && cloudUploaderUserId.equals(quest.getQuestUploaderUserId())) {
                         onCMResponseListener.onCMResponse(new CMResponse<Integer>(OK, QUEST_MATCH));
                     } else {
                         onCMResponseListener.onCMResponse(new CMResponse<Integer>(NO_SUCH_DOCUMENT, NO_QUEST_MATCH));
@@ -131,11 +147,29 @@ public class CloudManager {
                         onCMResponseListener.onCMResponse(new CMResponse<DocumentSnapshot>(OK, document));
                     } else {
                         onCMResponseListener.onCMResponse(new CMResponse<DocumentSnapshot>(NO_SUCH_DOCUMENT));
-                        Log.d("LKJ", "No such document");
+                        Log.d("LKJD", "No such document");
                     }
                 } else {
                     onCMResponseListener.onCMResponse(new CMResponse<DocumentSnapshot>(FAILED, task.getException()));
-                    Log.d("LKJ", "get failed with ", task.getException());
+                    Log.d("LKJD", "get failed with ", task.getException());
+                }
+            }
+        });
+    }
+
+
+    public void checkUserInUsersCollection() {
+        firestore.collection(FIRESTORE_USERS_COLLECTION).document(Tools.authTools().getUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot documentSnapshot =  task.getResult();
+                    if (!documentSnapshot.exists()) {
+                        Map<String, Object> data = new TreeMap<String, Object>();
+                        data.put(FIRESTORE_USERS_DISPLAY_NAME_FIELD, Tools.authTools().getUser().getDisplayName());
+                        data.put(FIRESTORE_USER_UPLOADED_QUESTS_FIELD, new ArrayList<String>(0));
+                        firestore.collection(FIRESTORE_USERS_COLLECTION).document(Tools.authTools().getUser().getUid()).set(data);
+                    }
                 }
             }
         });

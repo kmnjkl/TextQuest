@@ -13,7 +13,7 @@ public interface DBQuestsDao {
     @Query("SELECT * FROM DBQuest")
     List<DBQuest> getAllQuests();
 
-    @Query("SELECT quest_id, quest_title, quest_author FROM DBQuest")
+    @Query("SELECT quest_id, quest_cloud_id, quest_uploader_user_id, quest_title FROM DBQuest")
     DBQuest[] getAllQuestsArray();
 
     @Query("SELECT * FROM DBQuest WHERE quest_id = (:questId)")

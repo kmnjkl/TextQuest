@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.lkjuhkmnop.textquest.R;
 import com.lkjuhkmnop.textquest.tools.Tools;
+import com.lkjuhkmnop.textquest.tqmanager.CloudManager;
 
 import java.util.Arrays;
 import java.util.List;
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         + "\nEmail: " + user.getEmail() + "; Display name: " + user.getDisplayName();
                 Log.d("AUTH", userInfoText);
                 userInfo.setText(userInfoText);
+                Tools.cloudManager().checkUserInUsersCollection();
             } else {
                 // Sign in failed. If response is null the user canceled the
                 // sign-in flow using the back button. Otherwise check
