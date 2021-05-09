@@ -3,6 +3,6 @@
 
     <item android:drawable="@color/primaryLightColor"/>
 
-    <item android:drawable="@drawable/ic_splash_screen_logo" android:gravity="center" android:width="170dp" android:height="170dp"/>
+    <item android:drawable="@drawable/ic_logo" android:gravity="center" android:width="170dp" android:height="170dp"/>
 
 </layer-list>
