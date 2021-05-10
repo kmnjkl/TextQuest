@@ -6,6 +6,9 @@
     <string name="games_title">Игры</string>
     <string name="lib_title">Библиотека</string>
 
+<!--    LibraryActivity -->
+    <string name="lib_quest_id_prefix">Id: </string>
+
     <!--    QuestManageActivity -->
     <string name="quest_manage_add_quest_title">Добавить квест</string>
     <!--    Snackbar messages -->

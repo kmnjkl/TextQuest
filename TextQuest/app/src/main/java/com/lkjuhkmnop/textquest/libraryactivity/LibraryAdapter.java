@@ -75,7 +75,7 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
             Tools.cloudManager().matchQuest(localQuest, response -> {
                 if (response.getResponseCode() == CloudManager.OK && response.getData() == CloudManager.QUEST_MATCH) {
                     Log.d("LKJD", "ok matchQuest: " + response);
-                    lqViewHolder.setCloudUploadVisibility(View.INVISIBLE);
+                    lqViewHolder.setCloudUploadVisibility(View.GONE);
 //                        Set author's name
                     Tools.cloudManager().getUserDisplayName(localQuest.getQuestUploaderUserId(), new CloudManager.OnCMResponseListener<String>() {
                         @Override
@@ -134,7 +134,7 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 //        Set quests description
-        holder.setIdText(String.valueOf(questsData[position].getQuestId()));
+        holder.setIdText(libraryActivity.getString(R.string.lib_quest_id_prefix) + questsData[position].getQuestId());
         holder.setTitleText(questsData[position].getQuestTitle());
 
 //        Set click listeners

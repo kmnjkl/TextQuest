@@ -12,6 +12,7 @@
     <color name="secondaryTextColor">#00957B</color>
     <color name="standardTextColor">#FF000000</color>
     <color name="keyTextColor">#381A6C</color>
+    <color name="infoTextColor">#FF9800</color>
     <color name="warningText">#DF0000</color>
     <color name="hint">#C19CFF</color>
 

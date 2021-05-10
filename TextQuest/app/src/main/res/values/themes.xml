@@ -1,5 +1,26 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 <!--    /=== Text ===\ -->
+    <style name="TextAppearance.TextQuest.Title"
+        parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="fontFamily">@font/comfortaa_bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/keyTextColor</item>
+    </style>
+
+    <style name="TextAppearance.TextQuest.SubTitle"
+        parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="fontFamily">@font/comfortaa_bold</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/infoTextColor</item>
+    </style>
+
+    <style name="TextAppearance.TextQuest.SecondaryInfo"
+        parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="fontFamily">@font/comfortaa_bold</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
+    </style>
+
     <style name="TextAppearance.TextQuest.PassageText"
         parent="TextAppearance.MaterialComponents.Headline1">
         <item name="fontFamily">@font/comfortaa_bold</item>
