@@ -28,6 +28,12 @@ public interface DBQuestsDao {
     @Update
     void update(DBQuest... quests);
 
+    @Query("UPDATE DBQuest SET quest_cloud_id = (:newCloudId), quest_uploader_user_id = (:newUploaderUserId) WHERE quest_id = (:questId)")
+    void  updateCloudInfo(int questId, String newCloudId, String newUploaderUserId);
+
+    @Query("UPDATE DBQuest SET quest_cloud_id = NULL, quest_uploader_user_id = NULL WHERE quest_id = (:questId)")
+    void  updateCloudInfo(int questId);
+
     @Delete
     void deleteQuests(DBQuest... quests);
 

@@ -32,7 +32,8 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder {
         View itemView;
         TextView questId, questTitle, questAuthor;
-        ImageView qNewGame, qCloudUpload, qSettings, qDelete;
+        ImageView qNewGame, qCloudButton, qSettings, qDelete;
+        String qIdText = "", qIdAddedText = "";
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -41,13 +42,23 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
             questTitle = itemView.findViewById(R.id.lib_quest_title);
             questAuthor = itemView.findViewById(R.id.lib_quest_author);
             qNewGame = itemView.findViewById(R.id.lib_quest_new_game);
-            qCloudUpload = itemView.findViewById(R.id.lib_quest_cloud_upload);
+            qCloudButton = itemView.findViewById(R.id.lib_quest_cloud_button);
             qSettings = itemView.findViewById(R.id.lib_quest_settings);
             qDelete = itemView.findViewById(R.id.lib_quest_delete);
         }
 
+        public void setIdText() {
+            questId.setText(qIdText + qIdAddedText);
+        }
+
         public void setIdText(String idText) {
-            questId.setText(idText);
+            qIdText = idText;
+            questId.setText(idText + qIdAddedText);
+        }
+
+        public void setIdAddedText(String qIdAddedText) {
+            this.qIdAddedText = qIdAddedText;
+            setIdText();
         }
 
         public void setTitleText(String title) {
@@ -59,7 +70,15 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
         }
 
         public void setCloudUploadVisibility(int visibility) {
-            qCloudUpload.setVisibility(visibility);
+            qCloudButton.setVisibility(visibility);
+        }
+
+        public void setCloudButtonImage(int resourceId) {
+            qCloudButton.setImageResource(resourceId);
+        }
+
+        public void setCloudButtonOnClickListener(View.OnClickListener onClickListener) {
+            qCloudButton.setOnClickListener(onClickListener);
         }
 
         public View getItemView() {
@@ -75,14 +94,7 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
             Tools.cloudManager().matchQuest(localQuest, response -> {
                 if (response.getResponseCode() == CloudManager.OK && response.getData() == CloudManager.QUEST_MATCH) {
                     Log.d("LKJD", "ok matchQuest: " + response);
-                    lqViewHolder.setCloudUploadVisibility(View.GONE);
-//                        Set author's name
-                    Tools.cloudManager().getUserDisplayName(localQuest.getQuestUploaderUserId(), new CloudManager.OnCMResponseListener<String>() {
-                        @Override
-                        public void onCMResponse(CloudManager.CMResponse<String> response) {
-                            lqViewHolder.setAuthorText(response.getData());
-                        }
-                    });
+                    displayUploaded(localQuest, lqViewHolder);
                 } else {
                     Log.d("LKJD", "no matchQuest: " + response);
                     localQuest.setQuestCloudId(null);
@@ -97,7 +109,6 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
             });
         } else {
             Log.d("LKJD", "no cloud mathQuest needed");
-            lqViewHolder.setCloudUploadVisibility(View.VISIBLE);
             enableUpload(localQuest, lqViewHolder);
         }
     }
@@ -106,7 +117,7 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
         lqViewHolder.setAuthorText("Anonymous");
         lqViewHolder.setCloudUploadVisibility(View.VISIBLE);
 //            Set on click listener for the cloud upload button
-        lqViewHolder.qCloudUpload.setOnClickListener(v -> {
+        lqViewHolder.qCloudButton.setOnClickListener(v -> {
             try {
                 Tools.cloudManager().uploadQuest(context, localQuest.getQuestId(),
                         response -> {
@@ -116,6 +127,29 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
                 e.printStackTrace();
             }
         });
+    }
+
+    private void displayUploaded(DBQuest localQuest, ViewHolder holder) {
+        holder.setCloudButtonImage(R.drawable.ic_cloud_delete);
+        holder.setCloudButtonOnClickListener(v -> {
+            try {
+                Tools.cloudManager().deleteQuest(context, localQuest);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            matchQuest(localQuest, holder);
+        });
+
+//        Set author's name
+        Tools.cloudManager().getUserDisplayName(localQuest.getQuestUploaderUserId(), new CloudManager.OnCMResponseListener<String>() {
+            @Override
+            public void onCMResponse(CloudManager.CMResponse<String> response) {
+                holder.setAuthorText(response.getData());
+            }
+        });
+//        Append quest id
+        String questCloudId = localQuest.getQuestCloudId();
+        holder.setIdAddedText("\n[CId: " + questCloudId.substring(0, 4) + "..." + questCloudId.substring(questCloudId.length() - 3) + "]");
     }
 
     public LibraryAdapter(Context context, LibraryActivity libraryActivity,  DBQuest[] quests) {
@@ -134,7 +168,7 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 //        Set quests description
-        holder.setIdText(libraryActivity.getString(R.string.lib_quest_id_prefix) + questsData[position].getQuestId());
+        holder.setIdText(libraryActivity.getString(R.string.lib_quest_id_prefix) + " " + questsData[position].getQuestId());
         holder.setTitleText(questsData[position].getQuestTitle());
 
 //        Set click listeners

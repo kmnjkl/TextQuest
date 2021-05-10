@@ -116,6 +116,37 @@ public class TQManager {
     }
 
 
+    private static class UpdateQuestCloudInfo extends Thread {
+        Context context;
+        private int localQuestId;
+        private String newCloudId, newUploaderUserId;
+
+        public UpdateQuestCloudInfo(Context context, int localQuestId) {
+            this.context = context;
+            this.localQuestId = localQuestId;
+        }
+
+        public UpdateQuestCloudInfo(Context context, int localQuestId, String newCloudId, String newUploaderUserId) {
+            this.context = context;
+            this.localQuestId = localQuestId;
+            this.newCloudId = newCloudId;
+            this.newUploaderUserId = newUploaderUserId;
+        }
+
+        @Override
+        public void run() {
+            super.run();
+            DBQuestsDao questsDao = getAppDatabaseInstance(context).questsDao();
+            questsDao.updateCloudInfo(localQuestId);
+        }
+    }
+    public void updateQuestCloudInfo(Context context, DBQuest quest) throws InterruptedException {
+        UpdateQuestCloudInfo uq = new UpdateQuestCloudInfo(context, quest.getQuestId());
+        uq.start();
+        uq.join();
+    }
+
+
     /**
      * Class to get quest by id from app's database.
      * @see TQManager#getQuestById(Context, int)

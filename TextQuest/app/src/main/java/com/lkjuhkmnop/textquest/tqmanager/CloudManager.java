@@ -14,7 +14,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.lkjuhkmnop.textquest.tools.Tools;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -26,13 +25,13 @@ public class CloudManager {
     public static final int QUEST_MATCH = 4;
     public static final int NO_QUEST_MATCH = 5;
 
-    private static final String FIRESTORE_LIBRARY_COLLECTION = "tqlibrary";
-    private static final String DBQUEST_UPLOADER_USER_ID_FIELD = "questUploaderUserId";
-    private static final String DBQUEST_TITLE_FIELD = "questTitle";
-    private static final String DBQUEST_AUTHOR_FIELD = "questAuthor";
-    private static final String FIRESTORE_USERS_COLLECTION = "users";
-    private static final String FIRESTORE_USERS_DISPLAY_NAME_FIELD = "display_name";
-    private static final String FIRESTORE_USER_UPLOADED_QUESTS_FIELD = "uploaded_quests";
+    private static final String FS_LIBRARY_COLLECTION = "tqlibrary";
+    private static final String DBQ_UPLOADER_USER_ID_FIELD = "questUploaderUserId";
+    private static final String DBQ_TITLE_FIELD = "questTitle";
+    private static final String DBQ_AUTHOR_FIELD = "questAuthor";
+    private static final String FS_USERS_COLLECTION = "users";
+    private static final String FS_USER_DISPLAY_NAME_FIELD = "display_name";
+    private static final String FS_USER_UPLOADED_QUESTS_FIELD = "uploaded_quests";
 
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
@@ -91,7 +90,7 @@ public class CloudManager {
     public void uploadQuest(Context context, int questId, OnCMResponseListener<String> cmResponseListener) throws InterruptedException {
         DBQuest quest = Tools.tqManager().getQuestById(context, questId);
         quest.setQuestUploaderUserId(Tools.authTools().getUser().getUid());
-        firestore.collection(FIRESTORE_LIBRARY_COLLECTION)
+        firestore.collection(FS_LIBRARY_COLLECTION)
                 .add(quest)
                 .addOnSuccessListener(documentReference -> {
                     cmResponseListener.onCMResponse(new CMResponse<String>(OK, documentReference.getId()));
@@ -103,26 +102,37 @@ public class CloudManager {
                         e.printStackTrace();
                     }
 //                    Update cloud information about user's uploads
-                    firestore.collection(FIRESTORE_USERS_COLLECTION).document(Tools.authTools().getUser().getUid()).update(FIRESTORE_USER_UPLOADED_QUESTS_FIELD, FieldValue.arrayUnion(documentReference.getId()));
+                    firestore.collection(FS_USERS_COLLECTION).document(Tools.authTools().getUser().getUid()).update(FS_USER_UPLOADED_QUESTS_FIELD, FieldValue.arrayUnion(documentReference.getId()));
                 });
     }
 
 
     public void matchQuest(DBQuest quest, OnCMResponseListener<Integer> onCMResponseListener) {
-        firestore.collection(FIRESTORE_LIBRARY_COLLECTION).document(quest.getQuestCloudId()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        firestore.collection(FS_LIBRARY_COLLECTION).document(quest.getQuestCloudId()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot documentSnapshot = task.getResult();
-                    String cloudUploaderUserId = documentSnapshot.getString(DBQUEST_UPLOADER_USER_ID_FIELD);
-                    if (cloudUploaderUserId != null && cloudUploaderUserId.equals(quest.getQuestUploaderUserId())) {
-                        onCMResponseListener.onCMResponse(new CMResponse<Integer>(OK, QUEST_MATCH));
-                    } else {
+                    if (documentSnapshot == null) {
                         onCMResponseListener.onCMResponse(new CMResponse<Integer>(NO_SUCH_DOCUMENT, NO_QUEST_MATCH));
+                    } else {
+                        String cloudUploaderUserId = documentSnapshot.getString(DBQ_UPLOADER_USER_ID_FIELD);
+                        if (cloudUploaderUserId != null && cloudUploaderUserId.equals(quest.getQuestUploaderUserId())) {
+                            onCMResponseListener.onCMResponse(new CMResponse<Integer>(OK, QUEST_MATCH));
+                        } else {
+                            onCMResponseListener.onCMResponse(new CMResponse<Integer>(NO_SUCH_DOCUMENT, NO_QUEST_MATCH));
+                        }
                     }
                 }
             }
         });
+    }
+
+
+    public void deleteQuest(Context context, DBQuest localQuest) throws InterruptedException {
+        firestore.collection(FS_LIBRARY_COLLECTION).document(localQuest.getQuestCloudId()).delete();
+        firestore.collection(FS_USERS_COLLECTION).document(Tools.authTools().getUser().getUid()).update(FS_USER_UPLOADED_QUESTS_FIELD, FieldValue.arrayRemove(localQuest.getQuestCloudId()));
+        Tools.tqManager().updateQuestCloudInfo(context, localQuest);
     }
 
 
@@ -131,14 +141,14 @@ public class CloudManager {
             @Override
             public void onCMResponse(CMResponse<DocumentSnapshot> response) {
                 if (response.responseCode == OK) {
-                    onCMResponseListener.onCMResponse(new CMResponse<String>(OK, response.data.getString(FIRESTORE_USERS_DISPLAY_NAME_FIELD)));
+                    onCMResponseListener.onCMResponse(new CMResponse<String>(OK, response.data.getString(FS_USER_DISPLAY_NAME_FIELD)));
                 }
             }
         });
     }
 
     public void getUser(String uid, OnCMResponseListener<DocumentSnapshot> onCMResponseListener) {
-        firestore.collection(FIRESTORE_USERS_COLLECTION).document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        firestore.collection(FS_USERS_COLLECTION).document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
@@ -159,16 +169,16 @@ public class CloudManager {
 
 
     public void checkUserInUsersCollection() {
-        firestore.collection(FIRESTORE_USERS_COLLECTION).document(Tools.authTools().getUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        firestore.collection(FS_USERS_COLLECTION).document(Tools.authTools().getUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot documentSnapshot =  task.getResult();
                     if (!documentSnapshot.exists()) {
                         Map<String, Object> data = new TreeMap<String, Object>();
-                        data.put(FIRESTORE_USERS_DISPLAY_NAME_FIELD, Tools.authTools().getUser().getDisplayName());
-                        data.put(FIRESTORE_USER_UPLOADED_QUESTS_FIELD, new ArrayList<String>(0));
-                        firestore.collection(FIRESTORE_USERS_COLLECTION).document(Tools.authTools().getUser().getUid()).set(data);
+                        data.put(FS_USER_DISPLAY_NAME_FIELD, Tools.authTools().getUser().getDisplayName());
+                        data.put(FS_USER_UPLOADED_QUESTS_FIELD, new ArrayList<String>(0));
+                        firestore.collection(FS_USERS_COLLECTION).document(Tools.authTools().getUser().getUid()).set(data);
                     }
                 }
             }

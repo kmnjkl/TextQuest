@@ -39,6 +39,12 @@ public class DBQuest {
     }
 
     @Ignore
+    public DBQuest(String questCloudId, String questUploaderUserId) {
+        this.questCloudId = questCloudId;
+        this.questUploaderUserId = questUploaderUserId;
+    }
+
+    @Ignore
     public DBQuest() {}
 
     public int getQuestId() {
