@@ -2,6 +2,7 @@ package com.lkjuhkmnop.textquest.tqmanager;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import android.util.Log;
 
 import androidx.room.Room;
 import androidx.room.Update;
@@ -137,13 +138,25 @@ public class TQManager {
         public void run() {
             super.run();
             DBQuestsDao questsDao = getAppDatabaseInstance(context).questsDao();
-            questsDao.updateCloudInfo(localQuestId);
+            Log.d("LKJD", "TQM: UpdateQuestCloudInfo.run() updating local quest: localQuestId=" + localQuestId + "; newCloudId=" + newCloudId + "; newUploaderUserId=" + newUploaderUserId + "  EXECUTING");
+            if (newCloudId == null && newUploaderUserId == null) {
+                questsDao.updateCloudInfo(localQuestId);
+            } else {
+                questsDao.updateCloudInfo(localQuestId, newCloudId, newUploaderUserId);
+            }
         }
     }
     public void updateQuestCloudInfo(Context context, DBQuest quest) throws InterruptedException {
-        UpdateQuestCloudInfo uq = new UpdateQuestCloudInfo(context, quest.getQuestId());
+        UpdateQuestCloudInfo uq = new UpdateQuestCloudInfo(context, quest.getQuestId(), quest.getQuestCloudId(), quest.getQuestUploaderUserId());
         uq.start();
         uq.join();
+    }
+    public void updateQuestCloudInfo(Context context, int questId) throws InterruptedException {
+        Log.d("LKJD", "TQM: updateQuestCloudInfo: quest_id=" + questId + "  METHOD INVOKED");
+        UpdateQuestCloudInfo uq = new UpdateQuestCloudInfo(context, questId);
+        uq.start();
+        uq.join();
+        Log.d("LKJD", "TQM: updateQuestCloudInfo: quest_id=" + questId + "  METHOD FINISH EXECUTING");
     }
 
 

@@ -69,7 +69,7 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
             questAuthor.setText(author);
         }
 
-        public void setCloudUploadVisibility(int visibility) {
+        public void setCloudButtonVisibility(int visibility) {
             qCloudButton.setVisibility(visibility);
         }
 
@@ -113,30 +113,36 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
         }
     }
 
-    private void enableUpload(DBQuest localQuest, ViewHolder lqViewHolder) {
-        lqViewHolder.setAuthorText("Anonymous");
-        lqViewHolder.setCloudUploadVisibility(View.VISIBLE);
+    private void enableUpload(DBQuest localQuest, ViewHolder holder) {
+        holder.setIdAddedText("");
+        holder.setAuthorText("Anonymous");
+        holder.setCloudButtonImage(R.drawable.ic_cloud_upload);
+        holder.setCloudButtonVisibility(View.VISIBLE);
 //            Set on click listener for the cloud upload button
-        lqViewHolder.qCloudButton.setOnClickListener(v -> {
+        holder.qCloudButton.setOnClickListener(v -> {
             try {
                 Tools.cloudManager().uploadQuest(context, localQuest.getQuestId(),
                         response -> {
-                            matchQuest(localQuest, lqViewHolder);
+                            matchQuest(localQuest, holder);
                         });
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            holder.setCloudButtonVisibility(View.GONE);
         });
     }
 
     private void displayUploaded(DBQuest localQuest, ViewHolder holder) {
         holder.setCloudButtonImage(R.drawable.ic_cloud_delete);
+        holder.setCloudButtonVisibility(View.VISIBLE);
         holder.setCloudButtonOnClickListener(v -> {
+            Log.d("LKJD", "LIB/CLOUD: lib: quest " + localQuest.getQuestId() + ": delete cloud quest (" + localQuest.getQuestCloudId() + ") BUTTON CLICKED");
             try {
                 Tools.cloudManager().deleteQuest(context, localQuest);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            holder.setCloudButtonVisibility(View.GONE);
             matchQuest(localQuest, holder);
         });
 
