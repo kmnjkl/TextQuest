@@ -57,10 +57,7 @@ package story {
     ..
     +isEnd() : boolean
   }
-  note left of TQStory::processCurrentPassage
-    Returns "clean" text
-    of the current passage.
-  end note
+
   TQStory *-- TQQuest
   TQStory *-- TQCharacter
   class TQCharacter {
@@ -101,26 +98,33 @@ package story {
 }
 
 package tqmanager {
-  class TQManager
-  PlayActivity --> TQManager
-  QuestManageActivity --> TQManager
-  GamesActivity --> TQManager
-  LibraryActivity --> TQManager
-  TQManager --> AppDatabase
-  TQManager --> DBGamesDao
-  TQManager --> DBQuestsDao
-  class AppDatabase
-  AppDatabase ..> DBGamesDao
-  AppDatabase ..> DBQuestsDao
+  class CloudManager
+  LibraryAdapter --> CloudManager
   together {
-    class DBGame
-    interface DBGamesDao
-    DBGamesDao ..> DBGame
-  }
-  together {
-    class DBQuest
-    interface DBQuestsDao
-    DBQuestsDao ..> DBQuest
+    class TQManager
+    PlayActivity --> TQManager
+    QuestManageActivity --> TQManager
+    GamesActivity --> TQManager
+    LibraryActivity --> TQManager
+    TQManager --> AppDatabase
+    TQManager --> DBGamesDao
+    TQManager --> DBQuestsDao
+    class AppDatabase {
+      +questsDao() : DBQuestsDao
+      +gamesDao() : DBGamesDao
+    }
+    AppDatabase ..> DBGamesDao
+    AppDatabase ..> DBQuestsDao
+    together {
+      class DBGame
+      interface DBGamesDao
+      DBGamesDao ..> DBGame
+    }
+    together {
+      class DBQuest
+      interface DBQuestsDao
+      DBQuestsDao ..> DBQuest
+    }
   }
 }
 AppDatabase -- Room
@@ -145,10 +149,12 @@ package tools {
   LibraryActivity --> Tools
   class MathExpressionEvaluator
   TQStory --> MathExpressionEvaluator
+  class AuthTools
+  Tools ..> AuthTools
+  MainActivity --> AuthTools
 }
 
-class SplashScreen {
-
-}
+class SplashScreen
+SplashScreen --> Tools
 
 @enduml

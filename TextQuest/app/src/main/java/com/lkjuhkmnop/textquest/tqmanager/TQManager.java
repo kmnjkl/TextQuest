@@ -137,12 +137,20 @@ public class TQManager {
         @Override
         public void run() {
             super.run();
+            DBQuest quest = new DBQuest();
+            try {
+                quest = Tools.tqManager().getQuestById(context, localQuestId);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             DBQuestsDao questsDao = getAppDatabaseInstance(context).questsDao();
-            Log.d("LKJD", "TQM: UpdateQuestCloudInfo.run() updating local quest: localQuestId=" + localQuestId + "; newCloudId=" + newCloudId + "; newUploaderUserId=" + newUploaderUserId + "  EXECUTING");
+//            Log.d("LKJD", "TQM: UpdateQuestCloudInfo.run() updating local quest: localQuestId=" + localQuestId + "; newCloudId=" + newCloudId + "; newUploaderUserId=" + newUploaderUserId + "  EXECUTING");
             if (newCloudId == null && newUploaderUserId == null) {
-                questsDao.updateCloudInfo(localQuestId);
+//                Log.d("LKJD", "TQM: UpdateQuestCloudInfo.run() updating local quest: localQuestId=" + localQuestId + "; newCloudId=" + newCloudId + "; newUploaderUserId=" + newUploaderUserId + "  SETTING NULL CLOUD DATA");
+                questsDao.update(quest);
             } else {
-                questsDao.updateCloudInfo(localQuestId, newCloudId, newUploaderUserId);
+//                Log.d("LKJD", "TQM: UpdateQuestCloudInfo.run() updating local quest: localQuestId=" + localQuestId + "; newCloudId=" + newCloudId + "; newUploaderUserId=" + newUploaderUserId + "  SETTING NOT NULL CLOUD DATA");
+                questsDao.update(quest);
             }
         }
     }

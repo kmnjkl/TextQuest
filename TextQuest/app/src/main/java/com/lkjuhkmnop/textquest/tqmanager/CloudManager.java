@@ -130,10 +130,10 @@ public class CloudManager {
 
 
     public void deleteQuest(Context context, DBQuest localQuest) throws InterruptedException {
-        Log.d("LKJD", "CLOUD_MANAGER: deleteQuest: quest_id=" + localQuest.getQuestId() + "; cloud_id: " + localQuest.getQuestCloudId() + "  METHOD INVOKED");
+//        Log.d("LKJD", "CLOUD_MANAGER: deleteQuest: quest_id=" + localQuest.getQuestId() + "; cloud_id: " + localQuest.getQuestCloudId() + "  METHOD INVOKED");
         firestore.collection(FS_LIBRARY_COLLECTION).document(localQuest.getQuestCloudId()).delete();
         firestore.collection(FS_USERS_COLLECTION).document(Tools.authTools().getUser().getUid()).update(FS_USER_UPLOADED_QUESTS_FIELD, FieldValue.arrayRemove(localQuest.getQuestCloudId()));
-        Log.d("LKJD", "CLOUD_MANAGER: deleteQuest: quest_id=" + localQuest.getQuestId() + "; cloud_id=" + localQuest.getQuestCloudId() + "  UPDATE LOCAL QUEST");
+//        Log.d("LKJD", "CLOUD_MANAGER: deleteQuest: quest_id=" + localQuest.getQuestId() + "; cloud_id=" + localQuest.getQuestCloudId() + "  UPDATE LOCAL QUEST");
         Tools.tqManager().updateQuestCloudInfo(context, localQuest.getQuestId());
     }
 
