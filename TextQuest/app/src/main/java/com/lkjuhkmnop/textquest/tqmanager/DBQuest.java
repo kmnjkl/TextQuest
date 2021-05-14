@@ -51,54 +51,61 @@ public class DBQuest {
         return questId;
     }
 
-    public void setQuestId(int questId) {
+    public DBQuest setQuestId(int questId) {
         this.questId = questId;
+        return this;
     }
 
     public String getQuestCloudId() {
         return questCloudId;
     }
 
-    public void setQuestCloudId(String questCloudId) {
+    public DBQuest setQuestCloudId(String questCloudId) {
         this.questCloudId = questCloudId;
+        return this;
     }
 
     public String getQuestUploaderUserId() {
         return questUploaderUserId;
     }
-    public void setQuestUploaderUserId(String questUploaderUserId) {
+    public DBQuest setQuestUploaderUserId(String questUploaderUserId) {
         this.questUploaderUserId = questUploaderUserId;
+        return this;
     }
 
     public String getQuestTitle() {
         return questTitle;
     }
 
-    public void setQuestTitle(String questTitle) {
+    public DBQuest setQuestTitle(String questTitle) {
         this.questTitle = questTitle;
+        return this;
     }
 
     public String getQuestJson() {
         return questJson;
     }
 
-    public void setQuestJson(String questJson) {
+    public DBQuest setQuestJson(String questJson) {
         this.questJson = questJson;
+        return this;
     }
 
     public String getCharacterProperties() {
         return characterProperties;
     }
 
-    public void setCharacterProperties(String characterProperties) {
+    public DBQuest setCharacterProperties(String characterProperties) {
         this.characterProperties = characterProperties;
+        return this;
     }
 
     public String getCharacterParameters() {
         return characterParameters;
     }
 
-    public void setCharacterParameters(String characterParameters) {
+    public DBQuest setCharacterParameters(String characterParameters) {
         this.characterParameters = characterParameters;
+        return this;
     }
 }

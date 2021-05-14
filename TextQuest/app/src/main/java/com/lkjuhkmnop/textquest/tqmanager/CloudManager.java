@@ -17,26 +17,36 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * Class to manage cloud database (Firebase Cloud Firestore).
+ * */
 public class CloudManager {
+//    Response codes
+//    Successful operation finish
     public static final int OK = 1;
+//    Appropriate document doesn't exists
     public static final int NO_SUCH_DOCUMENT = 2;
+//    Operation failed
     public static final int FAILED = 3;
 
+//    Response data codes
     public static final int QUEST_MATCH = 4;
     public static final int NO_QUEST_MATCH = 5;
 
+//    Constants associated with Firestore
     private static final String FS_LIBRARY_COLLECTION = "tqlibrary";
-    private static final String DBQ_UPLOADER_USER_ID_FIELD = "questUploaderUserId";
-    private static final String DBQ_TITLE_FIELD = "questTitle";
-    private static final String DBQ_AUTHOR_FIELD = "questAuthor";
     private static final String FS_USERS_COLLECTION = "users";
     private static final String FS_USER_DISPLAY_NAME_FIELD = "display_name";
     private static final String FS_USER_UPLOADED_QUESTS_FIELD = "uploaded_quests";
+    private static final String DBQ_UPLOADER_USER_ID_FIELD = "questUploaderUserId";
+//    Constants associated with local database entities
+    private static final String DBQ_TITLE_FIELD = "questTitle";
+    private static final String DBQ_AUTHOR_FIELD = "questAuthor";
 
-    private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+    private final FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
     public static class CMResponse<T> {
-         private int responseCode;
+         private final int responseCode;
          private T data;
          private Exception exception;
 

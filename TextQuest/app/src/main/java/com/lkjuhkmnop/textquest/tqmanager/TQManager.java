@@ -16,7 +16,7 @@ import com.lkjuhkmnop.textquest.tools.Tools;
 import java.util.HashMap;
 
 /**
- * Class to manage local quests library.
+ * Class to manage local database.
  */
 public class TQManager {
 //    /===== singleton pattern implementation to use AppDatabase to work with app's database using Room =====\
@@ -160,11 +160,15 @@ public class TQManager {
         uq.join();
     }
     public void updateQuestCloudInfo(Context context, int questId) throws InterruptedException {
-        Log.d("LKJD", "TQM: updateQuestCloudInfo: quest_id=" + questId + "  METHOD INVOKED");
-        UpdateQuestCloudInfo uq = new UpdateQuestCloudInfo(context, questId);
-        uq.start();
-        uq.join();
-        Log.d("LKJD", "TQM: updateQuestCloudInfo: quest_id=" + questId + "  METHOD FINISH EXECUTING");
+//        Log.d("LKJD", "TQM: updateQuestCloudInfo: quest_id=" + questId + "  METHOD INVOKED");
+//        UpdateQuestCloudInfo uq = new UpdateQuestCloudInfo(context, questId);
+//        uq.start();
+//        uq.join();
+//        Log.d("LKJD", "TQM: updateQuestCloudInfo: quest_id=" + questId + "  METHOD FINISH EXECUTING");
+        DBQuest quest = getQuestById(context, questId);
+        quest.setQuestCloudId(null)
+                .setQuestUploaderUserId(null);
+        updateQuest(context, quest);
     }
 
 
