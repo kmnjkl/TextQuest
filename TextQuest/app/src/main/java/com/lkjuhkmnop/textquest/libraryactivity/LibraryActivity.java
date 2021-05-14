@@ -43,8 +43,12 @@ public class LibraryActivity extends AppCompatActivity {
         libraryAdapter.notifyDataSetChanged();
     }
 
-    public void reloadQuestsList(int position, DBQuest quest) throws InterruptedException {
-        libraryAdapter.changeQuestData(position, Tools.tqManager().getSimpleQuestById(applicationContext, quest.getQuestId()));
+    public void reloadQuestsList(int position, DBQuest quest) {
+        try {
+            libraryAdapter.changeQuestData(position, Tools.tqManager().getSimpleQuestById(applicationContext, quest.getQuestId()));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         libraryAdapter.notifyItemChanged(position);
     }
 }

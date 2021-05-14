@@ -103,7 +103,6 @@ public class CloudManager {
         firestore.collection(FS_LIBRARY_COLLECTION)
                 .add(quest)
                 .addOnSuccessListener(documentReference -> {
-                    cmResponseListener.onCMResponse(new CMResponse<String>(OK, documentReference.getId()));
 //                    Update local database
                     quest.setQuestCloudId(documentReference.getId());
                     try {
@@ -113,6 +112,7 @@ public class CloudManager {
                     }
 //                    Update cloud information about user's uploads
                     firestore.collection(FS_USERS_COLLECTION).document(Tools.authTools().getUser().getUid()).update(FS_USER_UPLOADED_QUESTS_FIELD, FieldValue.arrayUnion(documentReference.getId()));
+                    cmResponseListener.onCMResponse(new CMResponse<String>(OK, documentReference.getId()));
                 });
     }
 

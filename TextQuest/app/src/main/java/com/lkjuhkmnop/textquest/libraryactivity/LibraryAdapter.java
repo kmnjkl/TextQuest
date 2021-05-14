@@ -127,6 +127,7 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
             try {
                 Tools.cloudManager().uploadQuest(context, questsData[position].getQuestId(),
                         response -> {
+                            libraryActivity.reloadQuestsList(position, questsData[position]);
                             matchQuest(position, holder);
                         });
             } catch (InterruptedException e) {
@@ -143,11 +144,7 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
             Log.d("LKJD", "LIB/CLOUD: lib: quest " + questsData[position].getQuestId() + ": delete cloud quest (" + questsData[position].getQuestCloudId() + ") BUTTON CLICKED");
             try {
                 Tools.cloudManager().deleteQuest(context, questsData[position], response -> {
-                    try {
-                        libraryActivity.reloadQuestsList(position, questsData[position]);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    libraryActivity.reloadQuestsList(position, questsData[position]);
                     matchQuest(position, holder);
                 });
             } catch (InterruptedException e) {

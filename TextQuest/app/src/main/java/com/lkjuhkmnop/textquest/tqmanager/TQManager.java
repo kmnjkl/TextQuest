@@ -107,7 +107,8 @@ public class TQManager {
         public void run() {
             super.run();
             DBQuestsDao questsDao = getAppDatabaseInstance(context).questsDao();
-            questsDao.update(quest.getQuestId(), quest.getQuestCloudId(), quest.getQuestUploaderUserId(), quest.getQuestTitle(), quest.getCharacterProperties(), quest.getCharacterParameters(), quest.getQuestJson());
+//            questsDao.update(quest.getQuestId(), quest.getQuestCloudId(), quest.getQuestUploaderUserId(), quest.getQuestTitle(), quest.getCharacterProperties(), quest.getCharacterParameters(), quest.getQuestJson());
+            questsDao.update(quest);
         }
     }
     public void updateQuest(Context context, DBQuest quest) throws InterruptedException {
@@ -137,20 +138,14 @@ public class TQManager {
         @Override
         public void run() {
             super.run();
-            DBQuest quest = new DBQuest();
-            try {
-                quest = Tools.tqManager().getQuestById(context, localQuestId);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             DBQuestsDao questsDao = getAppDatabaseInstance(context).questsDao();
 //            Log.d("LKJD", "TQM: UpdateQuestCloudInfo.run() updating local quest: localQuestId=" + localQuestId + "; newCloudId=" + newCloudId + "; newUploaderUserId=" + newUploaderUserId + "  EXECUTING");
             if (newCloudId == null && newUploaderUserId == null) {
 //                Log.d("LKJD", "TQM: UpdateQuestCloudInfo.run() updating local quest: localQuestId=" + localQuestId + "; newCloudId=" + newCloudId + "; newUploaderUserId=" + newUploaderUserId + "  SETTING NULL CLOUD DATA");
-                questsDao.update(quest);
+                questsDao.updateCloudInfo(localQuestId);
             } else {
 //                Log.d("LKJD", "TQM: UpdateQuestCloudInfo.run() updating local quest: localQuestId=" + localQuestId + "; newCloudId=" + newCloudId + "; newUploaderUserId=" + newUploaderUserId + "  SETTING NOT NULL CLOUD DATA");
-                questsDao.update(quest);
+                questsDao.updateCloudInfo(localQuestId, newCloudId, newUploaderUserId);
             }
         }
     }
@@ -161,14 +156,14 @@ public class TQManager {
     }
     public void updateQuestCloudInfo(Context context, int questId) throws InterruptedException {
 //        Log.d("LKJD", "TQM: updateQuestCloudInfo: quest_id=" + questId + "  METHOD INVOKED");
-//        UpdateQuestCloudInfo uq = new UpdateQuestCloudInfo(context, questId);
-//        uq.start();
-//        uq.join();
+        UpdateQuestCloudInfo uq = new UpdateQuestCloudInfo(context, questId);
+        uq.start();
+        uq.join();
 //        Log.d("LKJD", "TQM: updateQuestCloudInfo: quest_id=" + questId + "  METHOD FINISH EXECUTING");
-        DBQuest quest = getQuestById(context, questId);
-        quest.setQuestCloudId(null);
-        quest.setQuestUploaderUserId(null);
-        updateQuest(context, quest);
+//        DBQuest quest = getQuestById(context, questId);
+//        quest.setQuestCloudId(null);
+//        quest.setQuestUploaderUserId(null);
+//        updateQuest(context, quest);
     }
 
 
