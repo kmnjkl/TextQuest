@@ -29,6 +29,10 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
         this.questsData = questsData;
     }
 
+    public void changeQuestData(int position, DBQuest quest) {
+        questsData[position] = quest;
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         View itemView;
         TextView questId, questTitle, questAuthor;
@@ -86,34 +90,34 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
         }
     }
 
-    private void matchQuest(DBQuest localQuest, ViewHolder lqViewHolder) {
+    private void matchQuest(int position, ViewHolder lqViewHolder) {
         Log.d("LKJD", "mathQuest");
-        if (localQuest.getQuestCloudId() != null && !localQuest.getQuestCloudId().equals("")
-                && localQuest.getQuestUploaderUserId() != null && !localQuest.getQuestUploaderUserId().equals("")) {
+        if (questsData[position].getQuestCloudId() != null && !questsData[position].getQuestCloudId().equals("")
+                && questsData[position].getQuestUploaderUserId() != null && !questsData[position].getQuestUploaderUserId().equals("")) {
             Log.d("LKJD", "cloud matchQuest");
-            Tools.cloudManager().matchQuest(localQuest, response -> {
+            Tools.cloudManager().matchQuest(questsData[position], response -> {
                 if (response.getResponseCode() == CloudManager.OK && response.getData() == CloudManager.QUEST_MATCH) {
                     Log.d("LKJD", "ok matchQuest: " + response);
-                    displayUploaded(localQuest, lqViewHolder);
+                    displayUploaded(position, lqViewHolder);
                 } else {
                     Log.d("LKJD", "no matchQuest: " + response);
-                    localQuest.setQuestCloudId(null);
-                    localQuest.setQuestUploaderUserId(null);
+                    questsData[position].setQuestCloudId(null);
+                    questsData[position].setQuestUploaderUserId(null);
                     try {
-                        Tools.tqManager().updateQuest(context, localQuest);
+                        Tools.tqManager().updateQuest(context, questsData[position]);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    enableUpload(localQuest, lqViewHolder);
+                    enableUpload(position, lqViewHolder);
                 }
             });
         } else {
             Log.d("LKJD", "no cloud mathQuest needed");
-            enableUpload(localQuest, lqViewHolder);
+            enableUpload(position, lqViewHolder);
         }
     }
 
-    private void enableUpload(DBQuest localQuest, ViewHolder holder) {
+    private void enableUpload(int position, ViewHolder holder) {
         holder.setIdAddedText("");
         holder.setAuthorText("Anonymous");
         holder.setCloudButtonImage(R.drawable.ic_cloud_upload);
@@ -121,9 +125,9 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
 //            Set on click listener for the cloud upload button
         holder.qCloudButton.setOnClickListener(v -> {
             try {
-                Tools.cloudManager().uploadQuest(context, localQuest.getQuestId(),
+                Tools.cloudManager().uploadQuest(context, questsData[position].getQuestId(),
                         response -> {
-                            matchQuest(localQuest, holder);
+                            matchQuest(position, holder);
                         });
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -132,29 +136,35 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
         });
     }
 
-    private void displayUploaded(DBQuest localQuest, ViewHolder holder) {
+    private void displayUploaded(int position, ViewHolder holder) {
         holder.setCloudButtonImage(R.drawable.ic_cloud_delete);
         holder.setCloudButtonVisibility(View.VISIBLE);
         holder.setCloudButtonOnClickListener(v -> {
-            Log.d("LKJD", "LIB/CLOUD: lib: quest " + localQuest.getQuestId() + ": delete cloud quest (" + localQuest.getQuestCloudId() + ") BUTTON CLICKED");
+            Log.d("LKJD", "LIB/CLOUD: lib: quest " + questsData[position].getQuestId() + ": delete cloud quest (" + questsData[position].getQuestCloudId() + ") BUTTON CLICKED");
             try {
-                Tools.cloudManager().deleteQuest(context, localQuest);
+                Tools.cloudManager().deleteQuest(context, questsData[position], response -> {
+                    try {
+                        libraryActivity.reloadQuestsList(position, questsData[position]);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    matchQuest(position, holder);
+                });
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             holder.setCloudButtonVisibility(View.GONE);
-            matchQuest(localQuest, holder);
         });
 
 //        Set author's name
-        Tools.cloudManager().getUserDisplayName(localQuest.getQuestUploaderUserId(), new CloudManager.OnCMResponseListener<String>() {
+        Tools.cloudManager().getUserDisplayName(questsData[position].getQuestUploaderUserId(), new CloudManager.OnCMResponseListener<String>() {
             @Override
             public void onCMResponse(CloudManager.CMResponse<String> response) {
                 holder.setAuthorText(response.getData());
             }
         });
 //        Append quest id
-        String questCloudId = localQuest.getQuestCloudId();
+        String questCloudId = questsData[position].getQuestCloudId();
         holder.setIdAddedText("\n[CId: " + questCloudId.substring(0, 4) + "..." + questCloudId.substring(questCloudId.length() - 3) + "]");
     }
 
@@ -181,7 +191,7 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
 //        For description
         holder.getItemView().findViewById(R.id.lib_description).setOnClickListener(v -> {
             Toast.makeText(v.getContext(), questsData[position].getQuestTitle(), Toast.LENGTH_SHORT).show();
-            matchQuest(questsData[position], holder);
+            matchQuest(position, holder);
         });
 
 //        For the new game button
@@ -206,13 +216,13 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
         holder.qDelete.setOnClickListener(v -> {
             try {
                 Tools.tqManager().deleteQuestById(context, questsData[position].getQuestId());
-                LibraryActivity.reloadQuestsList();
+                libraryActivity.reloadQuestsList();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         });
 
-        matchQuest(questsData[position], holder);
+        matchQuest(position, holder);
     }
 
     @Override

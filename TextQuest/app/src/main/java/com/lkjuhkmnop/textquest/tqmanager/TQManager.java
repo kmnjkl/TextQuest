@@ -107,7 +107,7 @@ public class TQManager {
         public void run() {
             super.run();
             DBQuestsDao questsDao = getAppDatabaseInstance(context).questsDao();
-            questsDao.update(quest);
+            questsDao.update(quest.getQuestId(), quest.getQuestCloudId(), quest.getQuestUploaderUserId(), quest.getQuestTitle(), quest.getCharacterProperties(), quest.getCharacterParameters(), quest.getQuestJson());
         }
     }
     public void updateQuest(Context context, DBQuest quest) throws InterruptedException {
@@ -166,8 +166,8 @@ public class TQManager {
 //        uq.join();
 //        Log.d("LKJD", "TQM: updateQuestCloudInfo: quest_id=" + questId + "  METHOD FINISH EXECUTING");
         DBQuest quest = getQuestById(context, questId);
-        quest.setQuestCloudId(null)
-                .setQuestUploaderUserId(null);
+        quest.setQuestCloudId(null);
+        quest.setQuestUploaderUserId(null);
         updateQuest(context, quest);
     }
 
@@ -203,6 +203,40 @@ public class TQManager {
         gqbi.join();
         return gqbi.resQuest;
     }
+
+
+    /**
+     * Class to get quest by id from app's database.
+     * @see TQManager#getSimpleQuestById
+     * */
+    private static class GetSimpleQuestById extends Thread {
+        private Context context;
+        private int questId;
+        private DBQuest resQuest;
+
+        public GetSimpleQuestById(Context context, int questId) {
+            this.context = context;
+            this.questId = questId;
+        }
+
+        @Override
+        public void run() {
+            super.run();
+            DBQuestsDao questDao = getAppDatabaseInstance(context).questsDao();
+            resQuest = questDao.getSimpleQuestById(questId);
+        }
+    }
+    /**
+     * Returns quest with specified quest_id from app's database.
+     * @see GetSimpleQuestById
+     * */
+    public DBQuest getSimpleQuestById(Context context, int questId) throws InterruptedException {
+        GetSimpleQuestById gsqbi = new GetSimpleQuestById(context, questId);
+        gsqbi.start();
+        gsqbi.join();
+        return gsqbi.resQuest;
+    }
+
 
     /**
      * Class to get an array of all quests (without json) from app's database in new thread.
