@@ -23,7 +23,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private ImageView playBtn, addBtn, libBtn;
-    private Button authBtn;
+    private Button authBtn, authPassChangeBtn;
     private TextView userInfo;
     private int popupCount=0;
 
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         libBtn = findViewById(R.id.lib_btn);
         authBtn = findViewById(R.id.auth_button);
         userInfo = findViewById(R.id.user_info);
+        authPassChangeBtn = findViewById(R.id.auth_pass_change_button);
 
         playBtn.setOnClickListener(this);
         addBtn.setOnClickListener(this);
@@ -51,6 +52,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             .setAvailableProviders(providers)
                             .build(),
                     Tools.AUTH_REQUEST_CODE);
+        });
+
+        authPassChangeBtn.setOnClickListener(v -> {
+            Tools.startUserManagerActivity(this, v);
         });
     }
 

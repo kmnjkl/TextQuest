@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/SplashScreen">
-        <activity android:name=".playactivity.PlayActivity"></activity>
+        <activity android:name=".UserManagerActivity"></activity>
+        <activity android:name=".playactivity.PlayActivity" />
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

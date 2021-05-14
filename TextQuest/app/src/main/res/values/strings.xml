@@ -6,7 +6,7 @@
     <string name="games_title">Игры</string>
     <string name="lib_title">Библиотека</string>
 
-<!--    LibraryActivity -->
+    <!--    LibraryActivity -->
     <string name="lib_quest_id_prefix">Id:</string>
 
     <!--    QuestManageActivity -->
@@ -39,11 +39,18 @@
     <string name="char_p_data_value_hint">Значение</string>
     <string name="char_p_data_add_name_used">Все названия характеристик и параметров должны быть различны! Придумайте другое название!</string>
 
-<!--    PlayActivity -->
+    <!--    PlayActivity -->
     <string name="play_restart_button">Начать сначала</string>
     <string name="play_close_button">Закрыть</string>
     <string name="char_param_divider_text">:\t</string>
 
-<!--    Auth -->
+<!--    UserManagerActivity -->
+    <string name="user_old_pass_label">Старый пароль:</string>
+    <string name="user_new_pass_label">Новый пароль:</string>
+    <string name="user_repeat_new_pass_label">Повторите новый пароль:</string>
+    <string name="user_change_pass_button">Сменить пароль</string>
+
+    <!--    Auth -->
     <string name="auth_login_text">Войти</string>
+    <string name="auth_password_change">Сменить пароль</string>
 </resources>

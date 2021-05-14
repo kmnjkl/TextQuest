@@ -9,6 +9,7 @@ import android.view.View;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import com.lkjuhkmnop.textquest.UserManagerActivity;
 import com.lkjuhkmnop.textquest.gamesactivity.GamesActivity;
 import com.lkjuhkmnop.textquest.libraryactivity.LibraryActivity;
 import com.lkjuhkmnop.textquest.playactivity.PlayActivity;
@@ -79,6 +80,15 @@ public class Tools {
 
 
     /* START ACTIVITIES */
+
+    public static void startUserManagerActivity(Context packageContext, View viewToRevealFrom) {
+//            Build an options Bundle
+        Bundle options = ActivityOptions.makeClipRevealAnimation(viewToRevealFrom, viewToRevealFrom.getWidth()/2, viewToRevealFrom.getHeight()/2, viewToRevealFrom.getWidth()/4, viewToRevealFrom.getHeight()/4).toBundle();
+//            Create intent
+        Intent intent = new Intent(packageContext, UserManagerActivity.class);
+//            Start the activity specified in the intent (UserManagerActivity) with options
+        packageContext.startActivity(intent, options);
+    }
 
     public static void startPlayActivity(Context packageContext, View viewToRevealFrom, String gameName) {
 //            Build an options Bundle
