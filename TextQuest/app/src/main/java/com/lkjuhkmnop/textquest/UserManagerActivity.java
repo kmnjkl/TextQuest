@@ -3,10 +3,12 @@ package com.lkjuhkmnop.textquest;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -47,6 +49,8 @@ public class UserManagerActivity extends AppCompatActivity {
 
 //        Password change
         changePassBtn.setOnClickListener(v -> {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(changePassBtn.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
             changePassBtn.setClickable(false);
             if (newPass.getText().toString().isEmpty()) {
                 Snackbar.make(v, "EMPTY  " + getText(R.string.user_enter_new_pass_warning), BaseTransientBottomBar.LENGTH_LONG).show();

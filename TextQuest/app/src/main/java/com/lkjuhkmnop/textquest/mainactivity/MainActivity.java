@@ -69,25 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
-                FirebaseUser user = Tools.authTools().setUser(FirebaseAuth.getInstance().getCurrentUser());
-                String userInfoText = "Uid: " + user.getUid() + "; Prov.id: " + user.getProviderId()
-                        + "\nEmail: " + user.getEmail() + "; Display name: " + user.getDisplayName();
-                Log.d("AUTH", userInfoText);
-                userInfo.setText(userInfoText);
-                Tools.cloudManager().checkUserInUsersCollection();
-
-                setAuthBtnAccountManager();
-
-                signoutBtn.setVisibility(View.VISIBLE);
-                signoutBtn.setOnClickListener(v -> {
-                    AuthUI.getInstance().signOut(this).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            setAuthBtnSignin();
-                            signoutBtn.setVisibility(View.INVISIBLE);
-                        }
-                    });
-                });
+                onSignin();
             } else {
                 // Sign in failed. If response is null the user canceled the
                 // sign-in flow using the back button. Otherwise check
@@ -119,6 +101,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         authBtn.setOnClickListener(v -> {
             Tools.startUserManagerActivity(this, authBtn);
         });
+    }
+
+    private void onSignin() {
+        displaySignedin();
+        Tools.cloudManager().checkUserInUsersCollection();
+
+        signoutBtn.setVisibility(View.VISIBLE);
+        signoutBtn.setOnClickListener(v -> {
+            onSignout();
+        });
+    }
+
+    private void displaySignedin() {
+        FirebaseUser user = Tools.authTools().setUser(FirebaseAuth.getInstance().getCurrentUser());
+        String userInfoText = "Uid: " + user.getUid() + "; Prov.id: " + user.getProviderId()
+                + "\nEmail: " + user.getEmail() + "; Display name: " + user.getDisplayName();
+        Log.d("AUTH", userInfoText);
+        userInfo.setText(userInfoText);
+
+        setAuthBtnAccountManager();
+    }
+
+    private void onSignout() {
+        AuthUI.getInstance().signOut(this).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                displayNotSignedin();
+            }
+        });
+    }
+
+    private void displayNotSignedin() {
+        setAuthBtnSignin();
+        signoutBtn.setVisibility(View.INVISIBLE);
+        userInfo.setText("User info");
     }
 
     @Override
