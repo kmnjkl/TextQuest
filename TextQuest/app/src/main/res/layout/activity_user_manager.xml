@@ -51,7 +51,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="email"
-                android:textAppearance="@style/TextAppearance.TextQuest.Key" />
+                android:textAppearance="@style/TextAppearance.TextQuest.Key"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/user_display_name"
@@ -59,7 +60,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Display Name"
-                android:textAppearance="@style/TextAppearance.TextQuest.Standard" />
+                android:textAppearance="@style/TextAppearance.TextQuest.Standard"
+                android:textSize="12sp" />
 
             <Space
                 android:layout_width="20dp"

@@ -52,12 +52,13 @@
     <string name="user_new_pass_label">Новый пароль:</string>
     <string name="user_repeat_new_pass_label">Повторите новый пароль:</string>
     <string name="user_change_pass_button">Сменить пароль</string>
-    <string name="user_enter_new_pass_warning">Введите одинаковые пароли в поля "Новый пароль" и "Повторите новый пароль"!</string>
+    <string name="user_enter_new_pass_warning">Введите одинаковые пароли длиной не менее 6 символов в поля "Новый пароль" и "Повторите новый пароль"!</string>
     <string name="user_pass_changed_successfully">Пароль изменён</string>
 
     <string name="user_manage_finish">ОК</string>
 
     <!--    Auth -->
-    <string name="auth_login_text">Войти</string>
+    <string name="auth_signin_text">Войти</string>
+    <string name="auth_signout_text">Выйти</string>
     <string name="auth_account_settings">Аккаунт</string>
 </resources>

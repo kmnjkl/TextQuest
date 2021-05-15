@@ -1,5 +1,6 @@
 package com.lkjuhkmnop.textquest.mainactivity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,20 +13,20 @@ import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.lkjuhkmnop.textquest.R;
 import com.lkjuhkmnop.textquest.tools.Tools;
-import com.lkjuhkmnop.textquest.tqmanager.CloudManager;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private ImageView playBtn, addBtn, libBtn;
-    private Button authBtn;
+    private Button authBtn, signoutBtn;
     private TextView userInfo;
-    private int popupCount=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,21 +39,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         libBtn = findViewById(R.id.lib_btn);
         authBtn = findViewById(R.id.auth_button);
         userInfo = findViewById(R.id.user_info);
+        signoutBtn = findViewById(R.id.auth_signout_button);
 
         playBtn.setOnClickListener(this);
         addBtn.setOnClickListener(this);
         libBtn.setOnClickListener(this);
 
-        authBtn.setOnClickListener(v -> {
-            List<AuthUI.IdpConfig> providers = Arrays.asList(new AuthUI.IdpConfig.EmailBuilder().build());
-            startActivityForResult(
-                    AuthUI.getInstance()
-                            .createSignInIntentBuilder()
-                            .setAvailableProviders(providers)
-                            .build(),
-                    Tools.AUTH_REQUEST_CODE);
-            authBtn.setVisibility(View.INVISIBLE);
-        });
+        setAuthBtnSignin();
 
     }
 
@@ -83,8 +76,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 userInfo.setText(userInfoText);
                 Tools.cloudManager().checkUserInUsersCollection();
 
-                authBtn.setText(R.string.auth_account_settings);
-                authBtn.setVisibility(View.VISIBLE);
+                setAuthBtnAccountManager();
+
+                signoutBtn.setVisibility(View.VISIBLE);
+                signoutBtn.setOnClickListener(v -> {
+                    AuthUI.getInstance().signOut(this).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            setAuthBtnSignin();
+                            signoutBtn.setVisibility(View.INVISIBLE);
+                        }
+                    });
+                });
             } else {
                 // Sign in failed. If response is null the user canceled the
                 // sign-in flow using the back button. Otherwise check
@@ -96,6 +99,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         }
+    }
+
+    private void setAuthBtnSignin() {
+        authBtn.setText(R.string.auth_signin_text);
+        authBtn.setOnClickListener(v -> {
+            List<AuthUI.IdpConfig> providers = Arrays.asList(new AuthUI.IdpConfig.EmailBuilder().build());
+            startActivityForResult(
+                    AuthUI.getInstance()
+                            .createSignInIntentBuilder()
+                            .setAvailableProviders(providers)
+                            .build(),
+                    Tools.AUTH_REQUEST_CODE);
+        });
+    }
+
+    private void setAuthBtnAccountManager() {
+        authBtn.setText(R.string.auth_account_settings);
+        authBtn.setOnClickListener(v -> {
+            Tools.startUserManagerActivity(this, authBtn);
+        });
     }
 
     @Override
