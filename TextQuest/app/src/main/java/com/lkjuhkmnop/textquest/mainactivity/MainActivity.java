@@ -23,7 +23,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private ImageView playBtn, addBtn, libBtn;
-    private Button authBtn, authPassChangeBtn;
+    private Button authBtn;
     private TextView userInfo;
     private int popupCount=0;
 
@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         libBtn = findViewById(R.id.lib_btn);
         authBtn = findViewById(R.id.auth_button);
         userInfo = findViewById(R.id.user_info);
-        authPassChangeBtn = findViewById(R.id.auth_pass_change_button);
 
         playBtn.setOnClickListener(this);
         addBtn.setOnClickListener(this);
@@ -52,11 +51,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             .setAvailableProviders(providers)
                             .build(),
                     Tools.AUTH_REQUEST_CODE);
+            authBtn.setVisibility(View.INVISIBLE);
         });
 
-        authPassChangeBtn.setOnClickListener(v -> {
-            Tools.startUserManagerActivity(this, v);
-        });
     }
 
     @Override
@@ -85,6 +82,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.d("AUTH", userInfoText);
                 userInfo.setText(userInfoText);
                 Tools.cloudManager().checkUserInUsersCollection();
+
+                authBtn.setText(R.string.auth_account_settings);
+                authBtn.setVisibility(View.VISIBLE);
             } else {
                 // Sign in failed. If response is null the user canceled the
                 // sign-in flow using the back button. Otherwise check

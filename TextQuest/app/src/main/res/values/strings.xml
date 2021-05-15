@@ -45,12 +45,19 @@
     <string name="char_param_divider_text">:\t</string>
 
 <!--    UserManagerActivity -->
+    <string name="user_manager_title">Аккаунт</string>
+
+    <string name="user_change_password">Смена пароля</string>
     <string name="user_old_pass_label">Старый пароль:</string>
     <string name="user_new_pass_label">Новый пароль:</string>
     <string name="user_repeat_new_pass_label">Повторите новый пароль:</string>
     <string name="user_change_pass_button">Сменить пароль</string>
+    <string name="user_enter_new_pass_warning">Введите одинаковые пароли в поля "Новый пароль" и "Повторите новый пароль"!</string>
+    <string name="user_pass_changed_successfully">Пароль изменён</string>
+
+    <string name="user_manage_finish">ОК</string>
 
     <!--    Auth -->
     <string name="auth_login_text">Войти</string>
-    <string name="auth_password_change">Сменить пароль</string>
+    <string name="auth_account_settings">Аккаунт</string>
 </resources>
