@@ -26,26 +26,46 @@
 
     <ImageView
         android:id="@+id/play_btn"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="100dp"
         android:baselineAlignBottom="false"
         android:clickable="true"
-        android:contentDescription="@string/play_btn_description"
+        android:contentDescription="@string/play_button_label"
         android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_name"
-        app:layout_constraintVertical_bias="0.691"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/tqlib_button"
+        app:layout_constraintTop_toBottomOf="@id/add_btn_description"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_play_triangle" />
+
+    <TextView
+        android:id="@+id/play_btn_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/play_button_label"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.TextQuest.Caption"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/play_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/play_btn"
+        app:layout_constraintTop_toBottomOf="@+id/play_btn"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/add_btn"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="55dp"
         android:clickable="true"
-        android:contentDescription="@string/add_btn_description"
+        android:contentDescription="@string/add_button_label"
         android:forceHasOverlappingRendering="false"
         app:layout_constraintBottom_toBottomOf="@+id/play_btn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,56 +78,35 @@
         android:layout_width="130dp"
         android:layout_height="47dp"
         android:layout_marginTop="15dp"
-        android:text="@string/add_btn_description"
+        android:text="@string/add_button_label"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.TextQuest.Caption"
-        android:textColor="@color/secondaryTextColor"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/add_btn"
         app:layout_constraintStart_toStartOf="@+id/add_btn"
-        app:layout_constraintTop_toBottomOf="@+id/add_btn"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/add_btn" />
 
     <TextView
         android:id="@+id/lib_btn_description"
         android:layout_width="130dp"
         android:layout_height="40dp"
         android:layout_marginTop="15dp"
-        android:text="@string/lib_btn_description"
+        android:text="@string/lib_button_label"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.TextQuest.Caption"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/lib_btn"
         app:layout_constraintStart_toStartOf="@+id/lib_btn"
-        app:layout_constraintTop_toBottomOf="@+id/lib_btn"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/play_btn_description"
-        android:layout_width="120dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="30dp"
-        android:text="@string/play_btn_description"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.TextQuest.Caption"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/play_btn"
-        app:layout_constraintStart_toStartOf="@+id/play_btn"
-        app:layout_constraintTop_toBottomOf="@+id/play_btn"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/lib_btn" />
 
     <ImageView
         android:id="@+id/lib_btn"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="55dp"
         android:layout_marginEnd="20dp"
         android:clickable="true"
-        android:contentDescription="@string/lib_btn_description"
+        android:contentDescription="@string/lib_button_label"
         app:layout_constraintBottom_toBottomOf="@+id/play_btn"
         app:layout_constraintEnd_toStartOf="@+id/add_btn"
         app:layout_constraintHorizontal_bias="0.0"
@@ -157,5 +156,33 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/auth_button"
         app:layout_constraintVertical_bias="0.5" />
+
+    <ImageView
+        android:id="@+id/tqlib_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lib_btn_description"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ic_tqlib" />
+
+    <TextView
+        android:id="@+id/tqlib_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/tqlib_button_label"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.TextQuest.Caption"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tqlib_button"
+        app:layout_constraintStart_toStartOf="@+id/tqlib_button"
+        app:layout_constraintTop_toBottomOf="@+id/tqlib_button"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

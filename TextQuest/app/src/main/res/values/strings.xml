@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">TextQuest</string>
-    <string name="play_btn_description">Играть</string>
-    <string name="add_btn_description">Добавить квест</string>
-    <string name="lib_btn_description">Библиотека</string>
+
+<!--    MainActivity -->
+    <string name="play_button_label">Играть</string>
+    <string name="add_button_label">Добавить квест</string>
+    <string name="lib_button_label">Библиотека</string>
+    <string name="tqlib_button_label">TQLib</string>
     <string name="games_title">Игры</string>
     <string name="lib_title">Библиотека</string>
 
