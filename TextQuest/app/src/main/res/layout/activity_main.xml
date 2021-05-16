@@ -22,98 +22,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.171" />
-
-    <ImageView
-        android:id="@+id/play_btn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginBottom="100dp"
-        android:baselineAlignBottom="false"
-        android:clickable="true"
-        android:contentDescription="@string/play_button_label"
-        android:focusable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/tqlib_button"
-        app:layout_constraintTop_toBottomOf="@id/add_btn_description"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/ic_play_triangle" />
-
-    <TextView
-        android:id="@+id/play_btn_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="30dp"
-        android:text="@string/play_button_label"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.TextQuest.Caption"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/play_btn"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/play_btn"
-        app:layout_constraintTop_toBottomOf="@+id/play_btn"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageView
-        android:id="@+id/add_btn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginEnd="55dp"
-        android:clickable="true"
-        android:contentDescription="@string/add_button_label"
-        android:forceHasOverlappingRendering="false"
-        app:layout_constraintBottom_toBottomOf="@+id/play_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_name"
-        app:layout_constraintVertical_bias="0.231"
-        app:srcCompat="@drawable/ic_add_library" />
-
-    <TextView
-        android:id="@+id/add_btn_description"
-        android:layout_width="130dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="15dp"
-        android:text="@string/add_button_label"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.TextQuest.Caption"
-        app:layout_constraintEnd_toEndOf="@+id/add_btn"
-        app:layout_constraintStart_toStartOf="@+id/add_btn"
-        app:layout_constraintTop_toBottomOf="@+id/add_btn" />
-
-    <TextView
-        android:id="@+id/lib_btn_description"
-        android:layout_width="130dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="15dp"
-        android:text="@string/lib_button_label"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.TextQuest.Caption"
-        app:layout_constraintEnd_toEndOf="@+id/lib_btn"
-        app:layout_constraintStart_toStartOf="@+id/lib_btn"
-        app:layout_constraintTop_toBottomOf="@+id/lib_btn" />
-
-    <ImageView
-        android:id="@+id/lib_btn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginEnd="20dp"
-        android:clickable="true"
-        android:contentDescription="@string/lib_button_label"
-        app:layout_constraintBottom_toBottomOf="@+id/play_btn"
-        app:layout_constraintEnd_toStartOf="@+id/add_btn"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_name"
-        app:layout_constraintVertical_bias="0.231"
-        app:srcCompat="@drawable/ic_library" />
+        app:layout_constraintVertical_bias="0.19999999" />
 
     <Button
         android:id="@+id/auth_button"
@@ -147,7 +56,7 @@
         style="@style/Widget.TextQuest.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="10dp"
         android:text="@string/auth_signout_text"
@@ -155,34 +64,162 @@
         app:layout_constraintBottom_toTopOf="@+id/app_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/auth_button"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
-        android:id="@+id/tqlib_button"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginBottom="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lib_btn_description"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/ic_tqlib" />
-
-    <TextView
-        android:id="@+id/tqlib_label"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="30dp"
-        android:text="@string/tqlib_button_label"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.TextQuest.Caption"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tqlib_button"
-        app:layout_constraintStart_toStartOf="@+id/tqlib_button"
-        app:layout_constraintTop_toBottomOf="@+id/tqlib_button"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_name"
+        app:layout_constraintVertical_bias="0.30">
+
+        <LinearLayout
+            android:id="@+id/lib_add_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/lib"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/lib_btn"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:clickable="true"
+                    android:contentDescription="@string/lib_button_label"
+                    app:srcCompat="@drawable/ic_library" />
+
+                <TextView
+                    android:id="@+id/lib_btn_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/lib_button_label"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textAppearance="@style/TextAppearance.TextQuest.Caption" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="35dp"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:id="@+id/add"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/add_btn"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:clickable="true"
+                    android:contentDescription="@string/add_button_label"
+                    android:forceHasOverlappingRendering="false"
+                    app:srcCompat="@drawable/ic_add_library" />
+
+                <TextView
+                    android:id="@+id/add_btn_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/add_button_label"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textAppearance="@style/TextAppearance.TextQuest.Caption" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="55dp" />
+
+        <LinearLayout
+            android:id="@+id/tqlib_play_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/tqlib"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/tqlib_button"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:clickable="true"
+                    app:srcCompat="@drawable/ic_tqlib" />
+
+                <TextView
+                    android:id="@+id/tqlib_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/tqlib_button_label"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textAppearance="@style/TextAppearance.TextQuest.Caption" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="35dp"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:id="@+id/play"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/play_btn"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:clickable="true"
+                    android:contentDescription="@string/play_button_label"
+                    android:focusable="true"
+                    app:srcCompat="@drawable/ic_play_triangle" />
+
+                <TextView
+                    android:id="@+id/play_btn_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/play_button_label"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textAppearance="@style/TextAppearance.TextQuest.Caption" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
