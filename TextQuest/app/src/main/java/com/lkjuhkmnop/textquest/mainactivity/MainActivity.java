@@ -24,7 +24,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private ImageView playBtn, addBtn, libBtn;
+    private ImageView playBtn, addBtn, libBtn, tqLibBtn;
     private Button authBtn, signoutBtn;
     private TextView userInfo;
 
@@ -40,10 +40,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         authBtn = findViewById(R.id.auth_button);
         userInfo = findViewById(R.id.user_info);
         signoutBtn = findViewById(R.id.auth_signout_button);
+        tqLibBtn = findViewById(R.id.tqlib_button);
 
         playBtn.setOnClickListener(this);
         addBtn.setOnClickListener(this);
         libBtn.setOnClickListener(this);
+        tqLibBtn.setOnClickListener(this);
 
         setAuthBtnSignin();
 
@@ -57,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Tools.startQuestManageActivityToAddQuest(this, v);
         } else if (v.getId() == libBtn.getId()) {
             Tools.startLibraryActivity(this, v);
+        } else if (v.getId() == tqLibBtn.getId()) {
+            Tools.startTQLibActivity(this, v);
         }
     }
 

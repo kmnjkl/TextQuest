@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryLightColor"
-    tools:context=".libraryactivity.LibraryActivity"
-    android:theme="@style/Theme.TextQuest">
+    android:theme="@style/Theme.TextQuest"
+    tools:context=".libraryactivity.LibraryActivity">
 
     <TextView
-        android:id="@+id/lib_quest_title"
+        android:id="@+id/tqlib_quest_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -24,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lib_recycler_view"
+        android:id="@+id/tqlib_recycler_view"
         android:layout_width="327dp"
         android:layout_height="596dp"
         android:layout_marginStart="20dp"
@@ -44,7 +43,7 @@
         android:background="@color/primaryDarkColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lib_quest_title" />
+        app:layout_constraintTop_toBottomOf="@+id/tqlib_quest_title" />
 
     <Space
         android:id="@+id/space"

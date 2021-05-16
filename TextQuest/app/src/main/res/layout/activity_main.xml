@@ -182,7 +182,8 @@
                     android:text="@string/tqlib_button_label"
                     android:textAlignment="center"
                     android:textAllCaps="false"
-                    android:textAppearance="@style/TextAppearance.TextQuest.Caption" />
+                    android:textAppearance="@style/TextAppearance.TextQuest.Caption"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <Space

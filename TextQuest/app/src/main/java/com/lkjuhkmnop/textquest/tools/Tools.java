@@ -14,6 +14,7 @@ import com.lkjuhkmnop.textquest.gamesactivity.GamesActivity;
 import com.lkjuhkmnop.textquest.libraryactivity.LibraryActivity;
 import com.lkjuhkmnop.textquest.playactivity.PlayActivity;
 import com.lkjuhkmnop.textquest.questmanageactivity.QuestManageActivity;
+import com.lkjuhkmnop.textquest.tqlibactivity.TQLibActivity;
 import com.lkjuhkmnop.textquest.tqmanager.CloudManager;
 import com.lkjuhkmnop.textquest.tqmanager.TQManager;
 
@@ -80,6 +81,15 @@ public class Tools {
 
 
     /* START ACTIVITIES */
+
+    public static void startTQLibActivity(Context packageContext, View viewToRevealFrom) {
+//            Build an options Bundle
+        Bundle options = ActivityOptions.makeClipRevealAnimation(viewToRevealFrom, viewToRevealFrom.getWidth()/2, viewToRevealFrom.getHeight()/2, viewToRevealFrom.getWidth()/4, viewToRevealFrom.getHeight()/4).toBundle();
+//            Create intent
+        Intent intent = new Intent(packageContext, TQLibActivity.class);
+//            Start the activity specified in the intent (TQLibActivity) with options
+        packageContext.startActivity(intent, options);
+    }
 
     public static void startUserManagerActivity(Context packageContext, View viewToRevealFrom) {
 //            Build an options Bundle

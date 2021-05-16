@@ -1,13 +1,18 @@
 <resources>
     <string name="app_name">TextQuest</string>
 
-<!--    MainActivity -->
+    <!--    MainActivity -->
     <string name="play_button_label">Играть</string>
     <string name="add_button_label">Добавить квест</string>
     <string name="lib_button_label">Библиотека</string>
     <string name="tqlib_button_label">TQLib</string>
     <string name="games_title">Игры</string>
     <string name="lib_title">Библиотека</string>
+
+    <!--    TQLibActivity -->
+    <string name="tqlib_title">TQLib</string>
+
+    <string name="tqlib_quest_cid_prefix">Cid:</string>
 
     <!--    LibraryActivity -->
     <string name="lib_quest_id_prefix">Id:</string>
@@ -47,7 +52,7 @@
     <string name="play_close_button">Закрыть</string>
     <string name="char_param_divider_text">:\t</string>
 
-<!--    UserManagerActivity -->
+    <!--    UserManagerActivity -->
     <string name="user_manager_title">Аккаунт</string>
 
     <string name="user_change_password">Смена пароля</string>

@@ -42,22 +42,22 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.itemView = itemView;
-            questId = itemView.findViewById(R.id.quest_id);
-            questTitle = itemView.findViewById(R.id.lib_quest_title);
-            questAuthor = itemView.findViewById(R.id.lib_quest_author);
-            qNewGame = itemView.findViewById(R.id.lib_quest_new_game);
-            qCloudButton = itemView.findViewById(R.id.lib_quest_cloud_button);
-            qSettings = itemView.findViewById(R.id.lib_quest_settings);
-            qDelete = itemView.findViewById(R.id.lib_quest_delete);
+            questId = itemView.findViewById(R.id.tqlib_quest_cid);
+            questTitle = itemView.findViewById(R.id.tqlib_quest_title);
+            questAuthor = itemView.findViewById(R.id.tqlib_quest_author);
+            qNewGame = itemView.findViewById(R.id.tqlib_download_button);
+            qCloudButton = itemView.findViewById(R.id.tqlib_quest_cloud_button);
+            qSettings = itemView.findViewById(R.id.tqlib_quest_settings);
+            qDelete = itemView.findViewById(R.id.tqlib_quest_delete);
         }
 
         public void setIdText() {
-            questId.setText(qIdText + qIdAddedText);
+            questId.setText(itemView.getResources().getString(R.string.lib_quest_id_prefix) + " " + qIdText + qIdAddedText);
         }
 
         public void setIdText(String idText) {
             qIdText = idText;
-            questId.setText(idText + qIdAddedText);
+            setIdText();
         }
 
         public void setIdAddedText(String qIdAddedText) {
@@ -181,12 +181,12 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 //        Set quests description
-        holder.setIdText(libraryActivity.getString(R.string.lib_quest_id_prefix) + " " + questsData[position].getQuestId());
+        holder.setIdText(String.valueOf(questsData[position].getQuestId()));
         holder.setTitleText(questsData[position].getQuestTitle());
 
 //        Set click listeners
 //        For description
-        holder.getItemView().findViewById(R.id.lib_description).setOnClickListener(v -> {
+        holder.getItemView().findViewById(R.id.tqlib_description).setOnClickListener(v -> {
             Toast.makeText(v.getContext(), questsData[position].getQuestTitle(), Toast.LENGTH_SHORT).show();
             matchQuest(position, holder);
         });

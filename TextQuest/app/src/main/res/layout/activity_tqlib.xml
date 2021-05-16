@@ -4,18 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryLightColor"
-    tools:context=".libraryactivity.LibraryActivity"
-    android:theme="@style/Theme.TextQuest">
+    tools:context=".tqlibactivity.TQLibActivity">
 
     <TextView
-        android:id="@+id/tqlib_quest_title"
+        android:id="@+id/tqlib_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:text="@string/lib_title"
+        android:text="@string/tqlib_title"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.TextQuest.Headline2"
         android:textSize="35sp"
@@ -23,36 +21,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/tqlib_recycler_view"
-        android:layout_width="670dp"
-        android:layout_height="1124dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/space"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.511"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/divider5"
-        app:layout_constraintVertical_bias="0.0" />
-
     <View
-        android:id="@+id/divider5"
+        android:id="@+id/divider10"
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:layout_marginTop="20dp"
         android:background="@color/primaryDarkColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tqlib_quest_title" />
+        app:layout_constraintTop_toBottomOf="@+id/tqlib_title" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tqlib_recycler_view"
+        android:layout_width="327dp"
+        android:layout_height="596dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/space"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/divider10"
+        app:layout_constraintVertical_bias="0.0" >
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <Space
         android:id="@+id/space"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,7 +26,7 @@ public class LibraryActivity extends AppCompatActivity {
 
         applicationContext = getApplicationContext();
 
-        libRecyclerView = findViewById(R.id.lib_recycler_view);
+        libRecyclerView = findViewById(R.id.tqlib_recycler_view);
 
         try {
             quests = Tools.tqManager().getQuestsArray(applicationContext);
