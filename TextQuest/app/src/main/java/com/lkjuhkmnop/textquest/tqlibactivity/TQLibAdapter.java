@@ -1,5 +1,6 @@
 package com.lkjuhkmnop.textquest.tqlibactivity;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +16,14 @@ import com.lkjuhkmnop.textquest.tools.Tools;
 import com.lkjuhkmnop.textquest.tqmanager.CloudManager;
 import com.lkjuhkmnop.textquest.tqmanager.DBQuest;
 
+import java.util.HashMap;
+
 public class TQLibAdapter extends RecyclerView.Adapter<TQLibAdapter.ViewHolder> {
+    private Context context;
     private DBQuest[] questsData;
 
-    public TQLibAdapter(DBQuest[] questsData) {
+    public TQLibAdapter(Context context, DBQuest[] questsData) {
+        this.context = context;
         this.questsData = questsData;
     }
 
@@ -73,12 +78,13 @@ public class TQLibAdapter extends RecyclerView.Adapter<TQLibAdapter.ViewHolder> 
         });
 
         holder.downloadBtn.setOnClickListener(v -> {
-
+            DBQuest quest = questsData[position];
+            Tools.tqManager().addQuest(quest.getQuestTitle(), quest.getQuestCloudId(), quest.getQuestUploaderUserId(), Tools.getGson().fromJson(quest.getCharacterProperties(), HashMap.class), Tools.getGson().fromJson(quest.getCharacterParameters(), HashMap.class), quest.getQuestJson(), context, context.getContentResolver());
         });
     }
 
     @Override
     public int getItemCount() {
-        return questsData.length;
+        return questsData == null ? 0 : questsData.length;
     }
 }

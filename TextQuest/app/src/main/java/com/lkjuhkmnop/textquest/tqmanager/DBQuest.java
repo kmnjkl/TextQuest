@@ -39,6 +39,23 @@ public class DBQuest {
     }
 
     @Ignore
+    public DBQuest(String questCloudId, String questUploaderUserId, String questTitle, String characterProperties, String characterParameters, String questJson) {
+        this.questCloudId = questCloudId;
+        this.questUploaderUserId = questUploaderUserId;
+        this.questTitle = questTitle;
+        this.characterProperties = characterProperties;
+        this.characterParameters = characterParameters;
+        this.questJson = questJson;
+    }
+
+    @Ignore
+    public DBQuest(String questCloudId, String questUploaderUserId, String questTitle) {
+        this.questCloudId = questCloudId;
+        this.questUploaderUserId = questUploaderUserId;
+        this.questTitle = questTitle;
+    }
+
+    @Ignore
     public DBQuest(String questCloudId, String questUploaderUserId) {
         this.questCloudId = questCloudId;
         this.questUploaderUserId = questUploaderUserId;

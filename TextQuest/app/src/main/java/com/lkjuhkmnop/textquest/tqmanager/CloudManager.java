@@ -11,9 +11,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.lkjuhkmnop.textquest.tools.Tools;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -38,6 +41,11 @@ public class CloudManager {
     private static final String FS_USERS_COLLECTION = "users";
     private static final String FS_USER_DISPLAY_NAME_FIELD = "display_name";
     private static final String FS_USER_UPLOADED_QUESTS_FIELD = "uploaded_quests";
+    private static final String FS_LIBRARY_USER_UPLOADER_ID_FIELD = "questUploaderUserId";
+    private static final String FS_LIBRARY_QUEST_TITLE_FIELD = "questTitle";
+    private static final String FS_LIBRARY_CHAR_PROPS_FIELD = "characterProperties";
+    private static final String FS_LIBRARY_CHAR_PARAMS_FIELD = "characterParameters";
+    private static final String FS_QUEST_JSON_FIELD = "questJson";
     private static final String DBQ_UPLOADER_USER_ID_FIELD = "questUploaderUserId";
 //    Constants associated with local database entities
     private static final String DBQ_TITLE_FIELD = "questTitle";
@@ -161,23 +169,27 @@ public class CloudManager {
     }
 
     public void getUser(String uid, OnCMResponseListener<DocumentSnapshot> onCMResponseListener) {
-        firestore.collection(FS_USERS_COLLECTION).document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        onCMResponseListener.onCMResponse(new CMResponse<DocumentSnapshot>(OK, document));
+        if (uid != null) {
+            firestore.collection(FS_USERS_COLLECTION).document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            onCMResponseListener.onCMResponse(new CMResponse<DocumentSnapshot>(OK, document));
+                        } else {
+                            onCMResponseListener.onCMResponse(new CMResponse<DocumentSnapshot>(NO_SUCH_DOCUMENT));
+                            Log.d("LKJD", "No such document");
+                        }
                     } else {
-                        onCMResponseListener.onCMResponse(new CMResponse<DocumentSnapshot>(NO_SUCH_DOCUMENT));
-                        Log.d("LKJD", "No such document");
+                        onCMResponseListener.onCMResponse(new CMResponse<DocumentSnapshot>(FAILED, task.getException()));
+                        Log.d("LKJD", "get failed with ", task.getException());
                     }
-                } else {
-                    onCMResponseListener.onCMResponse(new CMResponse<DocumentSnapshot>(FAILED, task.getException()));
-                    Log.d("LKJD", "get failed with ", task.getException());
                 }
-            }
-        });
+            });
+        } else {
+            onCMResponseListener.onCMResponse(new CMResponse<>(FAILED));
+        }
     }
 
 
@@ -192,6 +204,25 @@ public class CloudManager {
                         data.put(FS_USER_DISPLAY_NAME_FIELD, Tools.authTools().getUser().getDisplayName());
                         data.put(FS_USER_UPLOADED_QUESTS_FIELD, new ArrayList<String>(0));
                         firestore.collection(FS_USERS_COLLECTION).document(Tools.authTools().getUser().getUid()).set(data);
+                    }
+                }
+            }
+        });
+    }
+
+    public void getCloudQuests(OnCMResponseListener<List<DBQuest>> onCMResponseListener) {
+        firestore.collection(FS_LIBRARY_COLLECTION).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    if (task.getResult() == null) {
+                        onCMResponseListener.onCMResponse(new CMResponse<>(OK, null));
+                    } else {
+                        ArrayList<DBQuest> result = new ArrayList<DBQuest>(task.getResult().size());
+                        for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                            result.add(new DBQuest(documentSnapshot.getId(), documentSnapshot.getString(FS_LIBRARY_USER_UPLOADER_ID_FIELD), documentSnapshot.getString(FS_LIBRARY_QUEST_TITLE_FIELD), documentSnapshot.getString(FS_LIBRARY_CHAR_PROPS_FIELD), documentSnapshot.getString(FS_LIBRARY_CHAR_PARAMS_FIELD), documentSnapshot.getString(FS_QUEST_JSON_FIELD)));
+                        }
+                        onCMResponseListener.onCMResponse(new CMResponse<List<DBQuest>>(OK, result));
                     }
                 }
             }

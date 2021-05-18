@@ -47,6 +47,7 @@ public class TQManager {
     private static class AddQuest extends Thread {
 //        Title of new quest
         private String title;
+        private String cloudId;
 //        Quest's author
         private String author;
 //        Character's properties and parameters in the new quest
@@ -72,6 +73,17 @@ public class TQManager {
             this.contentResolver = contentResolver;
         }
 
+        public AddQuest(String title, String cloudId, String author, HashMap<String, String> characterProperties, HashMap<String, String> characterParameters, String twineJson, Context context, ContentResolver contentResolver) {
+            this.title = title;
+            this.cloudId = cloudId;
+            this.author = author;
+            this.characterProperties = characterProperties;
+            this.characterParameters = characterParameters;
+            this.twineJson = twineJson;
+            this.context = context;
+            this.contentResolver = contentResolver;
+        }
+
         /**
          * When thread is started, add quest with parameters specified using {@link AddQuest} class's constructor {@link AddQuest#AddQuest}
          * */
@@ -81,7 +93,7 @@ public class TQManager {
 //            Replace bad attribute "creator-version" (you can't use '-' in fields names in Java) with "creator_version"
             String correctedJson = twineJson.replaceAll("\"creator-version\":", "\"creator_version\":");
             DBQuestsDao questDao = getAppDatabaseInstance(context).questsDao();
-            questDao.insert(new DBQuest(null, title, Tools.getGson().toJson(characterProperties), Tools.getGson().toJson(characterParameters), correctedJson));
+            questDao.insert(new DBQuest(cloudId, author, title, Tools.getGson().toJson(characterProperties), Tools.getGson().toJson(characterParameters), correctedJson));
         }
     }
     /**
@@ -90,6 +102,10 @@ public class TQManager {
      * */
     public void addQuest(String title, String author, HashMap<String, String> characterProperties, HashMap<String, String> characterParameters, String twineJson, Context context, ContentResolver contentResolver) {
         AddQuest aq = new AddQuest(title, author, characterProperties, characterParameters, twineJson, context, contentResolver);
+        aq.start();
+    }
+    public void addQuest(String title, String cloudId, String author, HashMap<String, String> characterProperties, HashMap<String, String> characterParameters, String twineJson, Context context, ContentResolver contentResolver) {
+        AddQuest aq = new AddQuest(title, cloudId, author, characterProperties, characterParameters, twineJson, context, contentResolver);
         aq.start();
     }
 
