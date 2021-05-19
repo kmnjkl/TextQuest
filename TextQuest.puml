@@ -1,6 +1,15 @@
 @startuml
 
 together {
+  package TQLibActivity {
+    class TQLibActivity
+    TQLibActivity --> CloudManager
+    class TQLibAdapter
+  }
+
+  class UserManagerActivity
+  UserManagerActivity --> AuthTools
+
   package mainactivity {
     class MainActivity
   }
